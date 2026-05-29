@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chicago Florist | Luxury Floral Design | Modern LUXE Flowers</title>
+<meta name="description" content="Modern LUXE Flowers is a Chicago luxury floral design studio specializing in weddings, corporate events, galas, and high-end residential installations. By appointment only.">
+<meta name="keywords" content="Chicago florist, luxury floral design, wedding flowers Chicago, corporate floral Chicago, Modern LUXE Flowers">
+<meta property="og:title" content="Modern LUXE Flowers — Chicago Luxury Floral Design">
+<meta property="og:description" content="Bespoke floral arrangements for weddings, corporate spaces, and moments that deserve more than ordinary flowers.">
+<meta property="og:image" content="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1440,h=756,fit=crop,f=jpeg/A85ZREzgQ7sraPkX/untitled-design-14-m7VpJP1eKGcpJlN1.webp">
+<meta property="og:url" content="https://modernluxeflowers.com/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://modernluxeflowers.com/">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:   #0a0a0a;
+  --dark:    #111111;
+  --surface: #161613;
+  --border:  #2a2820;
+  --gold:    #c9a96e;
+  --gold-dim:#8a7048;
+  --cream:   #f5f0e8;
+  --body:    #d4cec4;
+  --muted:   #a89e90;
+  --dim:     #6b6658;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── ANNOUNCEMENT BANNER ─── */
+#site-banner {
+  background: #131210;
+  border-bottom: 1px solid var(--border);
+  padding: 11px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 200;
+}
+
+#site-banner span {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--body);
+}
+
+#site-banner button {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ─── NAV ─── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 64px;
+  background: rgba(10,10,10,0.98);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+}
+
+.nav-logo img { height: 42px; display: block; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--body);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--cream); }
+
+.nav-cta {
+  font-weight: 400 !important;
+  color: var(--black) !important;
+  background: var(--gold);
+  padding: 12px 26px;
+  letter-spacing: 0.16em !important;
+}
+
+.nav-cta:hover { background: #d4b57a; color: var(--black) !important; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--cream);
+  transition: all 0.3s;
+}
+
+/* ─── HERO ─── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: calc(100vh - 90px);
+  min-height: 580px;
+  max-height: 920px;
+  overflow: hidden;
+  background: var(--black);
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 56px 60px 72px;
+  background: var(--black);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(52px, 5.5vw, 84px);
+  line-height: 1.0;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  margin-bottom: 22px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(17px, 1.6vw, 22px);
+  color: var(--body);
+  line-height: 1.65;
+  max-width: 380px;
+  margin-bottom: 44px;
+}
+
+.cta-group {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  padding: 17px 38px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.25s;
+}
+
+.btn-primary:hover { background: #d4b57a; }
+
+.btn-ghost {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--body);
+  text-decoration: none;
+  border-bottom: 1px solid #3a3830;
+  padding-bottom: 3px;
+  transition: color 0.2s;
+}
+
+.btn-ghost:hover { color: var(--cream); }
+
+.hero-right {
+  position: relative;
+  overflow: hidden;
+  background: var(--black);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.45) saturate(0.75);
+}
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(10,10,10,0.65) 0%, transparent 50%);
+  z-index: 1;
+}
+
+.hero-arrangement {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  padding: 60px 48px;
+}
+
+.hero-arrangement img {
+  max-height: 85%;
+  max-width: 80%;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 56px rgba(0,0,0,0.8));
+  display: block;
+}
+
+.hero-sidetag {
+  position: absolute;
+  bottom: 40px;
+  right: 28px;
+  font-size: 9px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.2);
+  writing-mode: vertical-rl;
+  z-index: 3;
+}
+
+/* ─── INTRO STRIP ─── */
+.intro-strip {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 44px 80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.strip-item { padding-right: 48px; border-right: 1px solid var(--border); }
+.strip-item:last-child { border-right: none; padding-right: 0; padding-left: 48px; }
+.strip-item:nth-child(2) { padding: 0 48px; }
+
+.strip-label {
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.strip-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  color: var(--body);
+  line-height: 1.55;
+}
+
+/* ─── ABOUT SPLIT ─── */
+.about-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 75vh;
+}
+
+.about-image { position: relative; overflow: hidden; }
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: brightness(0.82) saturate(0.85);
+}
+
+.about-content {
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 72px;
+}
+
+.section-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.about-content h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(34px, 3.2vw, 50px);
+  line-height: 1.1;
+  color: var(--cream);
+  margin-bottom: 24px;
+}
+
+.about-content h2 em { font-style: italic; color: var(--gold); }
+
+.about-content p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  line-height: 1.75;
+  color: var(--body);
+  margin-bottom: 18px;
+  max-width: 420px;
+}
+
+.about-content p strong { color: var(--cream); font-weight: 400; }
+
+/* ─── COLLECTIONS ─── */
+.collections {
+  padding: 96px 80px;
+  background: var(--black);
+}
+
+.collections-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+
+.collections-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(34px, 3.2vw, 50px);
+  color: var(--cream);
+}
+
+.collections-header h2 em { font-style: italic; color: var(--gold); }
+
+.collections-header a {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--body);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 3px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+}
+
+.collections-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: 500px;
+  gap: 2px;
+}
+
+.collection-item { position: relative; overflow: hidden; }
+
+.collection-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.65) saturate(0.85);
+  transition: transform 0.7s ease, filter 0.4s ease;
+}
+
+.collection-item:hover img {
+  transform: scale(1.04);
+  filter: brightness(0.85) saturate(1);
+}
+
+.collection-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 60px 28px 28px;
+  background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 100%);
+}
+
+.collection-tag {
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.collection-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 24px;
+  color: var(--cream);
+}
+
+/* ─── CORPORATE BAND ─── */
+.corporate-band {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 88px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.corporate-band h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(32px, 3vw, 48px);
+  line-height: 1.1;
+  color: var(--cream);
+}
+
+.corporate-band h2 em { font-style: italic; color: var(--gold); }
+
+.corp-right p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  line-height: 1.75;
+  color: var(--body);
+  margin-bottom: 18px;
+  max-width: 460px;
+}
+
+.corp-tiers {
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--body);
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-bottom: 36px;
+  line-height: 2.1;
+}
+
+.corp-tiers strong { color: var(--gold); font-weight: 400; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  padding: 64px 80px 40px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 60px;
+}
+
+.footer-logo img { height: 32px; margin-bottom: 20px; opacity: 0.75; display: block; }
+
+.footer-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--body);
+  line-height: 1.65;
+  max-width: 260px;
+  margin-bottom: 24px;
+}
+
+.footer-contact { font-size: 13px; color: var(--body); line-height: 2.1; }
+.footer-contact a { color: var(--gold); text-decoration: none; }
+
+.footer-col h4 {
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 20px;
+}
+
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 13px; }
+
+.footer-col ul li a {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--body);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-col ul li a:hover { color: var(--cream); }
+
+.footer-bottom {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+/* ══════════════════════════════
+   TABLET — 1024px
+══════════════════════════════ */
+@media (max-width: 1024px) {
+  nav { padding: 20px 40px; }
+  .hero-left { padding: 60px 40px 60px 48px; }
+  .intro-strip { padding: 40px; }
+  .about-content { padding: 60px 48px; }
+  .collections { padding: 72px 40px; }
+  .corporate-band { padding: 72px 40px; gap: 48px; }
+  footer { padding: 56px 40px 36px; gap: 40px; }
+}
+
+/* ══════════════════════════════
+   MOBILE — 768px
+══════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* nav */
+  nav { padding: 18px 24px; }
+  .nav-logo img { height: 34px; }
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10,10,10,0.98);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    z-index: 99;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { font-size: 16px; letter-spacing: 0.2em; }
+  .nav-cta { padding: 16px 40px; font-size: 14px !important; }
+  .nav-toggle { display: flex; z-index: 101; position: relative; }
+
+  /* hero */
+  .hero {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: unset;
+    max-height: unset;
+  }
+
+  .hero-left {
+    padding: 52px 24px 44px;
+    order: 1;
+  }
+
+  .hero h1 { font-size: clamp(44px, 12vw, 64px); }
+  .hero-sub { font-size: 18px; max-width: 100%; }
+
+  .hero-right {
+    order: 2;
+    height: 64vw;
+    min-height: 260px;
+  }
+
+  .hero-arrangement { padding: 20px; }
+  .hero-arrangement img { max-height: 90%; max-width: 68%; }
+  .hero-sidetag { display: none; }
+
+  /* intro strip */
+  .intro-strip {
+    grid-template-columns: 1fr;
+    padding: 36px 24px;
+  }
+
+  .strip-item {
+    padding: 0 0 28px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
+  }
+
+  .strip-item:last-child {
+    border-bottom: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .strip-item:nth-child(2) { padding: 0 0 28px; }
+
+  /* about */
+  .about-split { grid-template-columns: 1fr; }
+  .about-image { height: 70vw; min-height: 280px; }
+  .about-content { padding: 48px 24px; }
+  .about-content p { font-size: 18px; max-width: 100%; }
+
+  /* collections */
+  .collections { padding: 60px 24px; }
+  .collections-header { flex-direction: column; align-items: flex-start; gap: 14px; margin-bottom: 28px; }
+  .collections-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 72vw 72vw 72vw;
+  }
+
+  /* corporate */
+  .corporate-band {
+    grid-template-columns: 1fr;
+    padding: 56px 24px;
+    gap: 32px;
+  }
+  .corp-right p { font-size: 18px; max-width: 100%; }
+
+  /* footer */
+  footer {
+    grid-template-columns: 1fr;
+    padding: 48px 24px 32px;
+    gap: 36px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-left { padding: 44px 20px 36px; }
+  .about-content { padding: 40px 20px; }
+  .collections { padding: 48px 20px; }
+  .corporate-band { padding: 48px 20px; }
+  footer { padding: 40px 20px 28px; }
+  .intro-strip { padding: 32px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BANNER — delete this section when redesign is complete -->
+<div id="site-banner">
+  <span>We're refreshing our look — check back soon.</span>
+  <button onclick="document.getElementById('site-banner').style.display='none'" aria-label="Dismiss">×</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/A85ZREzgQ7sraPkX/rev_1_white-AE0pZjGL43IaRQEr.png" alt="Modern LUXE Flowers">
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/flower-arrangements-portfolio.html">Portfolio</a></li>
+    <li><a href="/about-us-floral-design-business.html">About</a></li>
+    <li><a href="/client-reviews.html">Kind Words</a></li>
+    <li><a href="/corporate-floral-design-chicago.html">Corporate</a></li>
+    <li><a href="/contact-us-floral-arrangements.html" class="nav-cta">Consult</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">Chicago Luxury Floral Design</div>
+    <h1>Floral Design<br>as <em>Art.</em></h1>
+    <p class="hero-sub">Bespoke arrangements for weddings, corporate spaces, and moments that deserve more than ordinary flowers.</p>
+    <div class="cta-group">
+      <a href="/contact-us-floral-arrangements.html" class="btn-primary">Request a Consultation</a>
+      <a href="/flower-arrangements-portfolio.html" class="btn-ghost">View Portfolio</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- BACKGROUND PHOTO — replace src URL to change the scene -->
+    <img class="hero-bg"
+      src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/A85ZREzgQ7sraPkX/untitled-design-27-jvBkGMA4MANsxU3k.png"
+      alt="">
+    <div class="hero-gradient"></div>
+    <!-- ARRANGEMENT PHOTO — replace src URL to swap the featured arrangement -->
+    <div class="hero-arrangement">
+      <img
+        src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1024,h=1367,fit=crop/A85ZREzgQ7sraPkX/flwer-orange---edited-PgqG34Fbl577WDoO.png"
+        alt="Modern LUXE Flowers — Chicago luxury floral arrangement">
+    </div>
+    <span class="hero-sidetag">Modern LUXE Flowers — Chicago</span>
+  </div>
+</section>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+  <div class="strip-item">
+    <div class="strip-label">The Studio</div>
+    <div class="strip-text">24 years of fashion, art, and design — brought to every arrangement.</div>
+  </div>
+  <div class="strip-item">
+    <div class="strip-label">The Work</div>
+    <div class="strip-text">Weddings, galas, corporate programs, and private residences across Chicago.</div>
+  </div>
+  <div class="strip-item">
+    <div class="strip-label">The Standard</div>
+    <div class="strip-text">Professional-grade sourcing. Editorial eye. No volume work. By appointment only.</div>
+  </div>
+</div>
+
+<!-- ABOUT SPLIT -->
+<section class="about-split">
+  <div class="about-image">
+    <!-- DESIGNER PHOTO — replace src URL when Jo selects a new photo -->
+    <img
+      src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=803,fit=crop/A85ZREzgQ7sraPkX/img_4442-YKbaR8ZezzuggD6B.JPG"
+      alt="Jo — Modern LUXE Flowers Lead Designer Chicago">
+  </div>
+  <div class="about-content">
+    <div class="section-eyebrow">The Designer</div>
+    <h2>Jo brings an<br><em>editorial eye</em><br>to every stem.</h2>
+    <p>With over two decades in fashion, interior design, and the arts, Jo founded Modern LUXE Flowers to bring a different standard to Chicago luxury events.</p>
+    <p><strong>Every arrangement is built from vision, not formula.</strong> Clients don't get a catalog — they get a collaboration.</p>
+    <a href="/about-us-floral-design-business.html" class="btn-ghost">Meet Jo</a>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section class="collections">
+  <div class="collections-header">
+    <h2>The <em>Collections</em></h2>
+    <a href="/flower-arrangements-portfolio.html">View Full Portfolio</a>
+  </div>
+  <div class="collections-grid">
+
+    <!-- COLLECTION 1 — replace src URL to change this photo -->
+    <a href="/luxe-love-unique-flower-arrangements.html" class="collection-item">
+      <img
+        src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1024,h=1819,fit=crop/A85ZREzgQ7sraPkX/20250201_121715-mk3qBN58Defrw06O.jpg"
+        alt="Luxe Love — Modern LUXE Flowers Chicago">
+      <div class="collection-label">
+        <div class="collection-tag">Collection 01</div>
+        <div class="collection-name">Luxe Love</div>
+      </div>
+    </a>
+
+    <!-- COLLECTION 2 — replace src URL to change this photo -->
+    <a href="/gift-giving-boxful-art.html" class="collection-item">
+      <img
+        src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1440,h=1515,fit=crop/A85ZREzgQ7sraPkX/20240617_165521-Aq2B3vjRgETJVbMv.jpg"
+        alt="Boxful Art — Modern LUXE Flowers Chicago">
+      <div class="collection-label">
+        <div class="collection-tag">Collection 02</div>
+        <div class="collection-name">Boxful Art</div>
+      </div>
+    </a>
+
+    <!-- COLLECTION 3 — replace src URL to change this photo -->
+    <a href="/petals-and-stems.html" class="collection-item">
+      <img
+        src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1024,h=1536,fit=crop/A85ZREzgQ7sraPkX/dsc_0352-YleW7lO68Wu0l5y5.JPG"
+        alt="Petals & Stems — Modern LUXE Flowers Chicago">
+      <div class="collection-label">
+        <div class="collection-tag">Collection 03</div>
+        <div class="collection-name">Petals & Stems</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- CORPORATE BAND -->
+<section class="corporate-band">
+  <div class="corp-left">
+    <div class="section-eyebrow">Corporate Programs</div>
+    <h2>Your lobby should<br>feel as <em>considered</em><br>as your brand.</h2>
+  </div>
+  <div class="corp-right">
+    <p>Monthly floral programs for law firms, boutique hotels, medical spas, and professional offices in Chicago. Recurring arrangements, professionally managed — nothing for you to coordinate.</p>
+    <p>Programs available at three service levels, ranging from curated monthly refreshes to full-presence installations across multiple spaces.</p>
+    <div class="corp-tiers">
+      Three tiers available — <strong>starting at $450/month.</strong><br>
+      Contracts include annual review. No long-term lock-in required.
+    </div>
+    <a href="/corporate-floral-design-chicago.html" class="btn-primary">Learn About Corporate Services</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/A85ZREzgQ7sraPkX/rev_1_white-AE0pZjGL43IaRQEr.png" alt="Modern LUXE Flowers">
+    </div>
+    <p class="footer-tagline">Luxury floral design for moments that deserve more than ordinary flowers.</p>
+    <div class="footer-contact">
+      By Appointment Only — Chicago, IL 60620<br>
+      <a href="mailto:info@modernluxeflowers.com">info@modernluxeflowers.com</a>
+    </div>
+  </div>
+  <div class="footer-col">
+    <h4>Navigate</h4>
+    <ul>
+      <li><a href="/flower-arrangements-portfolio.html">Portfolio</a></li>
+      <li><a href="/luxe-love-unique-flower-arrangements.html">Luxe Love</a></li>
+      <li><a href="/gift-giving-boxful-art.html">Boxful Art</a></li>
+      <li><a href="/petals-and-stems.html">Petals & Stems</a></li>
+      <li><a href="/corporate-floral-design-chicago.html">Corporate</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Studio</h4>
+    <ul>
+      <li><a href="/about-us-floral-design-business.html">About Jo</a></li>
+      <li><a href="/client-reviews.html">Kind Words</a></li>
+      <li><a href="/contact-us-floral-arrangements.html">Contact</a></li>
+      <li><a href="https://www.instagram.com/modernluxeflowers" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://www.facebook.com/ModernLuxeFlowers/" target="_blank" rel="noopener">Facebook</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Modern LUXE Flowers — Chicago, IL</span>
+    <span>modernluxeflowers.com</span>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    links.classList.toggle('open');
+  });
+  // Close nav when a link is clicked
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => links.classList.remove('open'));
+  });
+</script>
+
+</body>
+</html>
