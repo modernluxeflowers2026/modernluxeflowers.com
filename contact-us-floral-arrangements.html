@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request a Consultation | Modern LUXE Flowers Chicago</title>
+<meta name="description" content="Book a floral design consultation with Modern LUXE Flowers. Chicago luxury florist for weddings, corporate events, and galas. Contact us by phone, WhatsApp, or email.">
+<meta name="keywords" content="contact Chicago florist, floral consultation Chicago, Modern LUXE Flowers contact, book florist Chicago">
+<meta property="og:title" content="Request a Consultation — Modern LUXE Flowers">
+<meta property="og:description" content="Book a floral design consultation with Modern LUXE Flowers. Chicago luxury florist for weddings, corporate events, and galas.">
+<meta property="og:url" content="https://modernluxeflowers.com/contact-us-floral-arrangements.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://modernluxeflowers.com/contact-us-floral-arrangements.html">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:   #0a0a0a;
+  --dark:    #111111;
+  --surface: #161613;
+  --border:  #2a2820;
+  --gold:    #c9a96e;
+  --gold-dim:#8a7048;
+  --cream:   #f5f0e8;
+  --body:    #d4cec4;
+  --muted:   #a89e90;
+  --dim:     #6b6658;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 64px;
+  background: rgba(10,10,10,0.98);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+}
+
+.nav-logo img { height: 42px; display: block; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--body);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--cream); }
+.nav-links a.active { color: var(--gold); }
+
+.nav-cta {
+  font-weight: 400 !important;
+  color: var(--black) !important;
+  background: var(--gold);
+  padding: 12px 26px;
+  letter-spacing: 0.16em !important;
+}
+
+.nav-cta:hover { background: #d4b57a; color: var(--black) !important; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--cream);
+  transition: all 0.3s;
+}
+
+/* ─── PAGE HEADER ─── */
+.page-header {
+  padding: 96px 80px 72px;
+  background: var(--black);
+  border-bottom: 1px solid var(--border);
+  max-width: 760px;
+}
+
+.page-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+
+.page-eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.page-header h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(44px, 5vw, 72px);
+  line-height: 1.0;
+  color: var(--cream);
+  margin-bottom: 24px;
+}
+
+.page-header h1 em { font-style: italic; color: var(--gold); }
+
+.page-header p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  line-height: 1.75;
+  color: var(--body);
+  max-width: 520px;
+}
+
+/* ─── INQUIRY FORM ─── */
+.inquiry-section {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 80px 80px;
+}
+
+.inquiry-inner {
+  max-width: 820px;
+}
+
+.section-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.inquiry-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(30px, 3vw, 46px);
+  line-height: 1.1;
+  color: var(--cream);
+  margin-bottom: 56px;
+}
+
+.inquiry-section h2 em { font-style: italic; color: var(--gold); }
+
+/* ─── FORM FIELDS ─── */
+.form-block {
+  margin-bottom: 44px;
+}
+
+.form-block-label {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+  display: block;
+}
+
+/* pill radio selectors */
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pill-label {
+  cursor: pointer;
+  position: relative;
+}
+
+.pill-label input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.pill-label span {
+  display: inline-block;
+  padding: 10px 24px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--body);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  user-select: none;
+}
+
+.pill-label:hover span {
+  border-color: var(--gold-dim);
+  color: var(--cream);
+}
+
+.pill-label input:checked + span {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201, 169, 110, 0.09);
+}
+
+/* text inputs */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-field label {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.form-input {
+  width: 100%;
+  background: var(--black);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  padding: 14px 18px;
+  outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+
+.form-input::placeholder { color: var(--dim); }
+.form-input:focus { border-color: var(--gold-dim); }
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.7;
+}
+
+/* submit row */
+.form-submit {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+
+.btn-submit-email {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  border: none;
+  padding: 17px 42px;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+
+.btn-submit-email:hover { background: #d4b57a; }
+
+.btn-submit-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--body);
+  background: none;
+  border: 1px solid var(--border);
+  padding: 17px 32px;
+  cursor: pointer;
+  transition: border-color 0.25s, color 0.25s;
+}
+
+.btn-submit-whatsapp:hover {
+  border-color: var(--gold-dim);
+  color: var(--cream);
+}
+
+.btn-submit-whatsapp svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.submit-note {
+  font-size: 12px;
+  color: var(--dim);
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+
+/* ─── CONTACT STRIP ─── */
+.contact-strip {
+  background: var(--black);
+  border-bottom: 1px solid var(--border);
+  padding: 56px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.contact-strip-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--body);
+  max-width: 360px;
+  line-height: 1.6;
+}
+
+.contact-strip-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-shrink: 0;
+}
+
+.contact-link-item {
+  text-align: right;
+}
+
+.contact-link-tag {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 6px;
+}
+
+.contact-link-value a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--cream);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+
+.contact-link-value a:hover { color: var(--gold); }
+
+.contact-strip-divider {
+  width: 1px;
+  height: 48px;
+  background: var(--border);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  padding: 64px 80px 40px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 60px;
+}
+
+.footer-logo img { height: 32px; margin-bottom: 20px; opacity: 0.75; display: block; }
+
+.footer-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--body);
+  line-height: 1.65;
+  max-width: 260px;
+  margin-bottom: 24px;
+}
+
+.footer-contact { font-size: 13px; color: var(--body); line-height: 2.1; }
+.footer-contact a { color: var(--gold); text-decoration: none; }
+
+.footer-col h4 {
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 20px;
+}
+
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 13px; }
+
+.footer-col ul li a {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--body);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-col ul li a:hover { color: var(--cream); }
+
+.footer-bottom {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+/* ══════════════════════════════
+   TABLET — 1024px
+══════════════════════════════ */
+@media (max-width: 1024px) {
+  nav { padding: 20px 40px; }
+  .page-header { padding: 72px 40px 56px; }
+  .inquiry-section { padding: 64px 40px; }
+  .contact-strip { padding: 48px 40px; }
+  footer { padding: 56px 40px 36px; gap: 40px; }
+}
+
+/* ══════════════════════════════
+   MOBILE — 768px
+══════════════════════════════ */
+@media (max-width: 768px) {
+  nav { padding: 18px 24px; }
+  .nav-logo img { height: 34px; }
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10,10,10,0.98);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    z-index: 99;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { font-size: 16px; letter-spacing: 0.2em; }
+  .nav-cta { padding: 16px 40px; font-size: 14px !important; }
+  .nav-toggle { display: flex; z-index: 101; position: relative; }
+
+  .page-header { padding: 56px 24px 44px; }
+  .page-header p { font-size: 18px; }
+
+  .inquiry-section { padding: 56px 24px; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-submit { flex-direction: column; align-items: flex-start; }
+  .btn-submit-email, .btn-submit-whatsapp { width: 100%; justify-content: center; }
+
+  .contact-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 48px 24px;
+    gap: 32px;
+  }
+  .contact-strip-links { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .contact-link-item { text-align: left; }
+  .contact-strip-divider { display: none; }
+
+  footer {
+    grid-template-columns: 1fr;
+    padding: 48px 24px 32px;
+    gap: 36px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header { padding: 44px 20px 36px; }
+  .inquiry-section { padding: 48px 20px; }
+  .contact-strip { padding: 40px 20px; }
+  footer { padding: 40px 20px 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/A85ZREzgQ7sraPkX/rev_1_white-AE0pZjGL43IaRQEr.png" alt="Modern LUXE Flowers">
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/flower-arrangements-portfolio.html">Portfolio</a></li>
+    <li><a href="/about-us-floral-design-business.html">About</a></li>
+    <li><a href="/client-reviews.html">Kind Words</a></li>
+    <li><a href="/corporate-floral-design-chicago.html">Corporate</a></li>
+    <li><a href="/contact-us-floral-arrangements.html" class="nav-cta active">Consult</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-eyebrow">Begin Here</div>
+  <h1>Let's talk<br>about your <em>vision.</em></h1>
+  <p>Every arrangement starts with a conversation. Tell us about your event below — we'll follow up within 24 hours to schedule your consultation.</p>
+</div>
+
+<!-- INQUIRY FORM -->
+<section class="inquiry-section">
+  <div class="inquiry-inner">
+    <div class="section-eyebrow">Before You Reach Out</div>
+    <h2>Tell us about<br>your <em>event.</em></h2>
+
+    <form id="inquiryForm" novalidate>
+
+      <!-- Event type -->
+      <div class="form-block">
+        <span class="form-block-label">What are you planning?</span>
+        <div class="pill-group" role="group" aria-label="Event type">
+          <label class="pill-label">
+            <input type="radio" name="event-type" value="Wedding">
+            <span>Wedding</span>
+          </label>
+          <label class="pill-label">
+            <input type="radio" name="event-type" value="Corporate Event">
+            <span>Corporate Event</span>
+          </label>
+          <label class="pill-label">
+            <input type="radio" name="event-type" value="Gala / Benefit">
+            <span>Gala / Benefit</span>
+          </label>
+          <label class="pill-label">
+            <input type="radio" name="event-type" value="Private Residence">
+            <span>Private Residence</span>
+          </label>
+          <label class="pill-label">
+            <input type="radio" name="event-type" value="Other">
+            <span>Other</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Budget range -->
+      <div class="form-block">
+        <span class="form-block-label">Approximate budget</span>
+        <div class="pill-group" role="group" aria-label="Budget range">
+          <label class="pill-label">
+            <input type="radio" name="budget" value="Under $500">
+            <span>Under $500</span>
+          </label>
+          <label class="pill-label">
+            <input type="radio" name="budget" value="$500 – $1,500">
+            <span>$500 – $1,500</span>
+          </label>
+          <label class="pill-label">
+            <input type="radio" name="budget" value="$1,500 – $5,000">
+            <span>$1,500 – $5,000</span>
+          </label>
+          <label class="pill-label">
+            <input type="radio" name="budget" value="$5,000+">
+            <span>$5,000+</span>
+          </label>
+          <label class="pill-label">
+            <input type="radio" name="budget" value="Let's discuss">
+            <span>Let's discuss</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Name + Date -->
+      <div class="form-block">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" class="form-input" placeholder="First &amp; last name" autocomplete="name">
+          </div>
+          <div class="form-field">
+            <label for="event-date">Event date</label>
+            <input type="text" id="event-date" name="event-date" class="form-input" placeholder="e.g. Sept 2026 or exact date">
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div class="form-block">
+        <div class="form-field">
+          <label for="notes">Anything else we should know?</label>
+          <textarea id="notes" name="notes" class="form-input" placeholder="Venue, color palette, inspiration, number of arrangements — whatever feels relevant."></textarea>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="form-submit">
+        <button type="button" class="btn-submit-email" onclick="submitEmail()">Send via Email</button>
+        <button type="button" class="btn-submit-whatsapp" onclick="submitWhatsApp()">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Send via WhatsApp
+        </button>
+        <p class="submit-note">We'll respond within 24 hours<br>to schedule your consultation.</p>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <p class="contact-strip-text">Prefer to reach us directly? We're available by phone or text anytime.</p>
+  <div class="contact-strip-links">
+    <div class="contact-link-item">
+      <div class="contact-link-tag">Call or Text</div>
+      <div class="contact-link-value">
+        <a href="tel:+17734180161">(773) 418-0161</a>
+      </div>
+    </div>
+    <div class="contact-strip-divider"></div>
+    <div class="contact-link-item">
+      <div class="contact-link-tag">Email</div>
+      <div class="contact-link-value">
+        <a href="mailto:info@modernluxeflowers.com">info@modernluxeflowers.com</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/A85ZREzgQ7sraPkX/rev_1_white-AE0pZjGL43IaRQEr.png" alt="Modern LUXE Flowers">
+    </div>
+    <p class="footer-tagline">Luxury floral design for moments that deserve more than ordinary flowers.</p>
+    <div class="footer-contact">
+      By Appointment Only — Chicago, IL 60620<br>
+      <a href="mailto:info@modernluxeflowers.com">info@modernluxeflowers.com</a>
+    </div>
+  </div>
+  <div class="footer-col">
+    <h4>Navigate</h4>
+    <ul>
+      <li><a href="/flower-arrangements-portfolio.html">Portfolio</a></li>
+      <li><a href="/luxe-love-unique-flower-arrangements.html">Luxe Love</a></li>
+      <li><a href="/gift-giving-boxful-art.html">Boxful Art</a></li>
+      <li><a href="/petals-and-stems.html">Petals &amp; Stems</a></li>
+      <li><a href="/corporate-floral-design-chicago.html">Corporate</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Studio</h4>
+    <ul>
+      <li><a href="/about-us-floral-design-business.html">About Jo</a></li>
+      <li><a href="/client-reviews.html">Kind Words</a></li>
+      <li><a href="/contact-us-floral-arrangements.html">Contact</a></li>
+      <li><a href="https://www.instagram.com/modernluxeflowers" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://www.facebook.com/ModernLuxeFlowers/" target="_blank" rel="noopener">Facebook</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Modern LUXE Flowers — Chicago, IL</span>
+    <span>modernluxeflowers.com</span>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  function getFormData() {
+    const form = document.getElementById('inquiryForm');
+    return {
+      name:      form.querySelector('#name').value.trim() || 'Not provided',
+      eventType: (form.querySelector('input[name="event-type"]:checked') || {}).value || 'Not specified',
+      budget:    (form.querySelector('input[name="budget"]:checked') || {}).value || 'Not specified',
+      date:      form.querySelector('#event-date').value.trim() || 'Not specified',
+      notes:     form.querySelector('#notes').value.trim()
+    };
+  }
+
+  function submitEmail() {
+    const d = getFormData();
+    const body = [
+      'Hi Modern LUXE Flowers,',
+      '',
+      'Name: ' + d.name,
+      'Event Type: ' + d.eventType,
+      'Event Date: ' + d.date,
+      'Budget: ' + d.budget,
+      d.notes ? '\nDetails:\n' + d.notes : ''
+    ].join('\n');
+    window.location.href = 'mailto:info@modernluxeflowers.com'
+      + '?subject=' + encodeURIComponent('Consultation Request — ' + d.eventType)
+      + '&body=' + encodeURIComponent(body);
+  }
+
+  function submitWhatsApp() {
+    const d = getFormData();
+    const msg = [
+      'Hi! I\'d like to request a consultation.',
+      '',
+      'Name: ' + d.name,
+      'Event: ' + d.eventType,
+      'Date: ' + d.date,
+      'Budget: ' + d.budget,
+      d.notes ? 'Details: ' + d.notes : ''
+    ].filter(Boolean).join('\n');
+    window.open('https://wa.me/17734180161?text=' + encodeURIComponent(msg), '_blank');
+  }
+</script>
+
+</body>
+</html>
