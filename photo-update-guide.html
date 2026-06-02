@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photo Update Guide — Modern LUXE Flowers</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --surface: #161613;
+    --border: #2a2820;
+    --gold: #c9a96e;
+    --cream: #f5f0e8;
+    --body: #d4cec4;
+    --muted: #a89e90;
+    --dim: #6b6658;
+  }
+
+  body {
+    background: var(--dark);
+    color: var(--body);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    padding: 60px 24px 100px;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap');
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--cream);
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+
+  .page-subtitle {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 48px;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.6rem;
+    color: var(--cream);
+    letter-spacing: 0.04em;
+    margin-top: 56px;
+    margin-bottom: 6px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h3 {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 32px;
+    margin-bottom: 10px;
+  }
+
+  p { margin-bottom: 14px; }
+
+  ol, ul {
+    padding-left: 22px;
+    margin-bottom: 16px;
+  }
+
+  li { margin-bottom: 8px; }
+
+  code {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    background: rgba(201, 169, 110, 0.1);
+    color: var(--gold);
+    border: 1px solid rgba(201, 169, 110, 0.25);
+    border-radius: 3px;
+    padding: 2px 7px;
+    white-space: nowrap;
+  }
+
+  .callout {
+    background: var(--surface);
+    border-left: 3px solid var(--gold);
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .callout p { margin-bottom: 0; }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-body { flex: 1; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+
+  th {
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--body);
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: rgba(201, 169, 110, 0.12);
+    color: var(--gold);
+    border: 1px solid rgba(201, 169, 110, 0.3);
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 48px 0;
+  }
+
+  a { color: var(--gold); }
+
+  .back-link {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 48px;
+  }
+
+  .back-link:hover { color: var(--cream); }
+
+  @media (max-width: 600px) {
+    body { padding: 36px 18px 80px; }
+    code { font-size: 12px; white-space: normal; word-break: break-all; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <a href="/" class="back-link">← Back to Site</a>
+
+  <p class="page-subtitle">Internal Reference</p>
+  <h1 class="page-title">How to Update Gallery Photos</h1>
+  <p>A step-by-step guide for swapping photos and adding new grid boxes — no code required.</p>
+
+  <!-- ─── PART 1: GitHub ─────────────────────────────────────── -->
+  <h2>Part 1 — Upload a Photo to GitHub</h2>
+  <p>Every photo on the site lives in the <code>images/</code> folder inside the GitHub repository. Uploading a new photo there makes it available to any page.</p>
+
+  <h3>Steps to Upload</h3>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">Go to <a href="https://github.com/modernluxeflowers2026/modernluxeflowers.com" target="_blank">github.com/modernluxeflowers2026/modernluxeflowers.com</a> and sign in.</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">Click the <strong>images</strong> folder.</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">Click <strong>Add file → Upload files</strong> (top-right of the file list).</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">Drag your photo in, or click to choose it. <strong>Name it before uploading</strong> — the filename is what goes in the page code.</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-body">Scroll down and click <strong>Commit changes</strong>. The photo is now live at <code>https://modernluxeflowers.com/images/your-filename.jpg</code>.</div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Photo tips:</strong> Export at JPG quality 85. Portrait images should be at least 800×1100 px. Landscape images at least 1400×700 px. Keep file names lowercase with hyphens, no spaces — e.g. <code>spring-bridal-blush.jpg</code>.</p>
+  </div>
+
+  <!-- ─── PART 2: Swap a photo ─────────────────────────────── -->
+  <h2>Part 2 — Swap an Existing Photo</h2>
+  <p>The easiest update: replace an old photo with a new one while keeping the grid layout exactly the same.</p>
+
+  <h3>Option A — Same filename (zero code changes)</h3>
+  <p>Upload your new photo with <strong>exactly the same filename</strong> as the one it replaces. GitHub will overwrite the old file. Refresh the page and the new photo appears automatically — no HTML editing needed.</p>
+
+  <h3>Option B — New filename (edit one line of HTML)</h3>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">Upload the new photo to <code>images/</code> as described in Part 1.</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">In the GitHub repo, navigate to the collection HTML file you want to edit (e.g. <code>luxe-love-unique-flower-arrangements.html</code>) and click the pencil <strong>✎ Edit</strong> icon.</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">Press <strong>Ctrl+F</strong> (or Cmd+F on Mac) and search for the old filename — for example <code>old-photo.jpg</code>.</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">Replace the old filename with the new one. Only change the filename part, leave the rest of the <code>src</code> URL intact.</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-body">Click <strong>Commit changes</strong>. The site updates in about 30 seconds.</div>
+  </div>
+
+  <div class="callout">
+    <p><strong>What a src line looks like:</strong><br>
+    <code>src="https://modernluxeflowers.com/images/spring-bridal-blush.jpg"</code><br>
+    Only the filename at the end changes. Everything before <code>images/</code> stays the same.</p>
+  </div>
+
+  <!-- ─── PART 3: Add a new grid box ───────────────────────── -->
+  <h2>Part 3 — Add a New Grid Box</h2>
+  <p>The three collections use two different grid styles. Find the one that matches and follow those steps.</p>
+
+  <h3>Which grid style is on each page?</h3>
+  <table>
+    <thead>
+      <tr><th>Page</th><th>Grid Style</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Boxful Art</td><td><span class="tag">Uniform Grid</span> — equal 3-column squares</td></tr>
+      <tr><td>Luxe Love</td><td><span class="tag">Mosaic</span> — hero left, bento right, portrait row below</td></tr>
+      <tr><td>Petals &amp; Stems</td><td><span class="tag">Mosaic</span> — hero left, 2×2 bento right, portrait row below</td></tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <h3>Adding a box to the Uniform Grid (Boxful Art)</h3>
+  <p>The Boxful Art page has a simple repeating grid. Each photo is a <code>gallery-item</code> block. New boxes are added to the end and the grid fills automatically.</p>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">Upload your new photo to <code>images/</code> (Part 1).</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">Open <code>gift-giving-boxful-art.html</code> in the GitHub editor.</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      Search for <code>&lt;/div&gt;&lt;!-- /gallery-grid --&gt;</code>. Just above that closing tag, paste this block (replacing the filename):
+      <div class="callout" style="margin-top:12px">
+        <code>&lt;div class="gallery-item"&gt;<br>
+        &nbsp;&nbsp;&lt;img src="https://modernluxeflowers.com/images/YOUR-PHOTO.jpg" alt="Description of photo" loading="lazy"&gt;<br>
+        &lt;/div&gt;</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">Click <strong>Commit changes</strong>. The new box appears at the end of the grid.</div>
+  </div>
+
+  <div class="callout">
+    <p>The 3-column grid fills left to right, top to bottom. You can add as many boxes as you like — the grid expands automatically.</p>
+  </div>
+
+  <hr>
+
+  <h3>Adding a box to the Mosaic layout (Luxe Love / Petals &amp; Stems)</h3>
+  <p>The Mosaic pages have two sections: a fixed top section (hero + bento), and a bottom portrait row. The bottom row is where you add new photos.</p>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">Upload your new photo to <code>images/</code> (Part 1).</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">Open the collection HTML file in the GitHub editor.</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      Search for <code>&lt;/div&gt;&lt;!-- /mosaic-bottom --&gt;</code>. Just above that closing tag, paste this block:
+      <div class="callout" style="margin-top:12px">
+        <code>&lt;div class="cell"&gt;<br>
+        &nbsp;&nbsp;&lt;img src="https://modernluxeflowers.com/images/YOUR-PHOTO.jpg" alt="Description of photo" loading="lazy"&gt;<br>
+        &lt;/div&gt;</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">Click <strong>Commit changes</strong>. The new portrait cell appears in the bottom row.</div>
+  </div>
+
+  <div class="callout">
+    <p>The bottom row always has 3 equal portrait columns. If you add a 4th photo it wraps to a second row — also 3 columns. The carousel lightbox automatically picks up all new photos.</p>
+  </div>
+
+  <!-- ─── PART 4: Changing hero or bento photos ────────────── -->
+  <h2>Part 4 — Change a Hero or Bento Photo</h2>
+  <p>The top section of Luxe Love and Petals &amp; Stems has a tall hero photo on the left and a grid of smaller photos on the right. These are fixed-position cells — you can swap the photo inside each one but the layout stays the same.</p>
+
+  <h3>Finding the right cell in the code</h3>
+  <p>Each cell has an HTML comment above it showing which position it is. Open the file in GitHub, press <strong>Ctrl+F</strong>, and search for the current filename you want to replace. Change only that filename, then commit.</p>
+
+  <div class="callout">
+    <p><strong>The hero photo</strong> is at the very top of the mosaic section and is usually the tallest image in the layout — at least 800×1400 px works best here. <strong>Bento cells</strong> are square-ish; any portrait crop at 800×900 px works well.</p>
+  </div>
+
+  <!-- ─── PART 5: Quick reference ───────────────────────────── -->
+  <h2>Part 5 — Quick Reference</h2>
+
+  <h3>HTML block for Uniform Grid (Boxful Art)</h3>
+  <div class="callout">
+    <code>&lt;div class="gallery-item"&gt;<br>
+    &nbsp;&nbsp;&lt;img src="https://modernluxeflowers.com/images/FILENAME.jpg" alt="Short description" loading="lazy"&gt;<br>
+    &lt;/div&gt;</code>
+  </div>
+
+  <h3>HTML block for Mosaic bottom row (Luxe Love / Petals &amp; Stems)</h3>
+  <div class="callout">
+    <code>&lt;div class="cell"&gt;<br>
+    &nbsp;&nbsp;&lt;img src="https://modernluxeflowers.com/images/FILENAME.jpg" alt="Short description" loading="lazy"&gt;<br>
+    &lt;/div&gt;</code>
+  </div>
+
+  <h3>Recommended photo sizes</h3>
+  <table>
+    <thead>
+      <tr><th>Use</th><th>Orientation</th><th>Minimum size</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Uniform grid (Boxful Art)</td><td>Portrait or square</td><td>800 × 1000 px</td></tr>
+      <tr><td>Mosaic bottom row portraits</td><td>Portrait</td><td>800 × 1100 px</td></tr>
+      <tr><td>Mosaic hero (tall left cell)</td><td>Portrait, tall</td><td>800 × 1400 px</td></tr>
+      <tr><td>Mosaic bento cells</td><td>Portrait / square</td><td>800 × 900 px</td></tr>
+    </tbody>
+  </table>
+
+  <p style="color: var(--dim); font-size: 13px; margin-top: 40px;">Save as JPG at quality 85 to keep file sizes small without losing detail. PNG is fine too but larger. Avoid WebP for now — some email clients won't show it as a preview.</p>
+
+</div>
+</body>
+</html>
