@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corporate Floral Design Chicago | Modern LUXE Flowers</title>
+<meta name="description" content="Modern LUXE Flowers brings luxury floral design to Chicago's leading corporate offices, lobbies, and boardrooms. Subscription programs, galas, and one-time installations.">
+<meta name="keywords" content="corporate floral design Chicago, office flowers Chicago, commercial floral arrangements, corporate florist Chicago, Modern LUXE Flowers">
+<meta property="og:title" content="Corporate Floral Design — Modern LUXE Flowers Chicago">
+<meta property="og:description" content="Signature floral programs for Chicago's most design-forward offices, lobbies, and corporate spaces.">
+<meta property="og:image" content="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.17%20PM%20(3).jpeg">
+<meta property="og:url" content="https://modernluxeflowers.com/corporate-floral-design-chicago.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://modernluxeflowers.com/corporate-floral-design-chicago.html">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:   #0a0a0a;
+  --dark:    #111111;
+  --surface: #161613;
+  --border:  #2a2820;
+  --gold:    #c9a96e;
+  --gold-dim:#8a7048;
+  --cream:   #f5f0e8;
+  --body:    #d4cec4;
+  --muted:   #a89e90;
+  --dim:     #6b6658;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── ANNOUNCEMENT BANNER ─── */
+#site-banner {
+  background: #131210;
+  border-bottom: 1px solid var(--border);
+  padding: 11px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 200;
+}
+
+#site-banner span {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--body);
+}
+
+#site-banner button {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ─── NAV ─── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 64px;
+  background: rgba(10,10,10,0.98);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+}
+
+.nav-logo img { height: 42px; display: block; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--body);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--cream); }
+.nav-links a.active { color: var(--gold); }
+
+.nav-cta {
+  font-weight: 400 !important;
+  color: var(--black) !important;
+  background: var(--gold);
+  padding: 12px 26px;
+  letter-spacing: 0.16em !important;
+}
+
+.nav-cta:hover { background: #d4b57a; color: var(--black) !important; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--cream);
+  transition: all 0.3s;
+}
+
+/* ─── NAV PORTFOLIO DROPDOWN ─── */
+.nav-dropdown { position: relative; }
+
+.nav-caret {
+  font-size: 9px;
+  display: inline-block;
+  margin-left: 3px;
+  transition: transform 0.2s;
+  vertical-align: middle;
+}
+
+.nav-sub {
+  display: none;
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10,10,10,0.98);
+  border: 1px solid var(--border);
+  list-style: none;
+  min-width: 190px;
+  backdrop-filter: blur(8px);
+  z-index: 200;
+}
+
+.nav-sub li a {
+  display: block;
+  padding: 13px 22px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-sub li:last-child a { border-bottom: none; }
+
+.nav-dropdown.open .nav-sub { display: block; }
+.nav-dropdown.open .nav-caret { transform: rotate(180deg); }
+
+/* ─── HERO ─── */
+.hero-magazine {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-magazine-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  filter: brightness(0.72) saturate(0.95);
+}
+
+.hero-magazine-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 1;
+}
+
+.hero-magazine-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 40px;
+  max-width: 900px;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+
+.hero-magazine-content h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(48px, 6vw, 96px);
+  line-height: 1.0;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+
+.hero-magazine-tagline {
+  font-family: 'Jost', sans-serif;
+  font-weight: 200;
+  font-size: clamp(13px, 1.4vw, 16px);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--body);
+  line-height: 1.7;
+}
+
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-scroll-cue span {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.4);
+}
+
+.hero-scroll-arrow {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  position: relative;
+  animation: scrollPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.1); }
+}
+
+/* ─── QUOTE BREAK ─── */
+.quote-break {
+  background: var(--surface);
+  border-top: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  padding: 80px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quote-inner {
+  position: relative;
+  max-width: 820px;
+  text-align: center;
+}
+
+.quote-mark {
+  position: absolute;
+  top: -48px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 180px;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.12;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.quote-text {
+  position: relative;
+  z-index: 1;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(22px, 2.5vw, 36px);
+  line-height: 1.65;
+  color: var(--cream);
+}
+
+/* ─── ALTERNATING SPLITS ─── */
+.split-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 580px;
+}
+
+.split-section.reverse {
+  direction: rtl;
+}
+
+.split-section.reverse > * {
+  direction: ltr;
+}
+
+.split-photo {
+  position: relative;
+  overflow: hidden;
+}
+
+.split-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: brightness(0.88) saturate(0.9);
+  transition: transform 0.9s ease, filter 0.5s ease;
+}
+
+.split-section:hover .split-photo img {
+  transform: scale(1.03);
+  filter: brightness(0.96) saturate(1);
+}
+
+.split-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 72px;
+}
+
+.split-section-a { background: var(--dark); }
+.split-section-a .split-content { background: var(--dark); }
+
+.split-section-b { background: var(--black); }
+.split-section-b .split-content { background: var(--black); }
+
+.section-eyebrow {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.split-content h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(30px, 3vw, 46px);
+  line-height: 1.1;
+  color: var(--cream);
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+
+.split-content h2 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.split-content p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  line-height: 1.75;
+  color: var(--body);
+  margin-bottom: 18px;
+  max-width: 440px;
+}
+
+.split-content p strong {
+  color: var(--cream);
+  font-weight: 400;
+}
+
+/* ─── SERVICES TILES ─── */
+.services-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 88px 80px;
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.services-header .section-eyebrow {
+  justify-content: center;
+}
+
+.services-header .section-eyebrow::before {
+  display: none;
+}
+
+.services-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(32px, 3.2vw, 48px);
+  color: var(--cream);
+  line-height: 1.1;
+}
+
+.services-header h2 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--border);
+}
+
+.service-tile {
+  padding: 52px 48px 52px;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+
+.service-tile:last-child {
+  border-right: none;
+}
+
+.service-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 72px;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.22;
+  margin-bottom: 24px;
+  letter-spacing: -0.03em;
+}
+
+.service-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--cream);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.service-desc {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+/* ─── CTA ─── */
+.cta-section {
+  background: var(--black);
+  padding: 120px 40px;
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(36px, 4vw, 60px);
+  color: var(--cream);
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.cta-sub {
+  font-family: 'Jost', sans-serif;
+  font-weight: 200;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 52px;
+}
+
+.btn-primary {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  padding: 18px 48px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.25s;
+}
+
+.btn-primary:hover { background: #d4b57a; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  padding: 64px 80px 40px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 60px;
+}
+
+.footer-logo img { height: 32px; margin-bottom: 20px; opacity: 0.75; display: block; }
+
+.footer-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--body);
+  line-height: 1.65;
+  max-width: 260px;
+  margin-bottom: 24px;
+}
+
+.footer-contact { font-size: 13px; color: var(--body); line-height: 2.1; }
+.footer-contact a { color: var(--gold); text-decoration: none; }
+
+.footer-col h4 {
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 20px;
+}
+
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 13px; }
+
+.footer-col ul li a {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--body);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-col ul li a:hover { color: var(--cream); }
+
+.footer-bottom {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+/* ══════════════════════════════
+   TABLET — 1024px
+══════════════════════════════ */
+@media (max-width: 1024px) {
+  nav { padding: 20px 40px; }
+
+  .split-content { padding: 60px 48px; }
+  .split-content p { font-size: 18px; max-width: 100%; }
+
+  .services-section { padding: 72px 40px; }
+  .service-tile { padding: 40px 32px; }
+
+  footer { padding: 56px 40px 36px; gap: 40px; }
+}
+
+/* ══════════════════════════════
+   MOBILE — 768px
+══════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* nav */
+  nav { padding: 18px 24px; }
+  .nav-logo img { height: 34px; }
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10,10,10,0.98);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    z-index: 99;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { font-size: 16px; letter-spacing: 0.2em; }
+  .nav-cta { padding: 16px 40px; font-size: 14px !important; }
+  .nav-toggle { display: flex; z-index: 101; position: relative; }
+
+  .nav-sub {
+    position: static;
+    transform: none;
+    border: none;
+    border-top: 1px solid var(--border);
+    background: none;
+    backdrop-filter: none;
+    display: none;
+    min-width: 0;
+    padding: 8px 0 0;
+  }
+  .nav-sub.open { display: block; }
+  .nav-sub li a {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: none !important;
+    display: block;
+  }
+  .nav-sub li a:hover { color: var(--cream); }
+
+  /* hero */
+  .hero-magazine { min-height: 100svh; }
+  .hero-magazine-content { padding: 0 24px; }
+  .hero-eyebrow { font-size: 10px; }
+
+  /* quote break */
+  .quote-break { padding: 64px 24px; }
+  .quote-mark { font-size: 120px; top: -32px; }
+
+  /* splits */
+  .split-section {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+  .split-section.reverse { direction: ltr; }
+  .split-photo { height: 72vw; min-height: 300px; }
+  .split-photo img { position: static; width: 100%; height: 100%; }
+  .split-content { padding: 52px 24px; }
+  .split-content h2 { font-size: clamp(28px, 8vw, 40px); }
+  .split-content p { max-width: 100%; font-size: 18px; }
+
+  /* services */
+  .services-section { padding: 64px 24px; }
+  .services-grid {
+    grid-template-columns: 1fr;
+    border: none;
+    gap: 0;
+  }
+  .service-tile {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 40px 0;
+  }
+  .service-tile:first-child { padding-top: 0; }
+  .service-tile:last-child { border-bottom: none; }
+
+  /* cta */
+  .cta-section { padding: 80px 24px; }
+
+  /* footer */
+  footer {
+    grid-template-columns: 1fr;
+    padding: 48px 24px 32px;
+    gap: 36px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .split-content { padding: 44px 20px; }
+  .services-section { padding: 52px 20px; }
+  .cta-section { padding: 64px 20px; }
+  footer { padding: 40px 20px 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BANNER — delete this section when redesign is complete -->
+<div id="site-banner">
+  <span>We're refreshing our look — check back soon.</span>
+  <button onclick="document.getElementById('site-banner').style.display='none'" aria-label="Dismiss">×</button>
+</div>
+
+<nav>
+  <a href="/" class="nav-logo"><img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/A85ZREzgQ7sraPkX/rev_1_white-AE0pZjGL43IaRQEr.png" alt="Modern LUXE Flowers"></a>
+  <ul class="nav-links" id="navLinks">
+    <li class="nav-dropdown">
+      <a href="/flower-arrangements-portfolio.html" class="nav-dropdown-trigger">Portfolio <span class="nav-caret">&#9660;</span></a>
+      <ul class="nav-sub" id="portfolioSub">
+        <li><a href="/luxe-love-unique-flower-arrangements.html">Luxe Love</a></li>
+        <li><a href="/gift-giving-boxful-art.html">Boxful Art</a></li>
+        <li><a href="/petals-and-stems.html">Petals &amp; Stems</a></li>
+      </ul>
+    </li>
+    <li><a href="/about-us-floral-design-business.html">About</a></li>
+    <li><a href="/client-reviews.html">Kind Words</a></li>
+    <li><a href="/corporate-floral-design-chicago.html" class="active">Corporate</a></li>
+    <li><a href="/contact-us-floral-arrangements.html" class="nav-cta">Consult</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- SECTION 1 — FULL-BLEED HERO -->
+<section class="hero-magazine">
+  <!-- BACKGROUND PHOTO — replace src URL to change this photo -->
+  <img
+    class="hero-magazine-bg"
+    src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.17%20PM%20(3).jpeg"
+    alt="Modern LUXE Flowers dark red anthurium pedestal installation — corporate floral design Chicago">
+  <div class="hero-magazine-overlay"></div>
+
+  <div class="hero-magazine-content">
+    <span class="hero-eyebrow">Modern LUXE Flowers</span>
+    <h1>Corporate Floral Design</h1>
+    <p class="hero-magazine-tagline">Chicago's premier commercial spaces deserve more than ordinary flowers.</p>
+  </div>
+
+  <div class="hero-scroll-cue">
+    <span>Scroll</span>
+    <div class="hero-scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- SECTION 2 — QUOTE BREAK -->
+<section class="quote-break">
+  <div class="quote-inner">
+    <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+    <p class="quote-text">Floral arrangements in commercial office spaces carry the same weight as curated artwork &mdash; they signal intention, elevate the environment, and create a first impression clients remember.</p>
+  </div>
+</section>
+
+<!-- SECTION 3 — ALTERNATING SPLIT A: Text Left, Photo Right -->
+<section class="split-section split-section-a">
+  <div class="split-content">
+    <div class="section-eyebrow">Lobby &amp; Reception</div>
+    <h2>The first thing clients see<br>should <em>set the tone.</em></h2>
+    <p>Your lobby is a living statement about who you are. Modern LUXE Flowers designs recurring subscription programs that keep your entrance extraordinary week after week &mdash; never generic, never afterthought.</p>
+    <p><strong>Weekly and monthly service plans</strong> are tailored to your space, your brand palette, and your seasonal rhythm. One conversation, then we handle everything.</p>
+  </div>
+  <div class="split-photo">
+    <!-- PHOTO — replace src URL to change this photo -->
+    <img
+      src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.14%20PM%20(6).jpeg"
+      alt="Modern LUXE Flowers luxury lobby floral arrangement Chicago">
+  </div>
+</section>
+
+<!-- SECTION 4 — ALTERNATING SPLIT B: Photo Left, Text Right -->
+<section class="split-section split-section-b reverse">
+  <div class="split-content">
+    <div class="section-eyebrow">Executive &amp; Conference</div>
+    <h2>Design-forward arrangements for<br>your <em>most important rooms.</em></h2>
+    <p>Boardrooms and private offices signal status before a single word is spoken. Our arrangements for executive floors and client-facing spaces are scaled, composed, and refined to match the weight of what happens inside them.</p>
+    <p><strong>Each placement is considered individually</strong> &mdash; scale, sightlines, seasonal materials, and the specific character of the room &mdash; so nothing feels like it was ordered from a catalog.</p>
+  </div>
+  <div class="split-photo">
+    <!-- PHOTO — replace src URL to change this photo -->
+    <img
+      src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.14%20PM%20(5).jpeg"
+      alt="Modern LUXE Flowers executive boardroom floral arrangement Chicago">
+  </div>
+</section>
+
+<!-- SECTION 5 — SERVICES 3-COLUMN TILES -->
+<section class="services-section">
+  <div class="services-header">
+    <div class="section-eyebrow">What We Offer</div>
+    <h2>Corporate <em>Services</em></h2>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-tile">
+      <div class="service-number">01</div>
+      <div class="service-title">Subscription Programs</div>
+      <p class="service-desc">Recurring weekly or monthly floral service for lobbies, reception areas, and common spaces. Consistent quality, zero logistics on your end. Billed monthly with flexible commitment terms.</p>
+    </div>
+
+    <div class="service-tile">
+      <div class="service-number">02</div>
+      <div class="service-title">Event &amp; Gala Florals</div>
+      <p class="service-desc">Full floral production for corporate galas, launch events, client dinners, and seasonal celebrations. From intimate tablescapes to large-scale installations, designed to photograph and impress.</p>
+    </div>
+
+    <div class="service-tile">
+      <div class="service-number">03</div>
+      <div class="service-title">One-time Installations</div>
+      <p class="service-desc">A single, statement-making arrangement or installation for a grand opening, visiting client, or special occasion. Delivered, installed, and removed on your timeline.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION 6 — CTA -->
+<section class="cta-section">
+  <h2>Ready to elevate your space?</h2>
+  <p class="cta-sub">Chicago corporate floral design — by appointment</p>
+  <a href="/contact-us-floral-arrangements.html" class="btn-primary">Request a Corporate Consult</a>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-logo"><img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/A85ZREzgQ7sraPkX/rev_1_white-AE0pZjGL43IaRQEr.png" alt="Modern LUXE Flowers"></div>
+    <p class="footer-tagline">Luxury floral design for moments that deserve more than ordinary flowers.</p>
+    <div class="footer-contact">By Appointment Only — Chicago, IL 60620<br><a href="mailto:info@modernluxeflowers.com">info@modernluxeflowers.com</a></div>
+  </div>
+  <div class="footer-col">
+    <h4>Navigate</h4>
+    <ul>
+      <li><a href="/flower-arrangements-portfolio.html">Portfolio</a></li>
+      <li><a href="/luxe-love-unique-flower-arrangements.html">Luxe Love</a></li>
+      <li><a href="/gift-giving-boxful-art.html">Boxful Art</a></li>
+      <li><a href="/petals-and-stems.html">Petals &amp; Stems</a></li>
+      <li><a href="/corporate-floral-design-chicago.html">Corporate</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Studio</h4>
+    <ul>
+      <li><a href="/about-us-floral-design-business.html">About Jo</a></li>
+      <li><a href="/client-reviews.html">Kind Words</a></li>
+      <li><a href="/contact-us-floral-arrangements.html">Contact</a></li>
+      <li><a href="https://www.instagram.com/modernluxeflowers" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://www.facebook.com/ModernLuxeFlowers/" target="_blank" rel="noopener">Facebook</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Modern LUXE Flowers — Chicago, IL</span>
+    <span>modernluxeflowers.com</span>
+  </div>
+</footer>
+
+<script>
+const toggle = document.getElementById('navToggle');
+const links = document.getElementById('navLinks');
+toggle.addEventListener('click', () => links.classList.toggle('open'));
+links.querySelectorAll('a:not(.nav-dropdown-trigger)').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+const portfolioTrigger = document.querySelector('.nav-dropdown-trigger');
+portfolioTrigger.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); document.querySelector('.nav-dropdown').classList.toggle('open'); });
+document.addEventListener('click', () => { document.querySelector('.nav-dropdown').classList.remove('open'); });
+</script>
+
+</body>
+</html>
