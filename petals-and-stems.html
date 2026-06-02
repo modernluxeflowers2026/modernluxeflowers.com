@@ -209,26 +209,19 @@ nav {
   line-height: 1.65;
 }
 
-/* ─── GALLERY GRID ─── */
+/* ─── GALLERY: HERO + MOSAIC BENTO ─── */
 .gallery-section {
   padding: 0;
   background: var(--black);
 }
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
-}
-
-.gallery-item {
+.cell {
   position: relative;
   overflow: hidden;
   background: var(--surface);
-  aspect-ratio: 4 / 5;
 }
 
-.gallery-item img {
+.cell img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -238,9 +231,56 @@ nav {
   transition: transform 0.7s ease, filter 0.4s ease;
 }
 
-.gallery-item:hover img {
-  transform: scale(1.05);
+.cell:hover img {
+  transform: scale(1.04);
   filter: brightness(1) saturate(1.05);
+}
+
+/* Hidden add button — present in DOM for future CMS use, not visible */
+.cell-add {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  pointer-events: none;
+}
+
+/* Top section: large hero left, bento right */
+.mosaic-main {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4px;
+}
+
+.mosaic-hero {
+  height: 600px;
+}
+
+.mosaic-bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 110px 1fr 110px;
+  gap: 4px;
+  height: 600px;
+}
+
+.bento-wide-top,
+.bento-wide-bot { grid-column: span 2; }
+
+/* Bottom row: 3 tall portrait cells */
+.mosaic-bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.mosaic-bottom .cell {
+  aspect-ratio: 3 / 4;
 }
 
 /* ─── CTA BAND ─── */
@@ -345,6 +385,8 @@ footer {
 @media (max-width: 1024px) {
   nav { padding: 20px 40px; }
   .page-header { padding: 64px 40px 52px; }
+  .mosaic-hero { height: 500px; }
+  .mosaic-bento { height: 500px; grid-template-rows: 96px 1fr 96px; }
   .cta-band { padding: 72px 40px; }
   footer { padding: 56px 40px 36px; gap: 40px; }
 }
@@ -354,7 +396,6 @@ footer {
 ══════════════════════════════ */
 @media (max-width: 768px) {
 
-  /* nav */
   nav { padding: 18px 24px; }
   .nav-logo img { height: 34px; }
   .nav-links {
@@ -373,19 +414,22 @@ footer {
   .nav-cta { padding: 16px 40px; font-size: 14px !important; }
   .nav-toggle { display: flex; z-index: 101; position: relative; }
 
-  /* page header */
   .page-header { padding: 52px 24px 44px; }
   .page-header h1 { margin-bottom: 24px; }
 
-  /* gallery */
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .mosaic-main { grid-template-columns: 1fr; }
+  .mosaic-hero { height: 460px; }
+  .mosaic-bento {
+    height: auto;
+    grid-template-rows: 160px auto 160px;
   }
+  .mosaic-bento .cell:not(.bento-wide-top):not(.bento-wide-bot) { height: 280px; }
 
-  /* cta band */
+  .mosaic-bottom { grid-template-columns: repeat(2, 1fr); }
+  .mosaic-bottom .cell { aspect-ratio: 4 / 5; }
+
   .cta-band { padding: 56px 24px; gap: 28px; }
 
-  /* footer */
   footer {
     grid-template-columns: 1fr;
     padding: 48px 24px 32px;
@@ -402,9 +446,7 @@ footer {
 @media (max-width: 480px) {
   nav { padding: 16px 20px; }
   .page-header { padding: 44px 20px 36px; }
-  .gallery-grid {
-    grid-template-columns: 1fr;
-  }
+  .mosaic-bottom { grid-template-columns: 1fr; }
   .cta-band { padding: 48px 20px; }
   footer { padding: 40px 20px 28px; }
 }
@@ -449,59 +491,77 @@ footer {
   <p class="editorial">From the altar to the arrangement of remembrance — every stem placed with intention.</p>
 </header>
 
-<!-- GALLERY GRID -->
+<!-- GALLERY: HERO + MOSAIC BENTO -->
 <section class="gallery-section">
-  <div class="gallery-grid">
 
-    <div class="gallery-item">
+  <div class="mosaic-main">
+
+    <!-- Hero — dominant statement piece -->
+    <div class="cell mosaic-hero">
       <img
         src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.14%20PM%20(10).jpeg"
         alt="Calla lily and black feathers bouquet — Modern LUXE Flowers Chicago">
+      <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="hero">+ Add</button>
     </div>
 
-    <div class="gallery-item">
-      <img
-        src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.13%20PM%20(1).jpeg"
-        alt="Calla lily and peacock feather bouquet — Modern LUXE Flowers Chicago">
-    </div>
+    <!-- Bento mosaic — right side -->
+    <div class="mosaic-bento">
 
-    <div class="gallery-item">
-      <img
-        src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.13%20PM%20(2).jpeg"
-        alt="White orchid cascade bouquet — Modern LUXE Flowers Chicago">
-    </div>
+      <!-- Wide landscape top -->
+      <div class="cell bento-wide-top">
+        <img
+          src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.13%20PM%20(1).jpeg"
+          alt="Calla lily and peacock feather bouquet — Modern LUXE Flowers Chicago">
+        <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="wide-top">+ Add</button>
+      </div>
 
-    <div class="gallery-item">
-      <img
-        src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.13%20PM%20(4).jpeg"
-        alt="Peacock feather fan bouquet — Modern LUXE Flowers Chicago">
-    </div>
+      <!-- Portrait pair -->
+      <div class="cell">
+        <img
+          src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.13%20PM%20(2).jpeg"
+          alt="White orchid cascade bouquet — Modern LUXE Flowers Chicago">
+        <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="mid-left">+ Add</button>
+      </div>
+      <div class="cell">
+        <img
+          src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.13%20PM%20(4).jpeg"
+          alt="Peacock feather fan bouquet — Modern LUXE Flowers Chicago">
+        <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="mid-right">+ Add</button>
+      </div>
 
-    <div class="gallery-item">
-      <img
-        src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.14%20PM%20(8).jpeg"
-        alt="White and mauve calla wedding bouquet — Modern LUXE Flowers Chicago">
-    </div>
+      <!-- Wide landscape bottom -->
+      <div class="cell bento-wide-bot">
+        <img
+          src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.14%20PM%20(8).jpeg"
+          alt="White and mauve calla wedding bouquet — Modern LUXE Flowers Chicago">
+        <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="wide-bot">+ Add</button>
+      </div>
 
-    <div class="gallery-item">
+    </div>
+  </div>
+
+  <!-- Bottom row: 3 tall portrait cells -->
+  <div class="mosaic-bottom">
+    <div class="cell">
       <img
         src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.14%20PM%20(1).jpeg"
         alt="White and red heart wreath sympathy arrangement — Modern LUXE Flowers Chicago">
+      <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bot-1">+ Add</button>
     </div>
-
-    <div class="gallery-item">
+    <div class="cell">
       <img
         src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.14%20PM%20(2).jpeg"
         alt="Tulips and orchid glass vase arrangement — Modern LUXE Flowers Chicago">
+      <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bot-2">+ Add</button>
     </div>
-
-    <div class="gallery-item">
+    <div class="cell">
       <img
         src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.18%20PM.jpeg"
         alt="Event backdrop floral installation — Modern LUXE Flowers Chicago">
+      <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bot-3">+ Add</button>
     </div>
-
   </div>
+
 </section>
 
 <!-- CTA BAND -->
