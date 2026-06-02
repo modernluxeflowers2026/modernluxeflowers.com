@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Modern LUXE Flowers Chicago</title>
+  <meta name="description" content="Chicago luxury floral design portfolio — Modern LUXE Flowers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=Questrial&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ============================================================
+       IMAGE SWAP SLOTS — edit ONLY these values to change photos.
+       Upload images to the /images/ folder in the repo.
+       Replace the filename inside url('...') to swap a photo.
+       Vertical = portrait crop. Horizontal = landscape crop.
+    ============================================================ */
+
+    .cell-hero      { --img: url('images/gallery-hero.jpg'); }
+    .cell-wide-top  { --img: url('images/gallery-wide-top.jpg'); }
+    .cell-mid-left  { --img: url('images/gallery-mid-left.jpg'); }
+    .cell-mid-right { --img: url('images/gallery-mid-right.jpg'); }
+    .cell-wide-bot  { --img: url('images/gallery-wide-bot.jpg'); }
+    .cell-bot-1     { --img: url('images/gallery-bot-1.jpg'); }
+    .cell-bot-2     { --img: url('images/gallery-bot-2.jpg'); }
+    .cell-bot-3     { --img: url('images/gallery-bot-3.jpg'); }
+
+    /* ============================================================
+       END IMAGE SLOTS — do not edit below this line
+    ============================================================ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0d0c0b;
+      font-family: 'Questrial', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .gallery-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 28px 72px;
+    }
+
+    .gallery-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .gallery-eyebrow {
+      font-size: 10px;
+      letter-spacing: .18em;
+      color: #6a5f55;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .gallery-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 36px;
+      color: #f0ebe4;
+      letter-spacing: .01em;
+      line-height: 1;
+    }
+
+    .accent-rule {
+      width: 28px;
+      height: 1px;
+      background: #FF00FF;
+      opacity: .7;
+      margin: 10px 0 0;
+    }
+
+    .gallery-header-right {
+      font-size: 10px;
+      letter-spacing: .16em;
+      color: #6a5f55;
+      text-transform: uppercase;
+    }
+
+    .cell {
+      position: relative;
+      overflow: hidden;
+      border-radius: 3px;
+      background-color: #1e1a17;
+    }
+
+    .cell::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--img, none);
+      background-size: cover;
+      background-position: center;
+      transition: transform .6s cubic-bezier(.25,.46,.45,.94);
+    }
+
+    .cell::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(8,6,4,.45) 100%);
+      transition: opacity .4s ease;
+      pointer-events: none;
+    }
+
+    .cell:hover::before { transform: scale(1.04); }
+    .cell:hover::after  { opacity: .3; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 6px;
+    }
+
+    .cell-hero { height: 520px; }
+
+    .bento {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 130px 220px 120px;
+      gap: 6px;
+    }
+
+    .cell-wide-top { grid-column: span 2; }
+    .cell-wide-bot { grid-column: span 2; }
+
+    .bottom-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .bottom-row .cell { height: 200px; }
+
+    .gallery-footer {
+      margin-top: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .gallery-footer p {
+      font-size: 10px;
+      letter-spacing: .14em;
+      color: #4a4038;
+      text-transform: uppercase;
+    }
+
+    .view-all {
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #c4b39a;
+      text-decoration: none;
+      border-bottom: .5px solid #5a5048;
+      padding-bottom: 2px;
+      transition: color .2s, border-color .2s;
+    }
+
+    .view-all:hover { color: #f0ebe4; border-color: #c4b39a; }
+
+    @media (max-width: 768px) {
+
+      .gallery-wrap { padding: 40px 16px 52px; }
+
+      .gallery-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+
+      .gallery-grid { grid-template-columns: 1fr; }
+
+      .cell-hero { height: 420px; }
+
+      .bento {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .cell-wide-top  { height: 220px; }
+      .cell-mid-left  { height: 360px; }
+      .cell-mid-right { height: 360px; }
+      .cell-wide-bot  { height: 180px; }
+
+      .bottom-row { grid-template-columns: 1fr; }
+
+      .bottom-row .cell { height: 320px; }
+    }
+
+  </style>
+</head>
+<body>
+  <section class="gallery-wrap" aria-label="Modern LUXE Flowers portfolio gallery">
+
+    <div class="gallery-header">
+      <div>
+        <p class="gallery-eyebrow">Modern LUXE Flowers · Chicago</p>
+        <h2>The Work</h2>
+        <div class="accent-rule"></div>
+      </div>
+      <div class="gallery-header-right">Portfolio</div>
+    </div>
+
+    <div class="gallery-grid">
+
+      <div class="cell cell-hero" role="img" aria-label="Statement floral arrangement"></div>
+
+      <div class="bento">
+        <div class="cell cell-wide-top"  role="img" aria-label="Tablescape or venue wide shot"></div>
+        <div class="cell cell-mid-left"  role="img" aria-label="Floral arrangement detail"></div>
+        <div class="cell cell-mid-right" role="img" aria-label="Ceremony arrangement"></div>
+        <div class="cell cell-wide-bot"  role="img" aria-label="Corporate lobby or editorial shot"></div>
+      </div>
+
+    </div>
+
+    <div class="bottom-row">
+      <div class="cell cell-bot-1" role="img" aria-label="Bridal floral work"></div>
+      <div class="cell cell-bot-2" role="img" aria-label="Sympathy or seasonal arrangement"></div>
+      <div class="cell cell-bot-3" role="img" aria-label="Gala or event work"></div>
+    </div>
+
+    <div class="gallery-footer">
+      <p>Portfolio · Modern LUXE Flowers</p>
+      <a href="mailto:hello@modernluxeflowers.com" class="view-all">Inquire about your event →</a>
+    </div>
+
+  </section>
+</body>
+</html>
