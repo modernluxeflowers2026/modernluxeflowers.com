@@ -173,8 +173,8 @@ nav {
 
 .nav-sub li:last-child a { border-bottom: none; }
 
-.nav-dropdown:hover .nav-sub { display: block; }
-.nav-dropdown:hover .nav-caret { transform: rotate(180deg); }
+.nav-dropdown.open .nav-sub { display: block; }
+.nav-dropdown.open .nav-caret { transform: rotate(180deg); }
 
 @media (max-width: 768px) {
   .nav-sub {
@@ -327,18 +327,9 @@ nav {
 .mosaic-bento {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 280px 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 4px;
   height: 700px;
-}
-
-/* Wide landscape cell spans both bento columns */
-.bento-wide { grid-column: span 2; }
-
-/* Full-width landscape break between sections */
-.mosaic-wide-break {
-  height: 360px;
-  margin-top: 4px;
 }
 
 /* Bottom row: 3 tall portrait cells */
@@ -493,8 +484,7 @@ footer {
   nav { padding: 20px 40px; }
   .page-header { padding: 64px 40px 52px; }
   .mosaic-hero { height: 580px; }
-  .mosaic-bento { height: 580px; grid-template-rows: 240px 1fr; }
-  .mosaic-wide-break { height: 300px; }
+  .mosaic-bento { height: 580px; grid-template-rows: 1fr 1fr; }
   .cta-band { padding: 72px 40px; }
   footer { padding: 56px 40px 36px; gap: 40px; }
 }
@@ -531,13 +521,11 @@ footer {
 
   .mosaic-bento {
     height: auto;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: auto;
   }
-  .bento-wide { height: 280px; }
-  .mosaic-bento .cell:not(.bento-wide) { height: 400px; }
-
-  .mosaic-wide-break { height: 260px; }
+  .mosaic-bento .cell { height: 320px; }
 
   .mosaic-bottom { grid-template-columns: 1fr; }
   .mosaic-bottom .cell { aspect-ratio: 3 / 4; }
@@ -623,32 +611,30 @@ footer {
       <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="hero">+ Add</button>
     </div>
 
-    <!-- Bento right: landscape top + portrait pair -->
+    <!-- Bento right: 2×2 portrait grid -->
     <div class="mosaic-bento">
-      <div class="cell bento-wide">
+      <div class="cell">
         <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.13%20PM%20(1).jpeg"
              alt="Calla lily and peacock feather bouquet — Modern LUXE Flowers Chicago">
-        <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="wide-top">+ Add</button>
+        <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bento-1">+ Add</button>
+      </div>
+      <div class="cell">
+        <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.14%20PM%20(8).jpeg"
+             alt="White and mauve calla wedding bouquet — Modern LUXE Flowers Chicago">
+        <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bento-2">+ Add</button>
       </div>
       <div class="cell">
         <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.13%20PM%20(2).jpeg"
              alt="White orchid cascade bouquet — Modern LUXE Flowers Chicago">
-        <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="mid-left">+ Add</button>
+        <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bento-3">+ Add</button>
       </div>
       <div class="cell">
         <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.13%20PM%20(4).jpeg"
              alt="Peacock feather fan bouquet — Modern LUXE Flowers Chicago">
-        <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="mid-right">+ Add</button>
+        <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bento-4">+ Add</button>
       </div>
     </div>
 
-  </div>
-
-  <!-- Full-width landscape accent -->
-  <div class="cell mosaic-wide-break">
-    <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.14%20PM%20(8).jpeg"
-         alt="White and mauve calla wedding bouquet — Modern LUXE Flowers Chicago">
-    <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="wide-break">+ Add</button>
   </div>
 
   <!-- Bottom row: 3 tall portrait cells -->
@@ -757,10 +743,12 @@ footer {
   const portfolioTrigger = document.querySelector('.nav-dropdown-trigger');
   const portfolioSub = document.getElementById('portfolioSub');
   portfolioTrigger.addEventListener('click', e => {
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      portfolioSub.classList.toggle('open');
-    }
+    e.preventDefault();
+    e.stopPropagation();
+    document.querySelector('.nav-dropdown').classList.toggle('open');
+  });
+  document.addEventListener('click', () => {
+    document.querySelector('.nav-dropdown').classList.remove('open');
   });
 </script>
 

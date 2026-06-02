@@ -173,8 +173,8 @@ nav {
 
 .nav-sub li:last-child a { border-bottom: none; }
 
-.nav-dropdown:hover .nav-sub { display: block; }
-.nav-dropdown:hover .nav-caret { transform: rotate(180deg); }
+.nav-dropdown.open .nav-sub { display: block; }
+.nav-dropdown.open .nav-caret { transform: rotate(180deg); }
 
 @media (max-width: 768px) {
   .nav-sub {
@@ -206,11 +206,11 @@ nav {
   background: var(--black);
   border-bottom: 1px solid var(--border);
   padding: 80px 80px 72px;
-  max-width: 860px;
+  text-align: center;
 }
 
 .page-eyebrow {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 14px;
   font-size: 11px;
@@ -220,7 +220,8 @@ nav {
   margin-bottom: 28px;
 }
 
-.page-eyebrow::before {
+.page-eyebrow::before,
+.page-eyebrow::after {
   content: '';
   display: block;
   width: 28px;
@@ -242,6 +243,7 @@ nav {
 .page-tagline {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
   margin-bottom: 22px;
   flex-wrap: wrap;
@@ -754,10 +756,12 @@ footer {
   const portfolioTrigger = document.querySelector('.nav-dropdown-trigger');
   const portfolioSub = document.getElementById('portfolioSub');
   portfolioTrigger.addEventListener('click', e => {
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      portfolioSub.classList.toggle('open');
-    }
+    e.preventDefault();
+    e.stopPropagation();
+    document.querySelector('.nav-dropdown').classList.toggle('open');
+  });
+  document.addEventListener('click', () => {
+    document.querySelector('.nav-dropdown').classList.remove('open');
   });
 </script>
 

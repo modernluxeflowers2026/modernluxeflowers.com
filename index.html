@@ -173,8 +173,8 @@ nav {
 
 .nav-sub li:last-child a { border-bottom: none; }
 
-.nav-dropdown:hover .nav-sub { display: block; }
-.nav-dropdown:hover .nav-caret { transform: rotate(180deg); }
+.nav-dropdown.open .nav-sub { display: block; }
+.nav-dropdown.open .nav-caret { transform: rotate(180deg); }
 
 @media (max-width: 768px) {
   .nav-sub {
@@ -962,10 +962,12 @@ footer {
   const portfolioTrigger = document.querySelector('.nav-dropdown-trigger');
   const portfolioSub = document.getElementById('portfolioSub');
   portfolioTrigger.addEventListener('click', e => {
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      portfolioSub.classList.toggle('open');
-    }
+    e.preventDefault();
+    e.stopPropagation();
+    document.querySelector('.nav-dropdown').classList.toggle('open');
+  });
+  document.addEventListener('click', () => {
+    document.querySelector('.nav-dropdown').classList.remove('open');
   });
 </script>
 
