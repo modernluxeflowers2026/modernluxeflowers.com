@@ -193,8 +193,7 @@ nav {
 /* FEATURED PHOTO — replace src URL to swap the image */
 .featured-photo img {
   width: 100%;
-  height: 460px;
-  object-fit: cover;
+  height: auto;
   display: block;
 }
 .featured-photo-placeholder {
@@ -458,7 +457,7 @@ footer {
   .page-header { padding: 56px 24px 44px; }
   .featured-quote { padding: 44px 24px; grid-template-columns: 1fr; gap: 32px; }
   .featured-photo { order: -1; }
-  .featured-photo img, .featured-photo-placeholder { height: 300px; }
+  .featured-photo img { max-height: 340px; object-fit: cover; width: 100%; }
   .featured-open-quote { font-size: 60px; }
   .reviews-section { padding: 56px 24px; }
   .reviews-grid { grid-template-columns: 1fr; gap: 16px; }
