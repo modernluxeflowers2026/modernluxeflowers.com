@@ -179,9 +179,40 @@ nav {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   padding: 96px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
 }
 .featured-inner {
-  max-width: 800px;
+  max-width: 560px;
+}
+.featured-photo {
+  position: relative;
+}
+/* FEATURED PHOTO — replace src URL to swap the image */
+.featured-photo img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
+.featured-photo-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: var(--black);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.featured-photo-placeholder span {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim);
 }
 .featured-stars {
   font-size: 13px;
@@ -361,13 +392,13 @@ footer {
   gap: 60px;
 }
 .footer-logo img { height: 32px; margin-bottom: 20px; opacity: 0.75; display: block; }
-.footer-tagline { font-size: 13px; letter-spacing: 0.04em; color: var(--dim); line-height: 1.8; margin-bottom: 20px; }
-.footer-contact { font-size: 13px; color: var(--body); line-height: 2.1; }
+.footer-tagline { font-size: 20px; letter-spacing: 0.04em; color: var(--dim); line-height: 1.8; margin-bottom: 20px; }
+.footer-contact { font-size: 20px; color: var(--body); line-height: 2.1; }
 .footer-contact a { color: var(--gold); text-decoration: none; }
-.footer-col h4 { font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
+.footer-col h4 { font-size: 15px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin-bottom: 13px; }
-.footer-col ul li a { font-size: 13px; letter-spacing: 0.06em; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.footer-col ul li a { font-size: 20px; letter-spacing: 0.06em; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 .footer-col ul li a:hover { color: var(--cream); }
 .footer-bottom {
   grid-column: span 3;
@@ -376,7 +407,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 12px;
+  font-size: 18px;
   letter-spacing: 0.06em;
   color: var(--muted);
 }
@@ -401,7 +432,7 @@ footer {
   .nav-sub li a:hover { color: var(--cream); }
   nav { padding: 20px 40px; }
   .page-header { padding: 72px 40px 60px; }
-  .featured-quote { padding: 72px 40px; }
+  .featured-quote { padding: 72px 40px; gap: 48px; }
   .reviews-section { padding: 72px 40px; }
   .reviews-cta { padding: 72px 40px; gap: 40px; }
   footer { padding: 56px 40px 36px; gap: 40px; }
@@ -425,7 +456,9 @@ footer {
   .nav-cta { padding: 16px 40px; font-size: 14px !important; }
   .nav-toggle { display: flex; z-index: 101; position: relative; }
   .page-header { padding: 56px 24px 44px; }
-  .featured-quote { padding: 56px 24px; }
+  .featured-quote { padding: 56px 24px; grid-template-columns: 1fr; gap: 40px; }
+  .featured-photo { order: -1; }
+  .featured-photo-placeholder { aspect-ratio: 4 / 3; }
   .featured-open-quote { font-size: 80px; }
   .reviews-section { padding: 56px 24px; }
   .reviews-grid { grid-template-columns: 1fr; gap: 16px; }
@@ -491,6 +524,13 @@ footer {
     <div class="featured-byline">
       <span class="featured-name">Marie C.</span>
       <span class="featured-location">Chicago, IL</span>
+    </div>
+  </div>
+  <div class="featured-photo">
+    <!-- FEATURED PHOTO — replace src to add photo, remove placeholder div below -->
+    <div class="featured-photo-placeholder">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.25"><path d="M21 19V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2z" stroke="#c9a96e" stroke-width="1.5"/><circle cx="8.5" cy="8.5" r="1.5" stroke="#c9a96e" stroke-width="1.5"/><path d="M21 15l-5-5L5 21" stroke="#c9a96e" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <span>Photo coming soon</span>
     </div>
   </div>
 </section>
