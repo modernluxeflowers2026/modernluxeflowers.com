@@ -598,6 +598,27 @@ footer {
   .nav-links a { font-size: 16px; letter-spacing: 0.2em; }
   .nav-cta { padding: 16px 40px !important; }
   .nav-toggle { display: flex; z-index: 101; position: relative; }
+  .nav-sub {
+    position: static;
+    transform: none;
+    border: none;
+    border-top: 1px solid var(--border);
+    background: none;
+    backdrop-filter: none;
+    display: none;
+    min-width: 0;
+    padding: 8px 0 0;
+  }
+  .nav-sub li a {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: none !important;
+    display: block;
+  }
+  .nav-sub li a:hover { color: var(--cream); }
   nav { padding: 18px 36px; }
   .who-we-serve { padding: 80px 40px; gap: 48px; }
   .tiers-section { padding: 80px 40px; }
