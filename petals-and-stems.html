@@ -411,6 +411,12 @@ nav {
   opacity: 0.55;
 }
 
+.gallery-sep {
+  height: 1px;
+  background: var(--border);
+  margin: 40px 0;
+}
+
 /* ─── CTA BAND ─── */
 .cta-band {
   background: var(--surface);
@@ -535,118 +541,6 @@ footer {
   color: var(--muted);
 }
 
-/* ─── WEDDINGS & EVENTS SECTIONS ─── */
-.service-text {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-  padding: 80px 80px 64px;
-}
-.service-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 11px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 22px;
-}
-.service-label::before {
-  content: '';
-  display: block;
-  width: 22px;
-  height: 1px;
-  background: var(--gold);
-  flex-shrink: 0;
-}
-.service-h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: clamp(34px, 3.8vw, 56px);
-  color: var(--cream);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-}
-.service-copy {
-  padding-top: 4px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-.service-copy p {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: clamp(16px, 1.6vw, 21px);
-  color: var(--body);
-  line-height: 1.8;
-}
-.section-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 28px;
-  font-family: 'Jost', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.section-link:hover { color: var(--cream); }
-.section-link::after { content: '→'; font-size: 14px; letter-spacing: 0; }
-
-.photo-trio {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-}
-.photo-trio .cell { height: 640px; cursor: default; }
-
-.photo-duo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4px;
-}
-.photo-duo .cell { height: 460px; cursor: default; }
-
-.quote-divider {
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 76px 80px;
-  text-align: center;
-}
-.quote-divider .open-q {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: 88px;
-  line-height: 0.6;
-  color: var(--gold);
-  display: block;
-  margin-bottom: 24px;
-}
-.quote-divider blockquote {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-style: italic;
-  font-size: clamp(19px, 2vw, 30px);
-  color: var(--cream);
-  line-height: 1.6;
-  max-width: 680px;
-  margin: 0 auto 28px;
-}
-.quote-divider cite {
-  font-family: 'Jost', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-style: normal;
-}
-
 /* ══════════════════════════════
    TABLET — 1024px
 ══════════════════════════════ */
@@ -693,10 +587,6 @@ footer {
   .mosaic-bento { height: 580px; grid-template-rows: 1fr 1fr; }
   .cta-band { padding: 72px 40px; }
   footer { padding: 56px 40px 36px; gap: 40px; }
-  .service-text { padding: 64px 40px 52px; gap: 48px; }
-  .photo-trio .cell { height: 520px; }
-  .photo-duo .cell { height: 380px; }
-  .quote-divider { padding: 60px 40px; }
 }
 
 /* ══════════════════════════════
@@ -741,13 +631,6 @@ footer {
   .mosaic-bottom .cell { aspect-ratio: 3 / 4; }
 
   .cta-band { padding: 56px 24px; gap: 28px; }
-
-  .service-text { grid-template-columns: 1fr; gap: 28px; padding: 52px 24px 40px; }
-  .photo-trio { grid-template-columns: 1fr; }
-  .photo-trio .cell { height: 72vw; max-height: 480px; }
-  .photo-duo { grid-template-columns: 1fr; }
-  .photo-duo .cell { height: 60vw; max-height: 380px; }
-  .quote-divider { padding: 52px 24px; }
 
   footer {
     grid-template-columns: 1fr;
@@ -876,63 +759,54 @@ footer {
 
 </section>
 
-<!-- ═══════════ WEDDINGS ═══════════ -->
+<!-- SECOND GALLERY -->
+<div class="gallery-sep"></div>
 
-<div class="service-text">
-  <div>
-    <div class="service-label">Weddings</div>
-    <h2 class="service-h2">Where Love<br>Meets Intention</h2>
-  </div>
-  <div class="service-copy">
-    <p>Every element of your wedding florals is chosen to reflect who you are. We work by appointment, beginning with a consultation to understand your vision, your venue, and the moments that matter most. From bridal bouquets to ceremony installations, each piece is designed and arranged by hand — no templates, no catalog selections.</p>
-    <a href="/weddings-and-events-floral-chicago.html" class="section-link">Learn about Weddings &amp; Events</a>
-  </div>
-</div>
-
-<div class="photo-trio">
-  <div class="cell">
+<div class="mosaic-main">
+  <div class="cell mosaic-hero">
     <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM%20(1).jpeg"
-         alt="Bridal bouquet — Modern LUXE Flowers Chicago">
+         alt="Floral design — Modern LUXE Flowers Chicago">
+    <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="hero2">+ Add</button>
   </div>
-  <div class="cell">
-    <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM%20(2).jpeg"
-         alt="Wedding ceremony florals — Modern LUXE Flowers Chicago">
-  </div>
-  <div class="cell">
-    <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM%20(3).jpeg"
-         alt="Reception floral design — Modern LUXE Flowers Chicago">
-  </div>
-</div>
-
-<!-- ═══════════ QUOTE DIVIDER ═══════════ -->
-
-<div class="quote-divider">
-  <span class="open-q">"</span>
-  <blockquote>The flowers are never just decoration. They're the first thing guests notice and the last thing they photograph.</blockquote>
-  <cite>— Modern LUXE Flowers</cite>
-</div>
-
-<!-- ═══════════ EVENTS ═══════════ -->
-
-<div class="service-text">
-  <div>
-    <div class="service-label">Events</div>
-    <h2 class="service-h2">Design That<br>Defines the Room</h2>
-  </div>
-  <div class="service-copy">
-    <p>From intimate dinners to large-scale productions, we design event florals that give any space presence. Table arrangements, statement centerpieces, entryway installations — whatever your event calls for, we design it to be remembered. Every setup is managed start to finish so you can be fully present for the evening.</p>
-    <a href="/weddings-and-events-floral-chicago.html" class="section-link">Learn about Weddings &amp; Events</a>
+  <div class="mosaic-bento">
+    <div class="cell">
+      <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM%20(2).jpeg"
+           alt="Floral arrangement — Modern LUXE Flowers Chicago">
+      <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bento2-1">+ Add</button>
+    </div>
+    <div class="cell">
+      <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM%20(3).jpeg"
+           alt="Floral arrangement — Modern LUXE Flowers Chicago">
+      <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bento2-2">+ Add</button>
+    </div>
+    <div class="cell">
+      <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM%20(4).jpeg"
+           alt="Floral arrangement — Modern LUXE Flowers Chicago">
+      <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bento2-3">+ Add</button>
+    </div>
+    <div class="cell">
+      <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM%20(5).jpeg"
+           alt="Floral arrangement — Modern LUXE Flowers Chicago">
+      <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bento2-4">+ Add</button>
+    </div>
   </div>
 </div>
 
-<div class="photo-duo">
+<div class="mosaic-bottom">
   <div class="cell">
     <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.16%20PM.jpeg"
-         alt="Event floral installation — Modern LUXE Flowers Chicago">
+         alt="Floral arrangement — Modern LUXE Flowers Chicago">
+    <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bot2-1">+ Add</button>
+  </div>
+  <div class="cell">
+    <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.16%20PM%20(1).jpeg"
+         alt="Floral arrangement — Modern LUXE Flowers Chicago">
+    <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bot2-2">+ Add</button>
   </div>
   <div class="cell">
     <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.17%20PM.jpeg"
-         alt="Event centerpiece — Modern LUXE Flowers Chicago">
+         alt="Floral arrangement — Modern LUXE Flowers Chicago">
+    <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bot2-3">+ Add</button>
   </div>
 </div>
 
