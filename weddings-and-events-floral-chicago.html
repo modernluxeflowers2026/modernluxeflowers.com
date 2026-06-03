@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Boxful Art | Modern LUXE Flowers Chicago</title>
-<meta name="description" content="Boxful Art — curated floral arrangements delivered in signature keepsake boxes. Celebrations, appreciation, and romance designed by Modern LUXE Flowers Chicago.">
-<meta name="keywords" content="boxful art flowers Chicago, floral gift boxes Chicago, luxury flower box Chicago, Modern LUXE Flowers">
-<meta property="og:title" content="Boxful Art — Modern LUXE Flowers Chicago">
-<meta property="og:description" content="Curated arrangements delivered in signature keepsake boxes. Every box is a moment, designed.">
-<meta property="og:image" content="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM%20(7).jpeg">
-<meta property="og:url" content="https://modernluxeflowers.com/gift-giving-boxful-art.html">
+<title>Weddings &amp; Events | Modern LUXE Flowers Chicago</title>
+<meta name="description" content="Wedding and event floral design in Chicago — ceremony florals, reception arrangements, and full installations. Modern LUXE Flowers by appointment.">
+<meta name="keywords" content="Chicago wedding florist, wedding flowers Chicago, event florals Chicago, bridal bouquet Chicago, Modern LUXE Flowers weddings">
+<meta property="og:title" content="Weddings &amp; Events | Modern LUXE Flowers Chicago">
+<meta property="og:description" content="From the bouquet in your hands to the florals that frame the room — designed to last in photographs and memory alike.">
+<meta property="og:image" content="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM%20(1).jpeg">
+<meta property="og:url" content="https://modernluxeflowers.com/weddings-and-events-floral-chicago.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://modernluxeflowers.com/gift-giving-boxful-art.html">
+<link rel="canonical" href="https://modernluxeflowers.com/weddings-and-events-floral-chicago.html">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -177,11 +177,36 @@ nav {
 .nav-dropdown.open .nav-sub { display: block; }
 .nav-dropdown.open .nav-caret { transform: rotate(180deg); }
 
+@media (max-width: 768px) {
+  .nav-sub {
+    position: static;
+    transform: none;
+    border: none;
+    border-top: 1px solid var(--border);
+    background: none;
+    backdrop-filter: none;
+    display: none;
+    min-width: 0;
+    padding: 8px 0 0;
+  }
+  .nav-sub.open { display: block; }
+  .nav-sub li a {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: none !important;
+    display: block;
+  }
+  .nav-sub li a:hover { color: var(--cream); }
+}
+
 /* ─── PAGE HEADER ─── */
 .page-header {
   background: var(--black);
   border-bottom: 1px solid var(--border);
-  padding: 72px 80px 64px;
+  padding: 80px 80px 64px;
   text-align: center;
 }
 
@@ -209,75 +234,114 @@ nav {
 .page-header h1 {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
-  font-size: clamp(48px, 6vw, 88px);
-  line-height: 1.0;
+  font-size: clamp(38px, 4.5vw, 68px);
+  line-height: 1.05;
   color: var(--cream);
   letter-spacing: -0.01em;
   margin-bottom: 28px;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.page-header-occasions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 22px;
-}
-
-.page-header-occasions span {
+.page-header .tagline {
   font-family: 'Jost', sans-serif;
   font-weight: 300;
   font-size: 11px;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--body);
+  color: var(--muted);
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 
-.page-header-occasions .sep {
-  color: var(--gold-dim);
-  font-size: 14px;
-  flex-shrink: 0;
+.page-header .tagline .sep {
+  color: var(--gold);
+  font-size: 13px;
+  line-height: 1;
 }
 
-.page-header-tagline {
+.page-header .editorial {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   font-style: italic;
-  font-size: clamp(18px, 1.8vw, 23px);
-  color: var(--muted);
-  letter-spacing: 0.01em;
+  font-size: clamp(17px, 1.8vw, 22px);
+  color: var(--body);
+  line-height: 1.65;
 }
 
-/* ─── GALLERY: UNIFORM 3-COLUMN PORTRAIT ─── */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
+/* ─── GALLERY: HERO + MOSAIC BENTO ─── */
+.gallery-section {
+  padding: 0;
   background: var(--black);
 }
 
-.gallery-item {
-  aspect-ratio: 4 / 5;
+.cell {
+  position: relative;
   overflow: hidden;
   background: var(--surface);
   cursor: zoom-in;
 }
 
-.gallery-item img {
+.cell img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
   filter: brightness(0.88) saturate(0.92);
-  transition: transform 0.65s ease, filter 0.35s ease;
+  transition: transform 0.7s ease, filter 0.4s ease;
   pointer-events: none;
 }
 
-.gallery-item:hover img {
-  transform: scale(1.05);
-  filter: brightness(1.0) saturate(1.05);
+.cell:hover img {
+  transform: scale(1.04);
+  filter: brightness(1) saturate(1.05);
 }
+
+/* Hidden add button — present in DOM for future CMS use */
+.cell-add {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  pointer-events: none;
+}
+
+/* Top section: tall hero left, bento right */
+.mosaic-main {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 4px;
+}
+
+.mosaic-hero { height: 700px; }
+
+.mosaic-bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+  height: 700px;
+}
+
+/* Bottom row: 3 tall portrait cells */
+.mosaic-bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.mosaic-bottom .cell { aspect-ratio: 3 / 4; }
 
 /* ─── LIGHTBOX ─── */
 #lightbox {
@@ -357,17 +421,16 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
+  gap: 36px;
 }
 
-.cta-band-text {
+.cta-band p {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
-  font-style: italic;
-  font-size: clamp(28px, 3.2vw, 46px);
+  font-size: clamp(26px, 3vw, 42px);
+  line-height: 1.2;
   color: var(--cream);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+  max-width: 700px;
 }
 
 .btn-primary {
@@ -513,13 +576,15 @@ footer {
   }
   .nav-sub li a:hover { color: var(--cream); }
   nav { padding: 20px 40px; }
-  .page-header { padding: 56px 40px 48px; }
+  .page-header { padding: 64px 40px 52px; }
+  .mosaic-hero { height: 580px; }
+  .mosaic-bento { height: 580px; grid-template-rows: 1fr 1fr; }
   .cta-band { padding: 72px 40px; }
   footer { padding: 56px 40px 36px; gap: 40px; }
 }
 
 /* ══════════════════════════════
-   MOBILE — 768px
+   MOBILE — 768px  (single column)
 ══════════════════════════════ */
 @media (max-width: 768px) {
 
@@ -541,35 +606,23 @@ footer {
   .nav-cta { padding: 16px 40px; font-size: 14px !important; }
   .nav-toggle { display: flex; z-index: 101; position: relative; }
 
-  /* Dropdown on mobile: inline below Portfolio */
-  .nav-sub {
-    position: static;
-    transform: none;
-    border: none;
-    border-top: 1px solid var(--border);
-    background: none;
-    backdrop-filter: none;
-    display: none;
-    min-width: 0;
-    padding: 8px 0 0;
-  }
-  .nav-sub.open { display: block; }
-  .nav-sub li a {
-    font-size: 13px;
-    letter-spacing: 0.18em;
-    color: var(--muted);
-    padding: 10px 0;
-    text-align: center;
-    border-bottom: none !important;
-    display: block;
-  }
-  .nav-sub li a:hover { color: var(--cream); }
+  .page-header { padding: 52px 24px 44px; }
+  .page-header h1 { margin-bottom: 24px; }
 
-  .page-header { padding: 48px 24px 40px; }
-  .page-header-occasions { gap: 14px; flex-wrap: wrap; }
-  .page-header-occasions span { font-size: 10px; }
+  /* Single column gallery */
+  .mosaic-main { grid-template-columns: 1fr; }
+  .mosaic-hero { height: 480px; }
 
-  .gallery { grid-template-columns: 1fr; gap: 3px; }
+  .mosaic-bento {
+    height: auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: auto;
+  }
+  .mosaic-bento .cell { height: 320px; }
+
+  .mosaic-bottom { grid-template-columns: 1fr; }
+  .mosaic-bottom .cell { aspect-ratio: 3 / 4; }
 
   .cta-band { padding: 56px 24px; gap: 28px; }
 
@@ -588,7 +641,7 @@ footer {
 
 @media (max-width: 480px) {
   nav { padding: 16px 20px; }
-  .page-header { padding: 40px 20px 32px; }
+  .page-header { padding: 44px 20px 36px; }
   .cta-band { padding: 48px 20px; }
   footer { padding: 40px 20px 28px; }
 }
@@ -609,7 +662,7 @@ footer {
   </a>
   <ul class="nav-links" id="navLinks">
     <li class="nav-dropdown">
-      <a href="/flower-arrangements-portfolio.html" class="nav-dropdown-trigger">Portfolio <span class="nav-caret">▾</span></a>
+      <a href="/flower-arrangements-portfolio.html" class="nav-dropdown-trigger">Portfolio <span class="nav-caret">&#9660;</span></a>
       <ul class="nav-sub" id="portfolioSub">
         <li><a href="/luxe-love-unique-flower-arrangements.html">Luxe Love</a></li>
         <li><a href="/gift-giving-boxful-art.html">Boxful Art</a></li>
@@ -629,56 +682,80 @@ footer {
 
 <!-- PAGE HEADER -->
 <header class="page-header">
-  <div class="eyebrow">Boxful Art</div>
-  <h1>Box Art Gift Designs</h1>
-  <div class="page-header-occasions">
-    <span>Celebrations</span>
+  <div class="eyebrow">Weddings &amp; Events</div>
+  <h1>Floral Design for the Day You've Dreamed Of</h1>
+  <div class="tagline">
+    <span>Ceremonies</span>
     <span class="sep">|</span>
-    <span>Appreciation</span>
+    <span>Receptions</span>
     <span class="sep">|</span>
-    <span>Romance</span>
+    <span>Installations</span>
   </div>
-  <p class="page-header-tagline">Curated arrangements delivered in signature keepsake boxes.</p>
+  <p class="editorial">From the bouquet in your hands to the florals that frame the room — designed to last in photographs and memory alike.</p>
 </header>
 
-<!-- GALLERY: UNIFORM 3-COLUMN PORTRAIT -->
-<section class="gallery">
+<!-- GALLERY: HERO + MOSAIC BENTO -->
+<section class="gallery-section">
 
-  <div class="gallery-item">
-    <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM%20(7).jpeg"
-         alt="Happy Birthday tropical floral box — Modern LUXE Flowers Chicago">
+  <div class="mosaic-main">
+
+    <!-- Hero — dominant statement piece -->
+    <div class="cell mosaic-hero">
+      <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM%20(1).jpeg"
+           alt="Bridal bouquet with white florals — Modern LUXE Flowers Chicago">
+      <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="hero">+ Add</button>
+    </div>
+
+    <!-- Bento right: 2×2 portrait grid -->
+    <div class="mosaic-bento">
+      <div class="cell">
+        <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM%20(2).jpeg"
+             alt="Wedding ceremony floral arrangement — Modern LUXE Flowers Chicago">
+        <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bento-1">+ Add</button>
+      </div>
+      <div class="cell">
+        <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM%20(3).jpeg"
+             alt="Reception centerpiece floral design — Modern LUXE Flowers Chicago">
+        <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bento-2">+ Add</button>
+      </div>
+      <div class="cell">
+        <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM%20(4).jpeg"
+             alt="Luxury event floral installation — Modern LUXE Flowers Chicago">
+        <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bento-3">+ Add</button>
+      </div>
+      <div class="cell">
+        <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM%20(5).jpeg"
+             alt="Bridesmaid bouquet arrangement — Modern LUXE Flowers Chicago">
+        <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bento-4">+ Add</button>
+      </div>
+    </div>
+
   </div>
 
-  <div class="gallery-item">
-    <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.13%20PM.jpeg"
-         alt="Round pink hat box arrangement — Modern LUXE Flowers Chicago">
-  </div>
-
-  <div class="gallery-item">
-    <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.14%20PM%20(3).jpeg"
-         alt="Red roses and anemones in silver box — Modern LUXE Flowers Chicago">
-  </div>
-
-  <div class="gallery-item">
-    <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM.jpeg"
-         alt="Pink hat box with gerbera and roses — Modern LUXE Flowers Chicago">
-  </div>
-
-  <div class="gallery-item">
-    <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.15%20PM%20(2).jpeg"
-         alt="Flat square box with pink roses and monstera — Modern LUXE Flowers Chicago">
-  </div>
-
-  <div class="gallery-item">
-    <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.17%20PM.jpeg"
-         alt="Pink Mother's Day hat box arrangement — Modern LUXE Flowers Chicago">
+  <!-- Bottom row: 3 tall portrait cells -->
+  <div class="mosaic-bottom">
+    <div class="cell">
+      <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.16%20PM.jpeg"
+           alt="Floral arch wedding ceremony design — Modern LUXE Flowers Chicago">
+      <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bot-1">+ Add</button>
+    </div>
+    <div class="cell">
+      <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.16%20PM%20(1).jpeg"
+           alt="Table arrangement for wedding reception — Modern LUXE Flowers Chicago">
+      <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bot-2">+ Add</button>
+    </div>
+    <div class="cell">
+      <img src="https://modernluxeflowers.com/images/WhatsApp%20Image%202026-05-30%20at%204.56.17%20PM.jpeg"
+           alt="Event floral centerpiece — Modern LUXE Flowers Chicago">
+      <button class="cell-add" aria-hidden="true" tabindex="-1" data-slot="bot-3">+ Add</button>
+    </div>
   </div>
 
 </section>
 
 <!-- CTA BAND -->
 <section class="cta-band">
-  <p class="cta-band-text">Every box is a moment, designed.</p>
+  <p>Your wedding day deserves flowers as exceptional as the moment itself.</p>
   <a href="/contact-us-floral-arrangements.html" class="btn-primary">Request a Consultation</a>
 </section>
 
@@ -745,18 +822,6 @@ footer {
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a:not(.nav-dropdown-trigger)').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
 
-  // Portfolio dropdown (tap on mobile, hover on desktop via CSS)
-  const portfolioTrigger = document.querySelector('.nav-dropdown-trigger');
-  const portfolioSub = document.getElementById('portfolioSub');
-  portfolioTrigger.addEventListener('click', e => {
-    e.preventDefault();
-    e.stopPropagation();
-    document.querySelector('.nav-dropdown').classList.toggle('open');
-  });
-  document.addEventListener('click', () => {
-    document.querySelector('.nav-dropdown').classList.remove('open');
-  });
-
   // Lightbox carousel
   const lb = document.getElementById('lightbox');
   const lbImg = lb.querySelector('.lb-img');
@@ -810,6 +875,17 @@ footer {
   lb.addEventListener('touchend', e => {
     const dx = e.changedTouches[0].clientX - touchStartX;
     if (Math.abs(dx) > 50) dx < 0 ? showImg(currentIdx + 1) : showImg(currentIdx - 1);
+  });
+  // Portfolio dropdown (tap on mobile, hover on desktop via CSS)
+  const portfolioTrigger = document.querySelector('.nav-dropdown-trigger');
+  const portfolioSub = document.getElementById('portfolioSub');
+  portfolioTrigger.addEventListener('click', e => {
+    e.preventDefault();
+    e.stopPropagation();
+    document.querySelector('.nav-dropdown').classList.toggle('open');
+  });
+  document.addEventListener('click', () => {
+    document.querySelector('.nav-dropdown').classList.remove('open');
   });
 </script>
 
