@@ -332,31 +332,22 @@ nav {
   font-style: normal;
 }
 
-/* ─── PORTFOLIO LINK ─── */
-.portfolio-link-bar {
-  padding: 28px 80px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
+/* ─── SECTION INLINE LINK ─── */
+.section-link {
+  display: inline-flex;
   align-items: center;
-}
-.portfolio-link-bar a {
+  gap: 10px;
+  margin-top: 28px;
   font-family: 'Jost', sans-serif;
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
   transition: color 0.2s;
 }
-.portfolio-link-bar a:hover { color: var(--cream); }
-.portfolio-link-bar a::after {
-  content: '→';
-  font-size: 14px;
-  letter-spacing: 0;
-}
+.section-link:hover { color: var(--cream); }
+.section-link::after { content: '→'; font-size: 14px; letter-spacing: 0; }
 
 /* ─── CTA BAND ─── */
 .cta-band {
@@ -620,6 +611,7 @@ footer {
   </div>
   <div class="service-copy">
     <p>Every element of your wedding florals is chosen to reflect who you are. We work by appointment, beginning with a consultation to understand your vision, your venue, and the moments that matter most. From bridal bouquets to ceremony installations, each piece is designed and arranged by hand — no templates, no catalog selections.</p>
+    <a href="/petals-and-stems.html" class="section-link">View our wedding &amp; event portfolio</a>
   </div>
 </div>
 
@@ -636,11 +628,6 @@ footer {
     <img src="/images/WhatsApp%20Image%202026-05-30%20at%204.56.14%20PM%20(8).jpeg"
          alt="White and mauve calla lily wedding bouquet — Modern LUXE Flowers Chicago">
   </div>
-</div>
-
-<!-- PORTFOLIO LINK -->
-<div class="portfolio-link-bar">
-  <a href="/petals-and-stems.html">View our wedding &amp; event portfolio</a>
 </div>
 
 <!-- ═══════════ QUOTE DIVIDER ═══════════ -->
