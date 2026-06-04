@@ -117,7 +117,7 @@ When the user says "replace image #N on [Page]" or "swap [Page] #N", use this ma
 | 10 | Gallery 2 — bento 1 | `images/event-010.webp` |
 | 11 | Gallery 2 — bento 2 | `images/event-008.webp` |
 | 12 | Gallery 2 — bento 3 | `images/event-007.webp` |
-| 13 | Gallery 2 — bento 4 | `images/WhatsApp Image 2026-05-30 at 4.56.15 PM (5).jpeg` |
+| 13 | Gallery 2 — bento 4 | `images/event-009.webp` |
 | 14 | Gallery 2 — bottom 1 | `images/WhatsApp Image 2026-05-30 at 4.56.18 PM.jpeg` |
 | 15 | Gallery 2 — bottom 2 | `images/WhatsApp Image 2026-05-30 at 4.56.14 PM (1).jpeg` |
 | 16 | Gallery 2 — bottom 3 | `images/event-002.jpeg` |
