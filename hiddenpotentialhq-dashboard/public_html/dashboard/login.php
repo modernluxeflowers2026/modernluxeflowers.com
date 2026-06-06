@@ -15,7 +15,7 @@ if (
     $_SESSION['hphq_auth'] === true &&
     time() < $_SESSION['hphq_expires']
 ) {
-    header('Location: index.html');
+    header('Location: index.php');
     exit;
 }
 
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         session_regenerate_id(true);
         $_SESSION['hphq_auth']    = true;
         $_SESSION['hphq_expires'] = time() + SESSION_LIFETIME;
-        header('Location: index.html');
+        header('Location: index.php');
         exit;
     }
 
