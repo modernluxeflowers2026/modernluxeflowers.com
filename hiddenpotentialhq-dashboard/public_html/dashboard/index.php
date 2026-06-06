@@ -43,7 +43,7 @@ html, body {
 .biz-selector-bar { background:rgba(10,10,10,0.85); border-bottom:1px solid rgba(255,255,255,0.08); padding:8px 0; }
 .biz-label { font-size:10px; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:2px; margin-right:12px; font-weight:500; }
 .biz-btn { background:transparent; border:1px solid rgba(255,255,255,0.15); border-radius:3px; color:rgba(255,255,255,0.5); padding:6px 16px; font-size:11px; font-family:inherit; cursor:pointer; font-weight:600; letter-spacing:0.5px; margin-right:6px; transition:all 0.15s; }
-.biz-btn:hover { border-color:rgba(201,168,76,0.5); color:rgba(201,168,76,0.8); }
+.biz-btn:hover { border-color:rgba(192,57,43,0.6); color:rgba(192,57,43,0.9); }
 .biz-locked { opacity:0.4; cursor:not-allowed; }
 .biz-selector-bar .inner { display:flex; align-items:center; flex-wrap:wrap; gap:4px; }
 
@@ -267,8 +267,8 @@ html, body {
           </div>
 
           <div class="sticky-note">
-            <div class="sticky-label">&#9998; Focus any agent</div>
-            <textarea class="sticky-input" id="extra-input" placeholder="Agent 02: Type a section name to write one part (e.g. Part 3: Keepa Alerts).
+            <div class="sticky-label">&#9998; System Prompt / Focus Override</div>
+            <textarea class="sticky-input" id="extra-input" placeholder="Replaces system prompt when filled. E.g.: You are a direct-response copywriter for Amazon OA sellers. Write for a skeptical beginner.
 
 Build Full Product: Leave blank to use OA Decision System default. Or paste a custom parts list — one section per line — to build any other product.
 
@@ -334,7 +334,7 @@ Agent 05: Generate affiliate scripts for Keepa / SellerAmp / Aura or a resource 
 
         </div>
         <div class="sticky-note" style="margin-top:20px;transform:rotate(-1deg);">
-          <div class="sticky-label">&#9998; Focus any agent</div>
+          <div class="sticky-label">&#9998; System Prompt / Focus Override</div>
           <textarea class="sticky-input" placeholder="Add extra context for the active agent here..."></textarea>
         </div>
       </div>
@@ -393,7 +393,7 @@ Agent 05: Generate affiliate scripts for Keepa / SellerAmp / Aura or a resource 
 
         </div>
         <div class="sticky-note" style="margin-top:20px;transform:rotate(-1deg);">
-          <div class="sticky-label">&#9998; Focus any agent</div>
+          <div class="sticky-label">&#9998; System Prompt / Focus Override</div>
           <textarea class="sticky-input" placeholder="Add extra context for the active agent here..."></textarea>
         </div>
       </div>
@@ -571,8 +571,8 @@ function switchBusiness(biz) {
     var btn = document.getElementById('bizBtn-' + b);
     if (panel) panel.style.display = (b === biz) ? 'block' : 'none';
     if (btn) {
-      btn.style.background = (b === biz) ? '#1C2B4B' : 'transparent';
-      btn.style.color = (b === biz) ? '#1a1a1a' : 'rgba(255,255,255,0.5)';
+      btn.style.background = (b === biz) ? '#C0392B' : 'transparent';
+      btn.style.color = (b === biz) ? '#ffffff' : 'rgba(255,255,255,0.5)';
     }
   });
   var nicheInput = document.getElementById('niche-input');
@@ -765,12 +765,19 @@ async function runAgent(id, label) {
     lockedNiche = n;
     document.getElementById('niche-status').textContent = 'Locked: ' + n;
   }
-  var extra = document.getElementById('extra-input') ? document.getElementById('extra-input').value.trim() : '';
+  var stickyOverride = document.getElementById('extra-input') ? document.getElementById('extra-input').value.trim() : '';
   showLoading(label);
   try {
-    var promptObj = P[id](n, extra);
+    var promptObj = P[id](n, '');
     var result;
-    if (promptObj && typeof promptObj === 'object' && promptObj.system) {
+    if (stickyOverride) {
+      // Sticky note replaces system prompt entirely
+      if (promptObj && typeof promptObj === 'object' && promptObj.system) {
+        result = await callClaudeWithContinuation(promptObj.user, stickyOverride, 3);
+      } else {
+        result = await callClaudeWithContinuation(String(promptObj), stickyOverride, 3);
+      }
+    } else if (promptObj && typeof promptObj === 'object' && promptObj.system) {
       result = await callClaudeWithContinuation(promptObj.user, promptObj.system, 3);
     } else {
       result = await callClaude(promptObj);
