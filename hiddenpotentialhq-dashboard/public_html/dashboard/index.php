@@ -114,7 +114,7 @@ html, body {
 .output-title-text { font-size:13px; color:white; font-weight:600; }
 .copy-btn { background:transparent; border:1px solid rgba(255,255,255,0.3); border-radius:3px; color:rgba(255,255,255,0.7); padding:4px 12px; font-size:11px; font-family:inherit; cursor:pointer; }
 .copy-btn:hover { background:rgba(255,255,255,0.15); color:white; }
-.output-body { padding:24px; min-height:320px; background-image:repeating-linear-gradient(transparent, transparent 27px, rgba(0,0,0,0.04) 27px, rgba(0,0,0,0.04) 28px); background-size:100% 28px; background-position:0 28px; position:relative; }
+.output-body { padding:24px; min-height:320px; background:#fff; position:relative; }
 .output-body::before { content:''; position:absolute; left:44px; top:0; bottom:0; width:1px; background:rgba(220,60,60,0.1); }
 .output-placeholder { text-align:center; color:#999; font-style:italic; font-size:14px; line-height:2.5; padding:50px 20px; }
 .output-placeholder img { width:44px; opacity:0.12; display:block; margin:0 auto 16px; }
@@ -402,7 +402,7 @@ Agent 05: Generate affiliate scripts for Keepa / SellerAmp / Aura or a resource 
         <div style="display:flex;align-items:center;justify-content:center;padding:80px 20px;">
           <div style="text-align:center;background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.3);border-radius:6px;padding:48px 64px;">
             <div style="font-size:36px;margin-bottom:16px;">&#x1F512;</div>
-            <div style="font-size:20px;font-weight:700;color:#C9A84C;margin-bottom:8px;">Jo's Workspace</div>
+            <div style="font-size:20px;font-weight:700;color:#1C2B4B;margin-bottom:8px;">Jo's Workspace</div>
             <div style="font-size:13px;color:rgba(255,255,255,0.4);">Coming Soon</div>
           </div>
         </div>
@@ -413,7 +413,7 @@ Agent 05: Generate affiliate scripts for Keepa / SellerAmp / Aura or a resource 
     <div id="tab-quick" class="tab-content">
       <div class="section-label">Automated workflows</div>
       <div class="qa-grid">
-        <button class="folder-tab" onclick="runFullProductBuild()" style="background:#1a1a1a;border:2px solid #C9A84C;"><span class="qa-icon">&#128218;</span><span class="qa-label" style="color:#B87333;font-weight:700;">Build Full Product (All Parts + Bonuses)</span></button>
+        <button class="folder-tab" onclick="runFullProductBuild()" style="background:#1a1a1a;border:2px solid #1C2B4B;"><span class="qa-icon">&#128218;</span><span class="qa-label" style="color:#1C2B4B;font-weight:700;">Build Full Product (All Parts + Bonuses)</span></button>
         <button class="folder-tab" onclick="runQuick('fullcycle','Full 5-Agent Cycle')"><span class="qa-icon">&#128640;</span><span class="qa-label">Full 5-agent cycle</span></button>
         <button class="folder-tab" onclick="runQuick('weekly','Weekly Refresh Loop')"><span class="qa-icon">&#128260;</span><span class="qa-label">Weekly refresh loop</span></button>
         <button class="folder-tab" onclick="runQuick('niches','Niche Suggestions')"><span class="qa-icon">&#128161;</span><span class="qa-label">Suggest 5 niches</span></button>
@@ -433,7 +433,7 @@ Agent 05: Generate affiliate scripts for Keepa / SellerAmp / Aura or a resource 
             <button class="copy-btn" onclick="copyOutput()">Copy</button>
             <button class="copy-btn" onclick="downloadTXT()">&#8595; TXT</button>
             <button class="copy-btn" onclick="downloadPDF()">&#8595; PDF</button>
-            <button class="copy-btn" id="full-build-download" onclick="downloadFullProductPDF()" style="display:none;background:#B87333;color:#1a1a1a;font-weight:700;">&#8595; Full Product PDF</button>
+            <button class="copy-btn" id="full-build-download" onclick="downloadFullProductPDF()" style="display:none;background:#1C2B4B;color:#1a1a1a;font-weight:700;">&#8595; Full Product PDF</button>
           </div>
         </div>
         <div class="output-body" id="output-body">
@@ -571,7 +571,7 @@ function switchBusiness(biz) {
     var btn = document.getElementById('bizBtn-' + b);
     if (panel) panel.style.display = (b === biz) ? 'block' : 'none';
     if (btn) {
-      btn.style.background = (b === biz) ? '#C9A84C' : 'transparent';
+      btn.style.background = (b === biz) ? '#1C2B4B' : 'transparent';
       btn.style.color = (b === biz) ? '#1a1a1a' : 'rgba(255,255,255,0.5)';
     }
   });
@@ -863,7 +863,7 @@ function downloadPDF() {
     ul, ol { margin: 10px 0 14px 24px; }
     li { margin-bottom: 6px; color: #1C2B4B; }
     a { color: #1C2B4B; }
-    .ftr { margin-top: 50px; border-top: 2px solid #B87333; padding-top: 14px; font-size: 10px; color: #7A8FAA; text-transform: uppercase; letter-spacing: 1px; }
+    .ftr { margin-top: 50px; border-top: 2px solid #1C2B4B; padding-top: 14px; font-size: 10px; color: #7A8FAA; text-transform: uppercase; letter-spacing: 1px; }
     @media print { body { padding: 40px 50px; } a { color: #1C2B4B; text-decoration: none; } }
   </style>
 </head>
@@ -893,7 +893,7 @@ function downloadFullProductPDF() {
     .cover-brand { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #7A8FAA; margin-bottom: 40px; }
     .cover-title { font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 16px; color: #1C2B4B; }
     .cover-subtitle { font-size: 15px; color: #3D5278; line-height: 1.6; max-width: 520px; margin-bottom: 40px; }
-    .cover-divider { width: 60px; height: 3px; background: #B87333; margin-bottom: 32px; }
+    .cover-divider { width: 60px; height: 3px; background: #1C2B4B; margin-bottom: 32px; }
     .cover-meta { font-size: 11px; color: #7A8FAA; letter-spacing: 1px; text-transform: uppercase; }
     .content { padding: 60px 70px; max-width: 800px; margin: 0 auto; background: #F8F7F4; }
     h2 { font-size: 20px; font-weight: 700; color: #1C2B4B; margin: 40px 0 14px; padding-bottom: 8px; border-bottom: 2px solid #1C2B4B; }
@@ -906,7 +906,7 @@ function downloadFullProductPDF() {
     td { padding: 9px 14px; border-bottom: 1px solid #E0D8CE; color: #1C2B4B; }
     tr:nth-child(even) td { background: #EEE8DF; }
     a { color: #1C2B4B; }
-    .ftr { margin-top: 60px; padding-top: 16px; border-top: 2px solid #B87333; font-size: 10px; color: #7A8FAA; text-transform: uppercase; letter-spacing: 1px; text-align: center; }
+    .ftr { margin-top: 60px; padding-top: 16px; border-top: 2px solid #1C2B4B; font-size: 10px; color: #7A8FAA; text-transform: uppercase; letter-spacing: 1px; text-align: center; }
     @media print { body { font-size: 12px; } .cover { padding: 60px 50px; } .content { padding: 40px 50px; } a { color: #1C2B4B; text-decoration: none; } }
   </style>
 </head>
