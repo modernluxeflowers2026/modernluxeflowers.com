@@ -7,10 +7,9 @@
 // Then replace the value of PASSWORD_HASH below.
 // ---------------------------------------------------------
 
-define('AUTH_USERNAME', 'CHANGE_ME');
+define('AUTH_USERNAME', 'hphque16');
 
-// Replace this hash with: password_hash('yourPassword', PASSWORD_DEFAULT)
-define('AUTH_PASSWORD_HASH', 'CHANGE_ME_RUN_HASH_COMMAND');
+define('AUTH_PASSWORD_HASH', '$2y$12$dWF9uIo4bSQspfKnOEPWv.TKSnJERpxJneCXfsSDiCETiM78MCTmm');
 
 // Session lifetime in seconds (default: 8 hours)
 define('SESSION_LIFETIME', 28800);
