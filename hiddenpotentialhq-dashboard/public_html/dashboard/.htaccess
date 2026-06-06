@@ -1,0 +1,16 @@
+# HPHQ Dashboard — access rules
+# Deny direct browser access to config and auth helper files.
+# PHP can still require/include them normally (server-side includes bypass this).
+
+<FilesMatch "^(config|auth)\.php$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Optional: prevent directory listing
+Options -Indexes
+
+# Force HTTPS (uncomment once SSL is confirmed active)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
