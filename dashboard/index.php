@@ -78,7 +78,7 @@ html, body {
 .tab-content.active { display: block; }
 .section-label { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 18px; }
 
-.agents-grid { display: grid; grid-template-columns: repeat(3, 240px); grid-template-rows: repeat(2, 240px); gap: 20px; }
+.agents-grid { display: grid; grid-template-columns: repeat(3, 240px); grid-template-rows: repeat(2, 240px); gap: 20px; margin: 0 auto; justify-content: center; }
 .notepad { width: 240px; height: 240px; background: #FFFDF5; border-radius: 3px; box-shadow: var(--shadow-3d); cursor: pointer; display: flex; flex-direction: column; overflow: hidden; transition: transform 0.18s, box-shadow 0.18s; }
 .notepad:hover { transform: translateY(-4px) rotate(-0.5deg); box-shadow: var(--shadow-3d-hover); }
 .notepad-top { background: var(--grey-5); padding: 6px 10px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
