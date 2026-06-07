@@ -70,6 +70,26 @@ html, body {
 .tabs-band { background: rgba(255,255,255,0.96); border-bottom: 2px solid rgba(0,0,0,0.07); padding: 0; }
 .tabs-band .inner { display: flex; gap: 0; }
 .tab { background: transparent; border: none; border-bottom: 3px solid transparent; padding: 14px 22px; font-size: 12px; font-family: inherit; cursor: pointer; font-weight: 600; color: var(--ink-mid); text-transform: uppercase; letter-spacing: 1px; transition: all 0.15s; }
+.tab-zero { background:#C0392B; color:#fff !important; border-bottom-color:#C0392B !important; border-radius:3px 3px 0 0; margin-right:12px; padding:14px 20px; }
+.tab-zero:hover { background:#a93226; }
+.tab-zero.active { background:#a93226; border-bottom-color:#a93226 !important; }
+.az-panel { padding:28px 0; }
+.az-fields { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px; }
+.az-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#888; margin-bottom:8px; }
+.az-textarea { width:100%; background:#fff; border:1.5px solid #ddd; border-radius:4px; padding:14px; font-size:14px; color:#1A1A1A; font-family:inherit; resize:vertical; min-height:120px; outline:none; transition:border-color 0.15s; }
+.az-textarea:focus { border-color:#C0392B; }
+.az-run-btn { background:#C0392B; color:#fff; border:none; border-radius:4px; padding:11px 28px; font-size:13px; font-weight:700; font-family:inherit; cursor:pointer; letter-spacing:0.5px; transition:background 0.15s; }
+.az-run-btn:hover { background:#a93226; }
+.az-output-box { background:#fff; border-radius:4px; box-shadow:var(--shadow-3d); overflow:hidden; margin-top:24px; }
+.az-output-header { background:var(--grey-5); padding:10px 18px; display:flex; align-items:center; justify-content:space-between; }
+.az-output-title { font-size:13px; color:white; font-weight:600; }
+.az-output-body { padding:24px; min-height:240px; background:#fff; font-size:14px; color:#1A1A1A; line-height:1.8; }
+.az-output-body pre { white-space:pre-wrap; font-family:inherit; font-size:14px; line-height:1.8; color:#1A1A1A; margin:0; }
+.az-push-row { margin-top:20px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.az-push-label { font-size:11px; font-weight:700; color:#888; letter-spacing:1px; text-transform:uppercase; }
+.az-push-btn { background:transparent; border:1px solid var(--grey-5); border-radius:3px; padding:6px 14px; font-size:11px; font-weight:700; font-family:inherit; cursor:pointer; color:var(--grey-5); transition:all 0.15s; }
+.az-push-btn:hover { background:var(--grey-5); color:#fff; }
+@media(max-width:768px){.az-fields{grid-template-columns:1fr;}}
 .tab.active { color: var(--ink); border-bottom-color: var(--grey-5); }
 .tab:hover { color: var(--ink); }
 
@@ -222,7 +242,8 @@ html, body {
 
 <div class="tabs-band">
   <div class="inner">
-    <button class="tab active" onclick="switchTab('agents',this)">Agents</button>
+    <button class="tab tab-zero" id="az-tab" onclick="switchTab('agentzero',this)">Agent Zero</button>
+    <button class="tab active" id="agents-tab" onclick="switchTab('agents',this)">Agents</button>
     <button class="tab" onclick="switchTab('quick',this)">Quick Actions</button>
     <button class="tab" onclick="switchTab('output',this)" id="output-tab">Output</button>
   </div>
@@ -231,6 +252,43 @@ html, body {
 <div class="main-body">
   <div class="inner">
 
+    <div id="tab-agentzero" class="tab-content">
+      <div class="az-panel">
+        <div class="az-fields">
+          <div>
+            <div class="az-label">Goal</div>
+            <textarea class="az-textarea" id="az-goal" placeholder="What do you want to automate or accomplish?" rows="5"></textarea>
+          </div>
+          <div>
+            <div class="az-label">Tools Available</div>
+            <textarea class="az-textarea" id="az-tools" placeholder="List the tools, platforms, or resources you have (e.g. MailerLite, Canva, Gumroad, Claude, Zapier)" rows="5"></textarea>
+          </div>
+        </div>
+        <button class="az-run-btn" onclick="runAgentZero()">&#9654; Run Agent Zero</button>
+        <div class="az-output-box" id="az-output-box" style="display:none;">
+          <div class="az-output-header">
+            <span class="az-output-title">Automation Plan</span>
+            <div style="display:flex;gap:7px;">
+              <button class="copy-btn" onclick="copyAZOutput()">Copy</button>
+              <button class="copy-btn" onclick="downloadAZTXT()">&#8595; TXT</button>
+            </div>
+          </div>
+          <div class="az-output-body" id="az-output-body">
+            <div style="color:#aaa;font-style:italic;font-size:13px;">Enter a goal and tools, then run Agent Zero.</div>
+          </div>
+        </div>
+        <div id="az-push-wrap" style="display:none;">
+          <div class="az-push-row">
+            <span class="az-push-label">Send to &rarr;</span>
+            <button class="az-push-btn" onclick="pushToAgent('agents','research','Research Engine')">Agent 1</button>
+            <button class="az-push-btn" onclick="pushToAgent('agents','product','Product Builder')">Agent 2</button>
+            <button class="az-push-btn" onclick="pushToAgent('agents','content','Content Engine')">Agent 3</button>
+            <button class="az-push-btn" onclick="pushToAgent('agents','distribution','Distribution Agent')">Agent 4</button>
+            <button class="az-push-btn" onclick="pushToAgent('agents','affiliate','Affiliate Agent')">Agent 5</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="tab-agents" class="tab-content active">
 
       <div id="biz-classic">
@@ -1023,6 +1081,95 @@ async function generatePictoryBrief() {
   } catch(err) {
     briefs.innerHTML = '<div style="color:#C0392B;font-size:13px;padding:12px 0;">Brief generation failed. Copy the Agent 3 output and paste directly into Pictory.</div>';
   }
+}
+
+var AGENT_ZERO_SYSTEM = `You are Agent Zero — a universal automation planner.
+
+Your job is to take any goal and any set of available tools and produce a complete, actionable automation plan.
+
+You will receive:
+- A goal (anything — business, creative, personal productivity, content, operations)
+- A list of tools or resources available
+
+You will output a structured automation plan containing:
+
+1. WORKFLOW — the step-by-step process from start to finish
+2. WHAT TO AUTOMATE — which steps can be automated vs handled manually
+3. TOOLS TO USE — which specific tools handle which steps and why
+4. EXACT PROMPTS — if Claude is part of the workflow, provide the exact prompt to use at each relevant step
+5. EXAMPLE OUTPUT — a short example of what the final result looks like when the workflow runs
+
+Rules:
+- Be specific. No vague advice.
+- No motivational filler. No fluff.
+- If a step cannot be automated with the tools provided, say so plainly and give the manual alternative.
+- Write for someone who will execute this immediately.
+- Output must be copy-paste ready with no placeholders left unfilled.`;
+
+var azOutput = '';
+
+async function runAgentZero() {
+  var goal = document.getElementById('az-goal').value.trim();
+  var tools = document.getElementById('az-tools').value.trim();
+  if (!goal) { alert('Enter a goal to continue.'); return; }
+  var userMsg = 'GOAL: ' + goal + (tools ? '
+
+TOOLS AVAILABLE: ' + tools : '');
+  var box = document.getElementById('az-output-box');
+  var body = document.getElementById('az-output-body');
+  var pushWrap = document.getElementById('az-push-wrap');
+  box.style.display = 'block';
+  pushWrap.style.display = 'none';
+  body.innerHTML = '<div style="color:#888;font-style:italic;font-size:13px;padding:10px 0;">Agent Zero thinking... 20–40 seconds.</div>';
+  try {
+    var result = await callClaude(userMsg, AGENT_ZERO_SYSTEM, 4096);
+    if (!result) throw new Error('Empty response');
+    azOutput = result;
+    var pre = document.createElement('pre');
+    pre.textContent = result;
+    body.innerHTML = '';
+    body.appendChild(pre);
+    pushWrap.style.display = 'block';
+  } catch(err) {
+    body.innerHTML = '<div style="color:#C0392B;font-size:13px;padding:10px 0;">Error: ' + err.message + '</div>';
+  }
+}
+
+function pushToAgent(tabName, agentId, agentLabel) {
+  if (!azOutput) return;
+  // Replace niche input with Agent Zero output and switch to agents tab
+  var nicheInput = document.getElementById('niche-input');
+  if (nicheInput) {
+    nicheInput.value = azOutput;
+    lockedNiche = azOutput;
+    document.getElementById('niche-status').textContent = 'Locked: Agent Zero plan';
+  }
+  // Also pre-fill sticky note with the goal for context
+  var extra = document.getElementById('extra-input');
+  if (extra) extra.value = '';
+  // Switch to the agents tab
+  var agentsTab = document.getElementById('agents-tab');
+  switchTab(tabName, agentsTab);
+}
+
+function copyAZOutput() {
+  if (!azOutput) return;
+  navigator.clipboard.writeText(azOutput).then(function() {
+    var btns = document.querySelectorAll('#az-output-box .copy-btn');
+    if (btns[0]) { btns[0].textContent = 'Copied'; setTimeout(function(){ btns[0].textContent = 'Copy'; }, 2000); }
+  });
+}
+
+function downloadAZTXT() {
+  if (!azOutput) return;
+  var blob = new Blob(['Agent Zero Automation Plan
+' + new Date().toLocaleDateString() + '
+
+' + azOutput], { type: 'text/plain' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'agent-zero-plan.txt'; a.click();
+  URL.revokeObjectURL(url);
 }
 </script>
 </body>
