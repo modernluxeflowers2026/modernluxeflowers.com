@@ -86,10 +86,17 @@ html, body {
 .az-output-body { padding:24px; min-height:240px; background:#fff; font-size:14px; color:#1A1A1A; line-height:1.8; }
 .az-output-body pre { white-space:pre-wrap; font-family:inherit; font-size:14px; line-height:1.8; color:#1A1A1A; margin:0; }
 .az-push-row { margin-top:20px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-.az-push-label { font-size:11px; font-weight:700; color:#888; letter-spacing:1px; text-transform:uppercase; }
-.az-push-btn { background:transparent; border:1px solid var(--grey-5); border-radius:3px; padding:6px 14px; font-size:11px; font-weight:700; font-family:inherit; cursor:pointer; color:var(--grey-5); transition:all 0.15s; }
-.az-push-btn:hover { background:var(--grey-5); color:#fff; }
-@media(max-width:768px){.az-fields{grid-template-columns:1fr;}}
+.az-push-label { font-size:11px; font-weight:700; color:#C0392B; letter-spacing:1px; text-transform:uppercase; }
+.az-push-btn { background:transparent; border:1.5px solid #C0392B; border-radius:3px; padding:6px 14px; font-size:11px; font-weight:700; font-family:inherit; cursor:pointer; color:#C0392B; transition:all 0.15s; }
+.az-push-btn:hover { background:#C0392B; color:#fff; }
+.az-week-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-bottom:22px; }
+.az-day-cell { border:1.5px solid #e0e0e0; border-radius:6px; padding:12px 10px; text-align:center; background:#fff; position:relative; }
+.az-day-cell .day-name { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#C0392B; margin-bottom:6px; }
+.az-day-cell .day-role { font-size:11px; font-weight:600; color:#1A1A1A; margin-bottom:4px; }
+.az-day-cell .day-desc { font-size:10px; color:#888; line-height:1.4; }
+.az-day-cell .day-arrow { position:absolute; right:-8px; top:50%; transform:translateY(-50%); font-size:13px; color:#C0392B; font-weight:700; z-index:1; }
+.az-day-cell:last-child .day-arrow { display:none; }
+@media(max-width:768px){.az-fields{grid-template-columns:1fr;}.az-week-grid{grid-template-columns:1fr 1fr;}.az-day-cell .day-arrow{display:none;}}
 .tab.active { color: var(--ink); border-bottom-color: var(--grey-5); }
 .tab:hover { color: var(--ink); }
 
@@ -254,6 +261,37 @@ html, body {
 
     <div id="tab-agentzero" class="tab-content">
       <div class="az-panel">
+        <div class="az-week-grid">
+          <div class="az-day-cell">
+            <div class="day-name">Monday</div>
+            <div class="day-role">Plan</div>
+            <div class="day-desc">Goal &amp; brief generation</div>
+            <span class="day-arrow">&#8250;</span>
+          </div>
+          <div class="az-day-cell">
+            <div class="day-name">Tuesday</div>
+            <div class="day-role">Create</div>
+            <div class="day-desc">Asset &amp; content build</div>
+            <span class="day-arrow">&#8250;</span>
+          </div>
+          <div class="az-day-cell">
+            <div class="day-name">Wednesday</div>
+            <div class="day-role">Produce</div>
+            <div class="day-desc">Video &amp; graphic output</div>
+            <span class="day-arrow">&#8250;</span>
+          </div>
+          <div class="az-day-cell">
+            <div class="day-name">Thursday</div>
+            <div class="day-role">Review</div>
+            <div class="day-desc">Approval &amp; QA check</div>
+            <span class="day-arrow">&#8250;</span>
+          </div>
+          <div class="az-day-cell">
+            <div class="day-name">Friday</div>
+            <div class="day-role">Schedule</div>
+            <div class="day-desc">Queue &amp; final publish</div>
+          </div>
+        </div>
         <div class="az-fields">
           <div>
             <div class="az-label">Goal</div>
