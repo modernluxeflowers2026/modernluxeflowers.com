@@ -1160,10 +1160,7 @@ function copyAZOutput() {
 
 function downloadAZTXT() {
   if (!azOutput) return;
-  var blob = new Blob(['Agent Zero Automation Plan
-' + new Date().toLocaleDateString() + '
-
-' + azOutput], { type: 'text/plain' });
+  var blob = new Blob(['Agent Zero Automation Plan\n' + new Date().toLocaleDateString() + '\n\n' + azOutput], { type: 'text/plain' });
   var url = URL.createObjectURL(blob);
   var a = document.createElement('a');
   a.href = url; a.download = 'agent-zero-plan.txt'; a.click();
