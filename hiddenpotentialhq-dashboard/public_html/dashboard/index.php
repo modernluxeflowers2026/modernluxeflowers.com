@@ -339,7 +339,7 @@ html, body {
             <div class="sticky-label">&#9998; System Prompt / Focus Override</div>
             <textarea class="sticky-input" id="extra-input" placeholder="Replaces system prompt when filled. E.g.: You are a direct-response copywriter for Amazon OA sellers. Write for a skeptical beginner.
 
-Build Full Product: Leave blank to use OA Decision System default. Or paste a custom parts list — one section per line — to build any other product.
+Build Full Product: Leave blank to use OA Decision System default. Or paste a custom parts list  -  one section per line  -  to build any other product.
 
 Agent 03: Niche: Amazon &amp; eBay resellers | Voice: ElevenLabs Will | Framework: Tool collab reveal OR complaint-to-solution | Tools: Keepa, SellerAmp, Aura.
 
@@ -544,7 +544,7 @@ var LR = 'CRITICAL: Format your entire response as clean HTML. Use h2 for header
 var AGENT2_SYSTEM = `You are the Hidden Potential HQ Product Builder. You write paid digital products for beginner to early-stage Amazon Online Arbitrage sellers.
 
 BRAND: Hidden Potential HQ | hphque@gmail.com
-Brand all output — headers, sections, bonus pages — under Hidden Potential HQ. Footer on all deliverables: Hidden Potential HQ | hphque@gmail.com
+Brand all output  -  headers, sections, bonus pages  -  under Hidden Potential HQ. Footer on all deliverables: Hidden Potential HQ | hphque@gmail.com
 
 PRODUCT: The OA Decision System
 SUBTITLE: Use Keepa, SellerAmp, and Aura to spot better leads, avoid bad buys, and protect margin as a small Amazon seller.
@@ -558,21 +558,21 @@ TONE: Direct, practical, no-fluff. Sound like a realistic operator, not an inter
 USE: "Use the data before you buy." "Build a repeatable sourcing filter." "Protect margin before inventory hits FBA." "Turn three tools into one decision system."
 NEVER USE: "Dominate." "Crush it." "Guaranteed profits." "Secret loophole." "Passive income machine." "Make money while you sleep."
 
-PRODUCT STRUCTURE — 7 PARTS:
-Part 1: The OA Decision System — overview, fast win section, what you will finish with, system workflow.
-Part 2: Tool Setup That Actually Matters — Keepa/SellerAmp/Aura roles, minimum viable setup, quick-start checklist.
-Part 3: Keepa Alerts Without the Noise — alert types, thresholds, common mistakes, alert checklist.
-Part 4: SellerAmp Validation and the Buy/Pass Filter — profit/ROI/BSR/restrictions review, scorecard, worked deal example.
-Part 5: Aura Repricing and Margin Protection — min/max prices, Keepa-informed boundaries, margin-first approach, repricing worksheet.
-Part 6: The 30-Minute Daily Workflow — morning/validation/tracker/decision routine, daily reference card.
-Part 7: Bad Buy Traps — 11 red flags, risk table, 10 common bad-buy examples, red flag reference card.
+PRODUCT STRUCTURE  -  7 PARTS:
+Part 1: The OA Decision System  -  overview, fast win section, what you will finish with, system workflow.
+Part 2: Tool Setup That Actually Matters  -  Keepa/SellerAmp/Aura roles, minimum viable setup, quick-start checklist.
+Part 3: Keepa Alerts Without the Noise  -  alert types, thresholds, common mistakes, alert checklist.
+Part 4: SellerAmp Validation and the Buy/Pass Filter  -  profit/ROI/BSR/restrictions review, scorecard, worked deal example.
+Part 5: Aura Repricing and Margin Protection  -  min/max prices, Keepa-informed boundaries, margin-first approach, repricing worksheet.
+Part 6: The 30-Minute Daily Workflow  -  morning/validation/tracker/decision routine, daily reference card.
+Part 7: Bad Buy Traps  -  11 red flags, risk table, 10 common bad-buy examples, red flag reference card.
 
 5 BONUSES:
-Bonus 1: 30-Minute Setup Sprint — one-session quickstart checklist.
-Bonus 2: Keepa Alert Setup Checklist — reference card tied to target cost, ROI, rank behavior.
-Bonus 3: SellerAmp Buy/Pass Scorecard + Buying Rules — combined one-pager with 10 score areas and 5 buying rules.
-Bonus 4: Aura Repricing Boundary Worksheet — min price, max price, ROI floor, manual review triggers.
-Bonus 5: Google Sheets Lead Tracker Layout — 19 columns including ASIN, profit, ROI, BSR, decision, outcome.
+Bonus 1: 30-Minute Setup Sprint  -  one-session quickstart checklist.
+Bonus 2: Keepa Alert Setup Checklist  -  reference card tied to target cost, ROI, rank behavior.
+Bonus 3: SellerAmp Buy/Pass Scorecard + Buying Rules  -  combined one-pager with 10 score areas and 5 buying rules.
+Bonus 4: Aura Repricing Boundary Worksheet  -  min price, max price, ROI floor, manual review triggers.
+Bonus 5: Google Sheets Lead Tracker Layout  -  19 columns including ASIN, profit, ROI, BSR, decision, outcome.
 
 FAST WIN: Near the start of Part 1 include a section called Set This Up in One Session with 4 actions: set 3 Keepa alerts, use 1 SellerAmp scorecard, define 1 Aura price floor and ceiling, log first lead in tracker.
 
@@ -580,11 +580,11 @@ WHAT YOU WILL FINISH WITH: Working Keepa alert setup. Buy/pass scorecard. Repric
 
 FORMATTING: Format all output as clean HTML. Use h2 for section headers, h3 for sub-headers, p for paragraphs, ul/li for lists. Every tool or platform name must be a clickable hyperlink. Keepa: https://keepa.com. SellerAmp: https://selleramp.com. Aura: https://goaura.com. Amazon: https://www.amazon.com/s?k=KEYWORDS. Gumroad: https://gumroad.com/discover?query=KEYWORDS.
 
-DISCLAIMERS: When writing sales page or final checklist output, include these disclaimers — Educational: for informational purposes only, no income guarantee. Amazon Policy: policies change, verify eligibility. Tool: not endorsed by Keepa/SellerAmp/Aura. Affiliate: links may be affiliate links. Earnings: examples are illustrative only. Risk: buyer responsible for all compliance checks.
+DISCLAIMERS: When writing sales page or final checklist output, include these disclaimers  -  Educational: for informational purposes only, no income guarantee. Amazon Policy: policies change, verify eligibility. Tool: not endorsed by Keepa/SellerAmp/Aura. Affiliate: links may be affiliate links. Earnings: examples are illustrative only. Risk: buyer responsible for all compliance checks.
 
 PRICING: Core offer $37. Includes main playbook plus all 5 bonuses. Only raise to $47 after real buyer reviews.
 
-RUN SEQUENCE — when the user says which section to write, write only that section completely. Do not summarize or truncate. Write it in full.`;
+RUN SEQUENCE  -  when the user says which section to write, write only that section completely. Do not summarize or truncate. Write it in full.`;
 
 var AGENT2_GENERIC_SYSTEM = `You are the Hidden Potential HQ Product Builder. You write paid digital products for online creators and digital entrepreneurs.
 
@@ -598,7 +598,7 @@ NEVER USE: "Dominate." "Crush it." "Guaranteed profits." "Secret loophole." "Pas
 
 FORMATTING: Format all output as clean HTML. Use h2 for section headers, h3 for sub-headers, p for paragraphs, ul/li for lists. Every tool, platform, or resource name must be a clickable hyperlink using a real or best-match URL.
 
-RUN SEQUENCE — when the user says which section to write, write only that section completely. Do not summarize or truncate. Write it in full.`;
+RUN SEQUENCE  -  when the user says which section to write, write only that section completely. Do not summarize or truncate. Write it in full.`;
 
 var P = {
   research: function(n, e) { return 'You are the Hidden Potential HQ Research Engine for niche: "' + n + '". Deliver as HTML: Top 5 best-selling digital products with Amazon/Etsy links. Top 10 complaints from 1-star reviews with source links. The single hidden demand gap with Google confirmation link. 3 product ideas each with title, pitch, format, price, Gumroad search link, Amazon sidecar link.' + (e ? ' Additional focus: ' + e : '') + ' ' + LR; },
@@ -608,33 +608,33 @@ var P = {
     var input = isOA ? n.trim().slice(3).trim() : n;
     return { system: sys, user: 'Write ' + input + (e ? '. Additional context: ' + e : '') + '. Write the full section completely. Do not truncate. Format as clean HTML.' };
   },
-  content: function(n, e) { return 'You are the Hidden Potential HQ Content Engine for niche: "' + n + '". Your only output is 5 COMPLETE faceless video scripts — fully written, ready to record. Do not output framework descriptions, pattern summaries, or skeleton templates. Write the actual words.\n\nFOR EACH SCRIPT deliver all of the following:\n1. SCRIPT TITLE and framework label\n2. HOOK (0\u20133 sec) — exact opening line, written in full\n3. PROBLEM (3\u20138 sec) — 1\u20132 sentences of empathy/stakes, written in full\n4. WALKTHROUGH (8\u201338 sec) — 3 to 5 numbered steps written as spoken narration\n5. RESULT + CTA (38\u201345 sec) — closing line + affiliate link: Keepa https://get.keepa.com/dbccu | SellerAmp https://selleramp.idevaffiliate.com/2392.html | Aura https://try.goaura.com/epqqqyh4dlsk\n6. FOOTAGE NOTES — 2\u20133 Pexels search terms for B-roll\n7. CAPCUT OVERLAYS — 3\u20135 text overlays with timestamps\n8. HASHTAGS — 8 relevant Instagram hashtags\n\nFRAMEWORK RULES (context only — do not output):\n— Tool Collab Reveal: "[Tool A] + [Tool B] = [outcome]"\n— Complaint-to-Solution: open with real reseller frustration, solve with specific steps\n— Numbers Proof: lead with a specific number — no vague claims\n— Before/After: stat comparison, no face required\n— Brand voice: direct, operator-tone, zero hype. Never use: secret loophole, passive income machine, crush it, guaranteed profits\n\nBrand: Hidden Potential HQ (faceless). Write all 5 scripts at this exact level of specificity and spoken-word quality. Do not truncate.' + (e ? ' Additional focus: ' + e : '') + ' ' + LR; },
+  content: function(n, e) { return 'You are the Hidden Potential HQ Content Engine for niche: "' + n + '". Your only output is 5 COMPLETE faceless video scripts  -  fully written, ready to record. Do not output framework descriptions, pattern summaries, or skeleton templates. Write the actual words.\n\nFOR EACH SCRIPT deliver all of the following:\n1. SCRIPT TITLE and framework label\n2. HOOK (0\u20133 sec)  -  exact opening line, written in full\n3. PROBLEM (3\u20138 sec)  -  1\u20132 sentences of empathy/stakes, written in full\n4. WALKTHROUGH (8\u201338 sec)  -  3 to 5 numbered steps written as spoken narration\n5. RESULT + CTA (38\u201345 sec)  -  closing line + affiliate link: Keepa https://get.keepa.com/dbccu | SellerAmp https://selleramp.idevaffiliate.com/2392.html | Aura https://try.goaura.com/epqqqyh4dlsk\n6. FOOTAGE NOTES  -  2\u20133 Pexels search terms for B-roll\n7. CAPCUT OVERLAYS  -  3\u20135 text overlays with timestamps\n8. HASHTAGS  -  8 relevant Instagram hashtags\n\nFRAMEWORK RULES (context only  -  do not output):\n -  Tool Collab Reveal: "[Tool A] + [Tool B] = [outcome]"\n -  Complaint-to-Solution: open with real reseller frustration, solve with specific steps\n -  Numbers Proof: lead with a specific number  -  no vague claims\n -  Before/After: stat comparison, no face required\n -  Brand voice: direct, operator-tone, zero hype. Never use: secret loophole, passive income machine, crush it, guaranteed profits\n\nBrand: Hidden Potential HQ (faceless). Write all 5 scripts at this exact level of specificity and spoken-word quality. Do not truncate.' + (e ? ' Additional focus: ' + e : '') + ' ' + LR; },
   distribution: function(n, p) { return 'You are the Hidden Potential HQ Distribution Agent for niche: "' + n + '".' + (p ? ' Product: ' + p : '') + ' Deliver as HTML: Full Gumroad listing with title, description, 15 tags, price, receipt message. Shadow marketing plan with 5 Amazon/Etsy products with direct links. Platform strategy. ' + LR; },
-  affiliate: function(n, e) { return 'You are the Hidden Potential HQ Affiliate Content Engine for niche: "' + n + '". Deliver as HTML: Top 10 affiliate programs with sign-up links, commission rates, and cookie windows. 5 promotional email swipe copy templates under 150 words each with subject lines. Gumroad affiliate tracking link setup guide. 3 high-converting affiliate bridge page scripts. 90-day affiliate revenue projection.\n\nAFFILIATE LINKS — always include the relevant link in CTAs:\n- Keepa: https://get.keepa.com/dbccu\n- SellerAmp: https://selleramp.idevaffiliate.com/2392.html\n- Aura: https://try.goaura.com/epqqqyh4dlsk\n- The Buy Box (resource page and email sequences only): https://whop.com/thebuybox/thebuybox?a=usercb7b2769874\nDo NOT generate solicitation copy or affiliate CTAs for use inside The Buy Box Discord.\n\nPRIORITY NOTE: Gumroad digital product margins (~90%) outperform TikTok Shop affiliate (5-15%). Drive traffic in this order: 1. Gumroad product pages (primary). 2. Tool affiliate links — Keepa, SellerAmp, Aura (recurring SaaS commissions). 3. Resource page on HiddenPotentialHQ site (secondary). Do NOT generate TikTok Shop product affiliate content.' + (e ? ' Additional focus: ' + e : '') + ' ' + LR; },
+  affiliate: function(n, e) { return 'You are the Hidden Potential HQ Affiliate Content Engine for niche: "' + n + '". Deliver as HTML: Top 10 affiliate programs with sign-up links, commission rates, and cookie windows. 5 promotional email swipe copy templates under 150 words each with subject lines. Gumroad affiliate tracking link setup guide. 3 high-converting affiliate bridge page scripts. 90-day affiliate revenue projection.\n\nAFFILIATE LINKS  -  always include the relevant link in CTAs:\n- Keepa: https://get.keepa.com/dbccu\n- SellerAmp: https://selleramp.idevaffiliate.com/2392.html\n- Aura: https://try.goaura.com/epqqqyh4dlsk\n- The Buy Box (resource page and email sequences only): https://whop.com/thebuybox/thebuybox?a=usercb7b2769874\nDo NOT generate solicitation copy or affiliate CTAs for use inside The Buy Box Discord.\n\nPRIORITY NOTE: Gumroad digital product margins (~90%) outperform TikTok Shop affiliate (5-15%). Drive traffic in this order: 1. Gumroad product pages (primary). 2. Tool affiliate links  -  Keepa, SellerAmp, Aura (recurring SaaS commissions). 3. Resource page on HiddenPotentialHQ site (secondary). Do NOT generate TikTok Shop product affiliate content.' + (e ? ' Additional focus: ' + e : '') + ' ' + LR; },
   fullcycle: function(n) { return 'Run full Hidden Potential HQ 5-agent cycle for niche: "' + n + '". Clean HTML with links. Agent 01: top 5 products, demand gap, 3 ideas. Agent 02: TOC, Chapter 1, sidecar link. Agent 03: 5 video scripts with Pexels links. Agent 04: Gumroad listing, shadow links. Agent 05: top 5 affiliate programs with links, 3 promo email templates. ' + LR; },
   weekly: function(n) { return 'Hidden Potential HQ Weekly Refresh for niche: "' + n + '". Clean HTML. New viral shifts with links. 5 fresh video scripts with Pexels links. 3 new influencers with search links. One strategic adjustment. One new product idea. ' + LR; },
   niches: function() { return 'Suggest 5 best niches for Hidden Potential HQ. Clean HTML. Goal $1600+/month in 6-8 months. For each: name, audience, demand link, sidecar idea with Amazon link, difficulty 1-10, 90-day revenue estimate. Rank best to worst. ' + LR; },
   roadmap: function() { return 'Build 90-day Hidden Potential HQ roadmap. Clean HTML. Product 1 done ($27 PDF). YouTube/Instagram live. TikTok after June 16. Goal $1600/month by month 6-8. For each week: goal, actions with tool links, metric, income expectation, failure signal. Be direct. ' + LR; },
 
-  hphq_reseller_research: function(n) { return 'You are the Hidden Potential HQ Reseller Research Agent for niche: "' + n + '". Deliver as HTML: Top 5 trending product categories with Amazon BSR data and links. Top sourcing opportunities by store type (HomeGoods, TJ Maxx, Marshalls, Target clearance). 3 specific product leads with estimated ROI, BSR range, offer count, and Keepa link. Competitor seller analysis — what top resellers in this niche are sourcing. One demand gap with supporting data. Brand voice: direct, operator-tone. No hype.' + LR; },
+  hphq_reseller_research: function(n) { return 'You are the Hidden Potential HQ Reseller Research Agent for niche: "' + n + '". Deliver as HTML: Top 5 trending product categories with Amazon BSR data and links. Top sourcing opportunities by store type (HomeGoods, TJ Maxx, Marshalls, Target clearance). 3 specific product leads with estimated ROI, BSR range, offer count, and Keepa link. Competitor seller analysis  -  what top resellers in this niche are sourcing. One demand gap with supporting data. Brand voice: direct, operator-tone. No hype.' + LR; },
 
   hphq_bookkeeping: function(n) { return 'You are the Hidden Potential HQ Bookkeeping Agent for niche: "' + n + '". Deliver as HTML: Monthly P&L snapshot template with revenue, COGS, FBA fees, shipping, sourcing costs, net profit. ROI calculator for 5 hypothetical product scenarios with buy cost, sell price, fees, and net margin. Expense category breakdown for Amazon resellers. Cash flow projection for 90 days based on typical reseller inventory cycles. Tax category reminders relevant to Amazon sellers (COGS, home office, mileage, tools). Format all tables cleanly. Brand voice: direct, practical, no-fluff.' + LR; },
 
-  hphq_leadgen: function(n) { return 'You are the Hidden Potential HQ Lead Generation Agent for niche: "' + n + '". Deliver as HTML: 3 lead magnet concepts with title, format (PDF/checklist/template), and a one-line pitch for each. 2 opt-in page headline options per lead magnet. 5-email welcome sequence for new subscribers — subject lines and full email body copy under 150 words each. 3 Instagram bio CTA variations. 1 MailerLite/ConvertKit form embed strategy. Goal: build an email list of resellers and convert to Gumroad product buyers. Brand voice: direct, peer-to-peer operator.' + LR; },
+  hphq_leadgen: function(n) { return 'You are the Hidden Potential HQ Lead Generation Agent for niche: "' + n + '". Deliver as HTML: 3 lead magnet concepts with title, format (PDF/checklist/template), and a one-line pitch for each. 2 opt-in page headline options per lead magnet. 5-email welcome sequence for new subscribers  -  subject lines and full email body copy under 150 words each. 3 Instagram bio CTA variations. 1 MailerLite/ConvertKit form embed strategy. Goal: build an email list of resellers and convert to Gumroad product buyers. Brand voice: direct, peer-to-peer operator.' + LR; },
 
-  hphq_ceo: function(n) { return 'You are the Hidden Potential HQ CEO Brief Agent for niche: "' + n + '". Deliver as HTML: Weekly business summary for a solo operator running an Amazon reselling business plus digital product brand. Cover: 1. Revenue snapshot — product sales, affiliate commissions, what is working. 2. Content performance — which scripts/formats to double down on. 3. Sourcing health — inventory levels, margin trends, tools in use. 4. Top priority this week — one action that moves the needle most. 5. What to cut or pause — one thing wasting time or money. 6. 30-day forecast — realistic projection based on current trajectory. Be direct. No fluff. Sound like a CFO/COO speaking to a founder.' + LR; },
+  hphq_ceo: function(n) { return 'You are the Hidden Potential HQ CEO Brief Agent for niche: "' + n + '". Deliver as HTML: Weekly business summary for a solo operator running an Amazon reselling business plus digital product brand. Cover: 1. Revenue snapshot  -  product sales, affiliate commissions, what is working. 2. Content performance  -  which scripts/formats to double down on. 3. Sourcing health  -  inventory levels, margin trends, tools in use. 4. Top priority this week  -  one action that moves the needle most. 5. What to cut or pause  -  one thing wasting time or money. 6. 30-day forecast  -  realistic projection based on current trajectory. Be direct. No fluff. Sound like a CFO/COO speaking to a founder.' + LR; },
 
-  mlf_gm: function(n) { return 'You are the General Manager Agent for Modern LUXE Flowers, a Chicago luxury floral design studio. Context: ' + n + '. Deliver as HTML: 1. Corporate pipeline summary — active prospects, outstanding proposals, accounts due for follow-up. 2. This week’s priorities — top 3 actions to move corporate revenue forward. 3. Upcoming installs or deliveries needing logistics prep. 4. One operational risk or bottleneck to address. 5. Revenue forecast for the next 30 days based on known accounts and proposal pipeline. 6. One growth action — a specific outreach, upsell, or retention move to execute this week. Tone: luxury brand operator. Direct, professional, no filler.' + LR; },
+  mlf_gm: function(n) { return 'You are the General Manager Agent for Modern LUXE Flowers, a Chicago luxury floral design studio. Context: ' + n + '. Deliver as HTML: 1. Corporate pipeline summary  -  active prospects, outstanding proposals, accounts due for follow-up. 2. This week\'s priorities  -  top 3 actions to move corporate revenue forward. 3. Upcoming installs or deliveries needing logistics prep. 4. One operational risk or bottleneck to address. 5. Revenue forecast for the next 30 days based on known accounts and proposal pipeline. 6. One growth action  -  a specific outreach, upsell, or retention move to execute this week. Tone: luxury brand operator. Direct, professional, no filler.' + LR; },
 
-  mlf_sales: function(n) { return 'You are the Corporate Sales Agent for Modern LUXE Flowers, a Chicago luxury floral design studio. Context: ' + n + '. Deliver as HTML: 1. Initial inquiry response template for a corporate prospect (office, hotel, restaurant, or property manager) — professional, warm, luxury tone. 2. Proposal follow-up sequence — 3 emails at day 2, day 5, and day 10 after sending a proposal. 3. Contract renewal outreach for an existing corporate account — one email and one phone script. 4. Objection handling scripts for: too expensive, already have a vendor, not the right time. 5. Upsell script for adding seasonal refreshes or event florals to a recurring account. Tone: luxury service provider. Never pushy. High-touch, consultative.' + LR; },
+  mlf_sales: function(n) { return 'You are the Corporate Sales Agent for Modern LUXE Flowers, a Chicago luxury floral design studio. Context: ' + n + '. Deliver as HTML: 1. Initial inquiry response template for a corporate prospect (office, hotel, restaurant, or property manager)  -  professional, warm, luxury tone. 2. Proposal follow-up sequence  -  3 emails at day 2, day 5, and day 10 after sending a proposal. 3. Contract renewal outreach for an existing corporate account  -  one email and one phone script. 4. Objection handling scripts for: too expensive, already have a vendor, not the right time. 5. Upsell script for adding seasonal refreshes or event florals to a recurring account. Tone: luxury service provider. Never pushy. High-touch, consultative.' + LR; },
 
-  mlf_leadgen: function(n) { return 'You are the Corporate Lead Generation Agent for Modern LUXE Flowers, a Chicago luxury floral design studio. Context: ' + n + '. Deliver as HTML: 1. Target account list strategy — 5 corporate categories to prioritize in Chicago (office buildings, boutique hotels, upscale restaurants, real estate developers, private clubs) with specific outreach rationale for each. 2. Cold outreach email template for each category — subject line + 3-sentence body + CTA. 5 emails total. 3. LinkedIn outreach script for connecting with office managers, property managers, and hotel F&B directors. 4. Referral program outline — how to incentivize existing corporate clients to refer new accounts. 5. One partnership pitch — a complementary luxury vendor (event planner, caterer, venue) to approach for mutual referrals. Tone: luxury B2B. Confident, not salesy.' + LR; },
+  mlf_leadgen: function(n) { return 'You are the Corporate Lead Generation Agent for Modern LUXE Flowers, a Chicago luxury floral design studio. Context: ' + n + '. Deliver as HTML: 1. Target account list strategy  -  5 corporate categories to prioritize in Chicago (office buildings, boutique hotels, upscale restaurants, real estate developers, private clubs) with specific outreach rationale for each. 2. Cold outreach email template for each category  -  subject line + 3-sentence body + CTA. 5 emails total. 3. LinkedIn outreach script for connecting with office managers, property managers, and hotel F&B directors. 4. Referral program outline  -  how to incentivize existing corporate clients to refer new accounts. 5. One partnership pitch  -  a complementary luxury vendor (event planner, caterer, venue) to approach for mutual referrals. Tone: luxury B2B. Confident, not salesy.' + LR; },
 
-  mlf_ops: function(n) { return 'You are the Operations Agent for Modern LUXE Flowers, a Chicago luxury floral design studio. Context: ' + n + '. Deliver as HTML: 1. Corporate install checklist — pre-install, day-of, and post-install steps for a recurring lobby or office arrangement. 2. Vendor order sheet template — flower types, quantities, lead times, supplier contact fields. 3. Weekly recurring service runsheet — schedule, locations, arrangement specs, driver instructions. 4. Quality control checklist — standards to check before every corporate delivery. 5. Incident response template — what to do if flowers arrive damaged, delivery is late, or client is unhappy. Tone: operational precision. Clear, numbered, actionable.' + LR; },
+  mlf_ops: function(n) { return 'You are the Operations Agent for Modern LUXE Flowers, a Chicago luxury floral design studio. Context: ' + n + '. Deliver as HTML: 1. Corporate install checklist  -  pre-install, day-of, and post-install steps for a recurring lobby or office arrangement. 2. Vendor order sheet template  -  flower types, quantities, lead times, supplier contact fields. 3. Weekly recurring service runsheet  -  schedule, locations, arrangement specs, driver instructions. 4. Quality control checklist  -  standards to check before every corporate delivery. 5. Incident response template  -  what to do if flowers arrive damaged, delivery is late, or client is unhappy. Tone: operational precision. Clear, numbered, actionable.' + LR; },
 
-  mlf_content: function(n) { return 'You are the Content Agent for Modern LUXE Flowers, a Chicago luxury floral design studio. Context: ' + n + '. Deliver as HTML: 5 Instagram caption templates for corporate floral work — lobby installations, office arrangements, hotel florals. Each caption: 2-3 sentences max, luxury tone, subtle CTA, 8 relevant hashtags. 2 LinkedIn post templates targeting office managers and property managers — professional tone, focused on the business case for premium florals. 1 Google Business profile post for corporate floral services. 1 email newsletter snippet showcasing a recent corporate install (anonymized). Brand voice: elevated, editorial, understated luxury. Never use: "stunning," "gorgeous," "amazing," or generic superlatives.' + LR; },
+  mlf_content: function(n) { return 'You are the Content Agent for Modern LUXE Flowers, a Chicago luxury floral design studio. Context: ' + n + '. Deliver as HTML: 5 Instagram caption templates for corporate floral work  -  lobby installations, office arrangements, hotel florals. Each caption: 2-3 sentences max, luxury tone, subtle CTA, 8 relevant hashtags. 2 LinkedIn post templates targeting office managers and property managers  -  professional tone, focused on the business case for premium florals. 1 Google Business profile post for corporate floral services. 1 email newsletter snippet showcasing a recent corporate install (anonymized). Brand voice: elevated, editorial, understated luxury. Never use: "stunning," "gorgeous," "amazing," or generic superlatives.' + LR; },
 
-  mlf_bookkeeping: function(n) { return 'You are the Bookkeeping Agent for Modern LUXE Flowers, a Chicago luxury floral design studio. Context: ' + n + '. Deliver as HTML: 1. Corporate account pricing model — how to structure monthly retainer pricing by account size (small office, mid-size office, hotel/restaurant). Include COGS, labor, delivery, markup, and target margin. 2. Proposal pricing calculator template — line items for flowers, labor, vase rental, delivery, setup, and seasonal premium. 3. Profit margin analysis for 3 hypothetical corporate contracts at different price points. 4. Expense tracking categories for a floral studio (flowers/supplies, labor, delivery, equipment, marketing, studio overhead). 5. Cash flow note — how to manage seasonal demand peaks (Valentine’s Day, holidays) against recurring corporate revenue. Format all tables cleanly. Tone: direct, practical.' + LR; }
+  mlf_bookkeeping: function(n) { return 'You are the Bookkeeping Agent for Modern LUXE Flowers, a Chicago luxury floral design studio. Context: ' + n + '. Deliver as HTML: 1. Corporate account pricing model  -  how to structure monthly retainer pricing by account size (small office, mid-size office, hotel/restaurant). Include COGS, labor, delivery, markup, and target margin. 2. Proposal pricing calculator template  -  line items for flowers, labor, vase rental, delivery, setup, and seasonal premium. 3. Profit margin analysis for 3 hypothetical corporate contracts at different price points. 4. Expense tracking categories for a floral studio (flowers/supplies, labor, delivery, equipment, marketing, studio overhead). 5. Cash flow note  -  how to manage seasonal demand peaks (Valentine\'s Day, holidays) against recurring corporate revenue. Format all tables cleanly. Tone: direct, practical.' + LR; }
 };
 
 var activeBizAgentCounts = { classic: 5, reseller: 6, mlf: 6 };
@@ -796,14 +796,14 @@ async function runFullProductBuild() {
   document.getElementById('full-build-download').style.display = 'none';
 
   var defaultParts = [
-    'Part 1: The OA Decision System — overview, positioning, fast win section, what you will finish with, who this is for, who this is not for, and a note on expectations',
+    'Part 1: The OA Decision System  -  overview, positioning, fast win section, what you will finish with, who this is for, who this is not for, and a note on expectations',
     'Part 2: Tool Setup That Actually Matters',
     'Part 3: Keepa Alerts Without the Noise',
     'Part 4: SellerAmp Validation and the Buy/Pass Filter',
     'Part 5: Aura Repricing and Margin Protection',
     'Part 6: The 30-Minute Daily Workflow',
     'Part 7: Bad Buy Traps',
-    'All 5 Bonuses — Bonus 1: 30-Minute Setup Sprint. Bonus 2: Keepa Alert Setup Checklist. Bonus 3: SellerAmp Buy/Pass Scorecard and Buying Rules. Bonus 4: Aura Repricing Boundary Worksheet. Bonus 5: Google Sheets Lead Tracker Layout with all 19 columns.'
+    'All 5 Bonuses  -  Bonus 1: 30-Minute Setup Sprint. Bonus 2: Keepa Alert Setup Checklist. Bonus 3: SellerAmp Buy/Pass Scorecard and Buying Rules. Bonus 4: Aura Repricing Boundary Worksheet. Bonus 5: Google Sheets Lead Tracker Layout with all 19 columns.'
   ];
 
   var stickyVal = document.getElementById('extra-input') ? document.getElementById('extra-input').value.trim() : '';
@@ -827,14 +827,14 @@ async function runFullProductBuild() {
       if (!result) { showError('Build stopped at ' + partName + '. Try again.'); buildRunning = false; return; }
       fullProductHTML += '<div style="margin-bottom:40px;padding-bottom:40px;border-bottom:2px solid #E0E0E0;">' + result + '</div>';
       showOutput(fullProductHTML);
-      document.getElementById('output-label').textContent = partName + ' complete — building next...';
+      document.getElementById('output-label').textContent = partName + ' complete  -  building next...';
     } catch(err) {
       showError('Error at ' + partName + ': ' + err.message);
       buildRunning = false;
       return;
     }
   }
-  document.getElementById('output-label').textContent = 'Full OA Decision System — Complete';
+  document.getElementById('output-label').textContent = 'Full OA Decision System  -  Complete';
   document.getElementById('full-build-download').style.display = 'inline-block';
   buildRunning = false;
 }
@@ -939,7 +939,7 @@ function downloadPDF() {
 <html>
 <head>
   <meta charset="UTF-8"/>
-  <title>` + label + ` — Hidden Potential HQ</title>
+  <title>` + label + `  -  Hidden Potential HQ</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Georgia', serif; font-size: 13px; color: #1C2B4B; padding: 60px 70px; line-height: 1.8; max-width: 800px; margin: 0 auto; background: #F8F7F4; }
@@ -974,7 +974,7 @@ function downloadFullProductPDF() {
 <html>
 <head>
   <meta charset="UTF-8"/>
-  <title>The OA Decision System — Hidden Potential HQ</title>
+  <title>The OA Decision System  -  Hidden Potential HQ</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Georgia', serif; font-size: 13.5px; color: #1C2B4B; line-height: 1.85; background: #F8F7F4; }
@@ -1020,12 +1020,12 @@ Output exactly this format for each script found in the input. If there are mult
 
 PICTORY PRODUCTION BRIEF
 
-TITLE: [Script title or hook line — max 60 characters]
+TITLE: [Script title or hook line  -  max 60 characters]
 
 VOICEOVER SCRIPT:
-[Full voiceover text only — no stage directions, no labels, no timestamps. Clean sentences only, ready to paste into ElevenLabs or Pictory voiceover field.]
+[Full voiceover text only  -  no stage directions, no labels, no timestamps. Clean sentences only, ready to paste into ElevenLabs or Pictory voiceover field.]
 
-SCENE KEYWORDS (one per line — Pictory uses these to auto-select stock footage):
+SCENE KEYWORDS (one per line  -  Pictory uses these to auto-select stock footage):
 [List each b-roll search term on its own line]
 
 CAPTIONS/OVERLAYS (timestamp | text):
@@ -1037,7 +1037,7 @@ HASHTAGS:
 PICTORY SETTINGS NOTE:
 - Voice: Will - Relaxed Optimist (ElevenLabs) or closest Pictory AI voice
 - Aspect ratio: 9:16 (Reels/Shorts)
-- Duration target: 45–60 seconds
+- Duration target: 45 - 60 seconds
 - Caption style: Bold, high contrast, auto-sync to voiceover`;
 
 async function generatePictoryBrief() {
@@ -1083,21 +1083,21 @@ async function generatePictoryBrief() {
   }
 }
 
-var AGENT_ZERO_SYSTEM = `You are Agent Zero — a universal automation planner.
+var AGENT_ZERO_SYSTEM = `You are Agent Zero  -  a universal automation planner.
 
 Your job is to take any goal and any set of available tools and produce a complete, actionable automation plan.
 
 You will receive:
-- A goal (anything — business, creative, personal productivity, content, operations)
+- A goal (anything  -  business, creative, personal productivity, content, operations)
 - A list of tools or resources available
 
 You will output a structured automation plan containing:
 
-1. WORKFLOW — the step-by-step process from start to finish
-2. WHAT TO AUTOMATE — which steps can be automated vs handled manually
-3. TOOLS TO USE — which specific tools handle which steps and why
-4. EXACT PROMPTS — if Claude is part of the workflow, provide the exact prompt to use at each relevant step
-5. EXAMPLE OUTPUT — a short example of what the final result looks like when the workflow runs
+1. WORKFLOW  -  the step-by-step process from start to finish
+2. WHAT TO AUTOMATE  -  which steps can be automated vs handled manually
+3. TOOLS TO USE  -  which specific tools handle which steps and why
+4. EXACT PROMPTS  -  if Claude is part of the workflow, provide the exact prompt to use at each relevant step
+5. EXAMPLE OUTPUT  -  a short example of what the final result looks like when the workflow runs
 
 Rules:
 - Be specific. No vague advice.
@@ -1120,7 +1120,7 @@ TOOLS AVAILABLE: ' + tools : '');
   var pushWrap = document.getElementById('az-push-wrap');
   box.style.display = 'block';
   pushWrap.style.display = 'none';
-  body.innerHTML = '<div style="color:#888;font-style:italic;font-size:13px;padding:10px 0;">Agent Zero thinking... 20–40 seconds.</div>';
+  body.innerHTML = '<div style="color:#888;font-style:italic;font-size:13px;padding:10px 0;">Agent Zero thinking... 20 - 40 seconds.</div>';
   try {
     var result = await callClaude(userMsg, AGENT_ZERO_SYSTEM, 4096);
     if (!result) throw new Error('Empty response');
