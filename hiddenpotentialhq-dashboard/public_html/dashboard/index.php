@@ -1112,9 +1112,7 @@ async function runAgentZero() {
   var goal = document.getElementById('az-goal').value.trim();
   var tools = document.getElementById('az-tools').value.trim();
   if (!goal) { alert('Enter a goal to continue.'); return; }
-  var userMsg = 'GOAL: ' + goal + (tools ? '
-
-TOOLS AVAILABLE: ' + tools : '');
+  var userMsg = 'GOAL: ' + goal + (tools ? '\n\nTOOLS AVAILABLE: ' + tools : '');
   var box = document.getElementById('az-output-box');
   var body = document.getElementById('az-output-body');
   var pushWrap = document.getElementById('az-push-wrap');
