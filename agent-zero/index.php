@@ -81,57 +81,6 @@ $_SESSION['hphq_expires'] = time() + SESSION_LIFETIME;
     }
     .az-logout:hover { color: #C0392B; }
 
-    /* ── Mon–Fri workflow strip ── */
-    .week-strip {
-      width: 100%;
-      max-width: 1160px;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-    .week-cell {
-      background: rgba(255,255,255,0.82);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.9);
-      border-radius: 8px;
-      padding: 10px 12px;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    .week-cell .wc-day {
-      font-size: 8px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #C0392B;
-      margin-bottom: 4px;
-    }
-    .week-cell .wc-role {
-      font-size: 11px;
-      font-weight: 600;
-      color: #1a1a1a;
-      margin-bottom: 2px;
-    }
-    .week-cell .wc-desc {
-      font-size: 9.5px;
-      color: #777;
-      line-height: 1.4;
-    }
-    .week-cell .wc-arrow {
-      position: absolute;
-      right: -9px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 14px;
-      color: #C0392B;
-      font-weight: 700;
-      z-index: 2;
-    }
-    .week-cell:last-child .wc-arrow { display: none; }
-
     /* ── Two-column main layout ── */
     .az-main {
       width: 100%;
@@ -315,39 +264,6 @@ $_SESSION['hphq_expires'] = time() + SESSION_LIFETIME;
     <span class="az-wordmark">Agent Zero</span>
     <span class="az-subline">Automation planner &mdash; Internal use only</span>
     <a class="az-logout" href="/dashboard/logout.php">Log out</a>
-  </div>
-
-  <!-- Mon–Fri workflow strip -->
-  <div class="week-strip">
-    <div class="week-cell">
-      <div class="wc-day">Monday</div>
-      <div class="wc-role">Plan</div>
-      <div class="wc-desc">Goal &amp; brief generation</div>
-      <span class="wc-arrow">&#8250;</span>
-    </div>
-    <div class="week-cell">
-      <div class="wc-day">Tuesday</div>
-      <div class="wc-role">Create</div>
-      <div class="wc-desc">Asset &amp; content build</div>
-      <span class="wc-arrow">&#8250;</span>
-    </div>
-    <div class="week-cell">
-      <div class="wc-day">Wednesday</div>
-      <div class="wc-role">Produce</div>
-      <div class="wc-desc">Video &amp; graphic output</div>
-      <span class="wc-arrow">&#8250;</span>
-    </div>
-    <div class="week-cell">
-      <div class="wc-day">Thursday</div>
-      <div class="wc-role">Review</div>
-      <div class="wc-desc">Approval &amp; QA check</div>
-      <span class="wc-arrow">&#8250;</span>
-    </div>
-    <div class="week-cell">
-      <div class="wc-day">Friday</div>
-      <div class="wc-role">Schedule</div>
-      <div class="wc-desc">Queue &amp; final publish</div>
-    </div>
   </div>
 
   <!-- Two-column main -->
