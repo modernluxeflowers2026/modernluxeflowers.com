@@ -133,12 +133,12 @@ html, body {
 .output-content h1, .output-content h2, .output-content h3, .output-content h4 { color:#1C2B4B !important; background:#fff !important; }
 .output-content [style*="color:#"] { color:#1A1A1A !important; }
 .output-note { margin-top:10px; padding:9px 14px; background:rgba(255,255,255,0.9); border:1px solid var(--border-soft); border-radius:3px; font-size:12px; color:#555; font-style:italic; }
-.pictory-btn { background:#C0392B; color:#fff; border:none; border-radius:4px; padding:9px 20px; font-size:12px; font-weight:700; font-family:inherit; cursor:pointer; letter-spacing:0.5px; transition:background 0.15s; }
-.pictory-btn:hover { background:#a93226; }
-.pictory-brief-card { background:#fff; border:1px solid #e0e0e0; border-left:3px solid #C0392B; border-radius:4px; padding:20px 24px; margin-bottom:20px; }
-.pictory-brief-card pre { white-space:pre-wrap; font-family:inherit; font-size:13px; line-height:1.75; color:#1A1A1A; margin:0; }
-.pictory-copy-btn { margin-top:14px; background:transparent; border:1px solid #C0392B; border-radius:3px; color:#C0392B; padding:5px 14px; font-size:11px; font-weight:700; font-family:inherit; cursor:pointer; transition:all 0.15s; }
-.pictory-copy-btn:hover { background:#C0392B; color:#fff; }
+.capcut-btn { background:#C0392B; color:#fff; border:none; border-radius:4px; padding:9px 20px; font-size:12px; font-weight:700; font-family:inherit; cursor:pointer; letter-spacing:0.5px; transition:background 0.15s; }
+.capcut-btn:hover { background:#a93226; }
+.capcut-brief-card { background:#fff; border:1px solid #e0e0e0; border-left:3px solid #C0392B; border-radius:4px; padding:20px 24px; margin-bottom:20px; }
+.capcut-brief-card pre { white-space:pre-wrap; font-family:inherit; font-size:13px; line-height:1.75; color:#1A1A1A; margin:0; }
+.capcut-copy-btn { margin-top:14px; background:transparent; border:1px solid #C0392B; border-radius:3px; color:#C0392B; padding:5px 14px; font-size:11px; font-weight:700; font-family:inherit; cursor:pointer; transition:all 0.15s; }
+.capcut-copy-btn:hover { background:#C0392B; color:#fff; }
 
 .loading-wrap { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:70px; gap:14px; }
 .dots { display:flex; gap:10px; }
@@ -456,12 +456,12 @@ Agent 05: Generate affiliate scripts for Keepa / SellerAmp / Aura or a resource 
         </div>
       </div>
       <div class="output-note" id="output-note" style="display:none">Output ready. All links open in new tabs.</div>
-      <div id="pictory-trigger-wrap" style="display:none;margin-top:14px;">
-        <button class="pictory-btn" onclick="generatePictoryBrief()">&#127916; Generate Pictory Brief</button>
+      <div id="capcut-trigger-wrap" style="display:none;margin-top:14px;">
+        <button class="capcut-btn" onclick="generateCapCutBrief()">&#127916; Generate CapCut Brief</button>
       </div>
-      <div id="pictory-section" style="display:none;margin-top:24px;">
-        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C0392B;margin-bottom:14px;">&#127916; Pictory Production Brief</div>
-        <div id="pictory-briefs"></div>
+      <div id="capcut-section" style="display:none;margin-top:24px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C0392B;margin-bottom:14px;">&#127916; CapCut Production Brief</div>
+        <div id="capcut-briefs"></div>
       </div>
     </div>
 
@@ -658,10 +658,10 @@ function showOutput(html) {
   document.getElementById('output-body').innerHTML = '<div class="output-content">' + html + '</div>';
   var label = document.getElementById('output-label').textContent || '';
   var isAgent3 = label.toLowerCase().indexOf('content engine') !== -1 || label.toLowerCase().indexOf('content') !== -1;
-  var trigger = document.getElementById('pictory-trigger-wrap');
-  var section = document.getElementById('pictory-section');
+  var trigger = document.getElementById('capcut-trigger-wrap');
+  var section = document.getElementById('capcut-section');
   if (trigger) trigger.style.display = isAgent3 ? 'block' : 'none';
-  if (section) { section.style.display = 'none'; document.getElementById('pictory-briefs').innerHTML = ''; }
+  if (section) { section.style.display = 'none'; document.getElementById('capcut-briefs').innerHTML = ''; }
   document.getElementById('output-note').style.display = 'block';
   document.getElementById('output-body').querySelectorAll('a').forEach(function(a) {
     a.setAttribute('target', '_blank');
@@ -957,57 +957,75 @@ function downloadFullProductPDF() {
   setTimeout(function() { printWindow.print(); }, 800);
 }
 
-var PICTORY_SYSTEM = `You are a video production assistant. You receive faceless short-form video scripts and convert each into a structured Pictory production brief.
+var CAPCUT_BRIEF_SYSTEM = `You are a video production assistant for a faceless short-form content channel. You receive a video script and convert it into a structured CapCut Desktop production brief.
 
-Output exactly this format for each script found in the input. If there are multiple scripts, output one brief per script separated by: ---SCRIPT_BREAK---
+Output exactly this format for each script in the input. If there are multiple scripts, output one brief per script separated by a divider (---).
 
-PICTORY PRODUCTION BRIEF
+Do not add commentary, preamble, or explanations. Output the brief only.
 
-TITLE: [Script title or hook line  -  max 60 characters]
+---
+CAPCUT PRODUCTION BRIEF
+
+TITLE: [Hook line or script title - max 60 characters]
 
 VOICEOVER SCRIPT:
-[Full voiceover text only  -  no stage directions, no labels, no timestamps. Clean sentences only, ready to paste into ElevenLabs or Pictory voiceover field.]
+[Full voiceover text only. Clean sentences. No stage directions, labels, brackets, or timestamps. Ready to paste into ElevenLabs or CapCut AI voice field.]
 
-SCENE KEYWORDS (one per line  -  Pictory uses these to auto-select stock footage):
-[List each b-roll search term on its own line]
+SCENE CUTS (cut number | timestamp | b-roll description | Pexels search term):
+[List every scene cut. Format each line exactly as:
+Cut 01 | 0:00-0:04 | [what is shown on screen] | Pexels: "[search term]"
+Cut 02 | 0:04-0:09 | [what is shown on screen] | Pexels: "[search term]"
+Continue for all cuts. Target 8-14 cuts for a 45-60 second video.]
 
-CAPTIONS/OVERLAYS (timestamp | text):
-[Each overlay as: 0:00 | TEXT HERE]
+TEXT OVERLAYS (timestamp | overlay text | position):
+[List every on-screen text overlay. Format each line exactly as:
+0:00 | TEXT HERE | [Top / Center / Bottom]
+Use short, punchy phrases - 5 words max per overlay. Match overlays to voiceover beats.]
+
+AUDIO CUES:
+- Background music mood: [e.g., Upbeat lo-fi / Tense minimal / Calm ambient]
+- Music volume: Low (voiceover priority)
+- Sound effects: [List any punch-ins, whooshes, or hit sounds with timestamps - or "None"]
+
+CAPTIONS:
+- Style: Bold, high contrast, auto-generated
+- Sync: On - match to voiceover
+
+EXPORT SETTINGS:
+- Aspect ratio: 9:16
+- Resolution: 1080 x 1920
+- Frame rate: 30fps
+- Format: MP4
 
 HASHTAGS:
-[Full hashtag block ready to copy]
+[Full hashtag block, ready to copy for post caption]
+---`;
 
-PICTORY SETTINGS NOTE:
-- Voice: Will - Relaxed Optimist (ElevenLabs) or closest Pictory AI voice
-- Aspect ratio: 9:16 (Reels/Shorts)
-- Duration target: 45 - 60 seconds
-- Caption style: Bold, high contrast, auto-sync to voiceover`;
-
-async function generatePictoryBrief() {
+async function generateCapCutBrief() {
   var outputEl = document.getElementById('output-body');
   var outputText = outputEl ? outputEl.innerText.trim() : '';
   if (!outputText || outputText.indexOf('Click any notepad') !== -1) {
     alert('Run Content Engine (Agent 3) first to generate scripts.');
     return;
   }
-  var section = document.getElementById('pictory-section');
-  var briefs = document.getElementById('pictory-briefs');
+  var section = document.getElementById('capcut-section');
+  var briefs = document.getElementById('capcut-briefs');
   section.style.display = 'block';
-  briefs.innerHTML = '<div style="padding:16px 0;color:#888;font-size:13px;font-style:italic;">Generating Pictory briefs... this takes about 15 seconds.</div>';
+  briefs.innerHTML = '<div style="padding:16px 0;color:#888;font-size:13px;font-style:italic;">Generating CapCut brief... this takes about 15 seconds.</div>';
   try {
-    var result = await callClaude(outputText, PICTORY_SYSTEM, 2048);
+    var result = await callClaude(outputText, CAPCUT_BRIEF_SYSTEM, 2048);
     if (!result) throw new Error('Empty response');
-    var parts = result.split(/---SCRIPT_BREAK---/);
+    var parts = result.split(/\n---\n/);
     briefs.innerHTML = '';
     parts.forEach(function(brief, i) {
       brief = brief.trim();
       if (!brief) return;
       var card = document.createElement('div');
-      card.className = 'pictory-brief-card';
+      card.className = 'capcut-brief-card';
       var pre = document.createElement('pre');
       pre.textContent = brief;
       var copyBtn = document.createElement('button');
-      copyBtn.className = 'pictory-copy-btn';
+      copyBtn.className = 'capcut-copy-btn';
       copyBtn.textContent = 'Copy Brief ' + (i + 1);
       copyBtn.onclick = (function(text, btn) {
         return function() {
@@ -1022,7 +1040,7 @@ async function generatePictoryBrief() {
       briefs.appendChild(card);
     });
   } catch(err) {
-    briefs.innerHTML = '<div style="color:#C0392B;font-size:13px;padding:12px 0;">Brief generation failed. Copy the Agent 3 output and paste directly into Pictory.</div>';
+    briefs.innerHTML = '<div style="color:#C0392B;font-size:13px;padding:12px 0;">Brief generation failed. Copy the Agent 3 output and build manually in CapCut.</div>';
   }
 }
 
