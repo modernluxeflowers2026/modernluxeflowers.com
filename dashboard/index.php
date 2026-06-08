@@ -280,7 +280,7 @@ html, body {
 
           <div class="sticky-note">
             <div class="sticky-label">&#9998; System Prompt / Focus Override</div>
-            <textarea class="sticky-input" id="extra-input" placeholder="Replaces system prompt when filled. E.g.: You are a direct-response copywriter for Amazon OA sellers. Write for a skeptical beginner.
+            <textarea class="sticky-input" id="extra-input" placeholder="Adds extra instructions to any agent. E.g.: Output 1 script only. / Focus on LinkedIn. / Write for a skeptical beginner.
 
 Build Full Product: Leave blank to use OA Decision System default. Or paste a custom parts list  -  one section per line  -  to build any other product.
 
@@ -790,22 +790,18 @@ async function runAgent(id, label) {
     lockedNiche = n;
     document.getElementById('niche-status').textContent = 'Locked: ' + n;
   }
-  var stickyOverride = document.getElementById('extra-input') ? document.getElementById('extra-input').value.trim() : '';
+  var stickyNote = document.getElementById('extra-input') ? document.getElementById('extra-input').value.trim() : '';
   showLoading(label);
   try {
     var promptObj = P[id](n, '');
     var result;
-    if (stickyOverride) {
-      // Sticky note replaces system prompt entirely
-      if (promptObj && typeof promptObj === 'object' && promptObj.system) {
-        result = await callClaudeWithContinuation(promptObj.user, stickyOverride, 3);
-      } else {
-        result = await callClaudeWithContinuation(String(promptObj), stickyOverride, 3);
-      }
-    } else if (promptObj && typeof promptObj === 'object' && promptObj.system) {
-      result = await callClaudeWithContinuation(promptObj.user, promptObj.system, 3);
+    var baseSystem = (promptObj && typeof promptObj === 'object' && promptObj.system) ? promptObj.system : '';
+    var userMsg = (promptObj && typeof promptObj === 'object' && promptObj.user) ? promptObj.user : String(promptObj);
+    var finalSystem = stickyNote ? (baseSystem ? baseSystem + '\n\nADDITIONAL INSTRUCTIONS:\n' + stickyNote : stickyNote) : baseSystem;
+    if (finalSystem) {
+      result = await callClaudeWithContinuation(userMsg, finalSystem, 3);
     } else {
-      result = await callClaude(promptObj);
+      result = await callClaude(userMsg);
     }
     if (result) showOutput(result);
   } catch(err) {
