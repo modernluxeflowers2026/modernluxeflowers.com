@@ -306,19 +306,19 @@ Agent 05: Generate affiliate scripts for Keepa / SellerAmp / Aura or a resource 
             </div>
           </div>
 
-          <div class="notepad" onclick="runAgent('content','Content Engine')">
+          <div class="notepad" onclick="runAgent('hphq_evaluator','Product Evaluator')">
             <div class="notepad-top"><span></span><span class="notepad-num">02</span></div>
             <div class="notepad-body">
-              <div><div class="notepad-tag">Viral Scripts</div><div class="notepad-title">Content Engine</div></div>
-              <div class="notepad-icon-area"><span class="notepad-emoji">&#127916;</span><button class="deploy-btn" onclick="event.stopPropagation();runAgent('content','Content Engine')">Run &rarr;</button></div>
+              <div><div class="notepad-tag">Buy / Pass</div><div class="notepad-title">Product Evaluator</div></div>
+              <div class="notepad-icon-area"><span class="notepad-emoji">&#9989;</span><button class="deploy-btn" onclick="event.stopPropagation();runAgent('hphq_evaluator','Product Evaluator')">Run &rarr;</button></div>
             </div>
           </div>
 
-          <div class="notepad" onclick="runAgent('affiliate','Affiliate Agent')">
+          <div class="notepad" onclick="runAgent('hphq_sourcing','Sourcing Agent')">
             <div class="notepad-top"><span></span><span class="notepad-num">03</span></div>
             <div class="notepad-body">
-              <div><div class="notepad-tag">Affiliate Funnel</div><div class="notepad-title">Affiliate Agent</div></div>
-              <div class="notepad-icon-area"><span class="notepad-emoji">&#128279;</span><button class="deploy-btn" onclick="event.stopPropagation();runAgent('affiliate','Affiliate Agent')">Run &rarr;</button></div>
+              <div><div class="notepad-tag">Deal Finding</div><div class="notepad-title">Sourcing Agent</div></div>
+              <div class="notepad-icon-area"><span class="notepad-emoji">&#128722;</span><button class="deploy-btn" onclick="event.stopPropagation();runAgent('hphq_sourcing','Sourcing Agent')">Run &rarr;</button></div>
             </div>
           </div>
 
@@ -330,11 +330,11 @@ Agent 05: Generate affiliate scripts for Keepa / SellerAmp / Aura or a resource 
             </div>
           </div>
 
-          <div class="notepad" onclick="runAgent('hphq_leadgen','Lead Generation')">
+          <div class="notepad" onclick="runAgent('hphq_reprice','Reprice &amp; Inventory')">
             <div class="notepad-top"><span></span><span class="notepad-num">05</span></div>
             <div class="notepad-body">
-              <div><div class="notepad-tag">List Growth</div><div class="notepad-title">Lead Generation</div></div>
-              <div class="notepad-icon-area"><span class="notepad-emoji">&#128236;</span><button class="deploy-btn" onclick="event.stopPropagation();runAgent('hphq_leadgen','Lead Generation')">Run &rarr;</button></div>
+              <div><div class="notepad-tag">Stock &amp; Pricing</div><div class="notepad-title">Reprice &amp; Inventory</div></div>
+              <div class="notepad-icon-area"><span class="notepad-emoji">&#128230;</span><button class="deploy-btn" onclick="event.stopPropagation();runAgent('hphq_reprice','Reprice &amp; Inventory')">Run &rarr;</button></div>
             </div>
           </div>
 
@@ -740,7 +740,13 @@ var P = {
 
   hphq_leadgen: function(n) { return 'You are the Hidden Potential HQ Lead Generation Agent for niche: "' + n + '". Deliver as HTML: 3 lead magnet concepts with title, format (PDF/checklist/template), and a one-line pitch for each. 2 opt-in page headline options per lead magnet. 5-email welcome sequence for new subscribers — subject lines and full email body copy under 150 words each. 3 Instagram bio CTA variations. 1 MailerLite/ConvertKit form embed strategy. Goal: build an email list of resellers and convert to Gumroad product buyers. Brand voice: direct, peer-to-peer operator.' + LR; },
 
-  hphq_ceo: function(n) { return 'You are the Hidden Potential HQ CEO Brief Agent for niche: "' + n + '". Deliver as HTML: Weekly business summary for a solo operator running an Amazon reselling business plus digital product brand. Cover: 1. Revenue snapshot — product sales, affiliate commissions, what is working. 2. Content performance — which scripts/formats to double down on. 3. Sourcing health — inventory levels, margin trends, tools in use. 4. Top priority this week — one action that moves the needle most. 5. What to cut or pause — one thing wasting time or money. 6. 30-day forecast — realistic projection based on current trajectory. Be direct. No fluff. Sound like a CFO/COO speaking to a founder.' + LR; },
+  hphq_evaluator: function(n) { return 'You are the Hidden Potential HQ Product Evaluator Agent for an online arbitrage reseller. Context: "' + n + '". Deliver as HTML: Evaluate whether to BUY or PASS on a product for Amazon or eBay resale. Structure your output as: 1. BUY / PASS verdict — bold, top of page, with a one-sentence rationale. 2. Product metrics review — current Amazon price, lowest FBA offer, BSR (if provided), offer count, estimated monthly sales velocity. 3. Margin breakdown — buy cost, all fees (FBA/eBay), estimated net profit per unit, ROI %. 4. Risk flags — IP complaints, melt/hazmat/oversize, seasonal demand cliff, restricted brand, price instability. 5. Keepa trend read — if price history is available, note whether the price is rising, falling, or volatile. 6. Decision factors — 3 bullet points on why this is a go or no-go. Brand voice: operator, fast, direct. No hedging. Give a clear answer.\n\nTOOL LINKS — include where relevant:\n- Keepa: https://get.keepa.com/dbccu\n- SellerAmp: https://selleramp.idevaffiliate.com/2392.html\n- Aura: https://try.goaura.com/epqqqyh4dlsk' + LR; },
+
+  hphq_sourcing: function(n) { return 'You are the Hidden Potential HQ Sourcing Agent for an online arbitrage reseller. Context: "' + n + '". Deliver as HTML: Daily/weekly sourcing plan for finding profitable OA inventory to resell on Amazon and eBay. Structure your output as: 1. Top 3 retail store categories to hit this week — HomeGoods, TJ Maxx, Marshalls, Target clearance, Big Lots, Ross, or outlet centers — with specific department and product type focus. 2. Online sourcing targets — 3 specific retailer websites or clearance pages to scan today, with direct links where possible. 3. Product categories showing strong BSR and margin right now — based on seasonal timing and demand signals. 4. What to avoid this week — overloaded categories, price-crashed ASINs, or restricted brands to skip. 5. One arbitrage angle — a specific deal structure, bundle opportunity, or underpriced category to exploit. 6. Tools to use during this sourcing session — link Keepa and SellerAmp.\n\nTOOL LINKS — always include:\n- Keepa: https://get.keepa.com/dbccu\n- SellerAmp: https://selleramp.idevaffiliate.com/2392.html\n\nBrand voice: direct, operator-tone. Act like a sourcing partner telling you where to look today.' + LR; },
+
+  hphq_reprice: function(n) { return 'You are the Hidden Potential HQ Reprice & Inventory Agent for an online arbitrage reseller. Context: "' + n + '". Deliver as HTML: Repricing strategy and inventory health review for an active Amazon or eBay seller. Structure your output as: 1. Reprice decision framework — when to lower price to win the Buy Box, when to hold and protect margin, when to pull inventory. 2. Inventory health checklist — aged units (90+ days), stranded inventory, low stock on fast movers, units with eroding margin. 3. Liquidation triggers — thresholds at which it makes sense to reprice to 0% margin or sell on eBay to recover capital. 4. Seasonal price adjustment — what categories typically spike or drop in the next 30 days and how to position accordingly. 5. Aura/repricing tool setup note — recommended min/max floor strategy for protecting margin while staying competitive. 6. One priority action — the single most important repricing or inventory move to make today. Brand voice: operator, practical, no theory.\n\nTOOL LINKS — include where relevant:\n- Aura repricing: https://try.goaura.com/epqqqyh4dlsk\n- Keepa price history: https://get.keepa.com/dbccu' + LR; },
+
+  hphq_ceo: function(n) { return 'You are the Hidden Potential HQ CEO Brief Agent for an online arbitrage reselling business. Context: "' + n + '". Deliver as HTML: Weekly operational brief for a solo operator running an Amazon and eBay OA business. Cover: 1. Revenue snapshot — sales this week, units moved, total profit, what sold. 2. Sourcing health — inventory levels, capital deployed, margin trends, sourcing velocity. 3. Buy Box & repricing status — where you are winning or losing, any price wars to address. 4. Top priority this week — one sourcing, repricing, or operational action that moves the needle most. 5. What to cut or pause — one SKU, category, or time sink wasting capital or margin. 6. 30-day forecast — realistic projection based on current inventory, pending shipments, and seasonal demand. Be direct. No fluff. Sound like a CFO/COO speaking to a founder who runs a physical products business.' + LR; },
 
   mlf_gm: function(n) { return 'You are the General Manager Agent for Modern LUXE Flowers, a Chicago luxury floral design studio. Context: ' + n + '. Deliver as HTML: 1. Corporate pipeline summary — active prospects, outstanding proposals, accounts due for follow-up. 2. This week’s priorities — top 3 actions to move corporate revenue forward. 3. Upcoming installs or deliveries needing logistics prep. 4. One operational risk or bottleneck to address. 5. Revenue forecast for the next 30 days based on known accounts and proposal pipeline. 6. One growth action — a specific outreach, upsell, or retention move to execute this week. Tone: luxury brand operator. Direct, professional, no filler.' + LR; },
 
