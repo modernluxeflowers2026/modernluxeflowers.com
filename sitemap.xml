@@ -2,47 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://modernluxeflowers.com/</loc>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://modernluxeflowers.com/corporate-floral-design-chicago.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://modernluxeflowers.com/weddings-and-events-floral-chicago.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://modernluxeflowers.com/luxe-love-unique-flower-arrangements.html</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://modernluxeflowers.com/gift-giving-boxful-art.html</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://modernluxeflowers.com/petals-and-stems.html</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://modernluxeflowers.com/about-us-floral-design-business.html</loc>
-    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://modernluxeflowers.com/corporate-floral-design-chicago.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://modernluxeflowers.com/weddings-and-events-floral-chicago.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://modernluxeflowers.com/luxe-love-unique-flower-arrangements.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://modernluxeflowers.com/gift-giving-boxful-art.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://modernluxeflowers.com/petals-and-stems.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://modernluxeflowers.com/client-reviews.html</loc>
-    <priority>0.6</priority>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://modernluxeflowers.com/contact-us-floral-arrangements.html</loc>
-    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
