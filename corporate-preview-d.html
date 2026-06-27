@@ -45,23 +45,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ─── BANNER ─── */
-#site-banner {
-  background: #131210;
-  border-bottom: 1px solid var(--border);
-  padding: 11px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 200;
-}
-#site-banner span { font-size: 13px; letter-spacing: 0.1em; color: var(--body); }
-#site-banner button {
-  background: none; border: none; color: var(--muted); font-size: 20px;
-  line-height: 1; cursor: pointer; padding: 0 4px;
-  position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
-}
 
 /* ─── NAV ─── */
 nav {
@@ -628,11 +611,6 @@ footer {
 </head>
 <body>
 
-<!-- ANNOUNCEMENT BANNER — delete this section when redesign is complete -->
-<div id="site-banner">
-  <span>We're refreshing our look — check back soon.</span>
-  <button onclick="document.getElementById('site-banner').style.display='none'" aria-label="Dismiss">×</button>
-</div>
 
 <!-- NAV -->
 <nav id="mainNav">
