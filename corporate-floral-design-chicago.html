@@ -1124,9 +1124,11 @@ footer {
   const corpModal = document.getElementById('corpModal');
   corpModal.classList.add('active');
   document.body.style.overflow = 'hidden';
-  document.getElementById('corpModalCta').addEventListener('click', () => {
-    corpModal.classList.remove('active');
-    document.body.style.overflow = '';
+  document.querySelectorAll('#corpModal a, #mainNav a').forEach(a => {
+    a.addEventListener('click', () => {
+      corpModal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
   });
 
   // Portfolio dropdown
