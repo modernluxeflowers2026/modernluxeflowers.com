@@ -103,6 +103,10 @@ nav.scrolled {
 .nav-sub li a { display: block; padding: 13px 22px; font-size: 11px; letter-spacing: 0.16em; white-space: nowrap; border-bottom: 1px solid var(--border); color: var(--body) !important; }
 .nav-sub li:last-child a { border-bottom: none; }
 .nav-dropdown.open .nav-sub { display: block; }
+@media (min-width: 1025px) {
+  .nav-dropdown:hover .nav-sub { display: block; }
+  .nav-dropdown:hover .nav-caret { transform: rotate(180deg); }
+}
 .nav-dropdown.open .nav-caret { transform: rotate(180deg); }
 
 /* ─── HERO ─── */
