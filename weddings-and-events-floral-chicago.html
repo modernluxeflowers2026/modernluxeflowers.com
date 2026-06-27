@@ -447,39 +447,46 @@ footer {
 @media (max-width: 1024px) {
   .nav-links {
     display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 280px;
     background: rgba(10,10,10,0.98);
+    border: 1px solid var(--border);
+    border-top: none;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 32px;
+    align-items: stretch;
+    gap: 0;
     z-index: 99;
+    backdrop-filter: blur(8px);
   }
   .nav-links.open { display: flex; }
-  .nav-links a { font-size: 16px; letter-spacing: 0.2em; }
-  .nav-cta { padding: 16px 40px !important; }
+  .nav-links a { font-size: 12px; letter-spacing: 0.16em; }
+  .nav-links > li > a { padding: 15px 22px; display: block; border-bottom: 1px solid var(--border); }
+  .nav-cta { padding: 15px 22px !important; }
   .nav-toggle { display: flex; z-index: 101; position: relative; }
+  .nav-caret { display: none; }
   .nav-sub {
+    display: block;
     position: static;
     transform: none;
+    background: rgba(17,17,17,0.5);
     border: none;
-    border-top: 1px solid var(--border);
-    background: none;
+    border-bottom: 1px solid var(--border);
     backdrop-filter: none;
-    display: none;
     min-width: 0;
-    padding: 8px 0 0;
+    padding: 0;
   }
   .nav-sub li a {
-    font-size: 13px;
-    letter-spacing: 0.18em;
+    font-size: 11px;
+    letter-spacing: 0.14em;
     color: var(--muted);
-    padding: 10px 0;
-    text-align: center;
-    border-bottom: none !important;
+    padding: 11px 22px 11px 36px;
+    border-bottom: none;
+    text-align: left;
     display: block;
   }
+  .nav-sub li a:hover { color: var(--cream); }
   nav { padding: 20px 40px; }
   .page-header { padding: 64px 40px 52px; }
   .service-text { padding: 64px 40px 52px; gap: 48px; }
@@ -713,6 +720,7 @@ footer {
   const links = document.getElementById('navLinks');
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a:not(.nav-dropdown-trigger)').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  document.addEventListener('click', e => { if (!e.target.closest('nav')) links.classList.remove('open'); });
 
   const portfolioTrigger = document.querySelector('.nav-dropdown-trigger');
   portfolioTrigger.addEventListener('click', e => {
