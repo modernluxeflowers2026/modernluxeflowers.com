@@ -649,19 +649,46 @@ footer {
   .nav-logo img { height: 34px; }
   .nav-links {
     display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 280px;
     background: rgba(10,10,10,0.98);
+    border: 1px solid var(--border);
+    border-top: none;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 32px;
+    align-items: stretch;
+    gap: 0;
     z-index: 99;
+    backdrop-filter: blur(8px);
   }
   .nav-links.open { display: flex; }
-  .nav-links a { font-size: 16px; letter-spacing: 0.2em; }
-  .nav-cta { padding: 16px 40px; font-size: 14px !important; }
+  .nav-links a { font-size: 12px; letter-spacing: 0.16em; }
+  .nav-links > li > a { padding: 15px 22px; display: block; border-bottom: 1px solid var(--border); }
+  .nav-cta { padding: 15px 22px !important; font-size: 12px !important; }
   .nav-toggle { display: flex; z-index: 101; position: relative; }
+  .nav-caret { display: none; }
+  .nav-sub {
+    display: block;
+    position: static;
+    transform: none;
+    background: rgba(17,17,17,0.5);
+    border: none;
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: none;
+    min-width: 0;
+    padding: 0;
+  }
+  .nav-sub li a {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    padding: 11px 22px 11px 36px;
+    border-bottom: none;
+    text-align: left;
+    display: block;
+  }
+  .nav-sub li a:hover { color: var(--cream); }
 
   .page-header { padding: 56px 24px 44px; }
   .page-header p { font-size: 18px; }
@@ -699,6 +726,57 @@ footer {
   .inquiry-section { padding: 48px 20px; }
   .contact-strip { padding: 40px 20px; }
   footer { padding: 40px 20px 28px; }
+}
+
+/* ─── MOBILE NAV DROPDOWN OVERRIDE ─── */
+@media (max-width: 1024px) {
+  nav { position: relative; }
+  .nav-links {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 280px !important;
+    background: rgba(10,10,10,0.98) !important;
+    border: 1px solid var(--border) !important;
+    border-top: none !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+    z-index: 999 !important;
+    backdrop-filter: blur(8px) !important;
+  }
+  .nav-links.open { display: flex !important; }
+  .nav-links a { font-size: 12px !important; letter-spacing: 0.16em !important; text-align: left !important; }
+  .nav-links > li > a { padding: 15px 22px !important; display: block !important; border-bottom: 1px solid var(--border) !important; }
+  .nav-cta { padding: 15px 22px !important; font-size: 12px !important; }
+  .nav-toggle { display: flex !important; z-index: 1001 !important; position: relative !important; }
+  .nav-caret { display: none !important; }
+  .nav-sub {
+    display: block !important;
+    position: static !important;
+    transform: none !important;
+    background: rgba(17,17,17,0.5) !important;
+    border: none !important;
+    border-bottom: 1px solid var(--border) !important;
+    backdrop-filter: none !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+  }
+  .nav-sub li a {
+    font-size: 11px !important;
+    letter-spacing: 0.14em !important;
+    color: var(--muted) !important;
+    padding: 11px 22px 11px 36px !important;
+    border-bottom: none !important;
+    text-align: left !important;
+    display: block !important;
+    white-space: normal !important;
+  }
+  .nav-sub li a:hover { color: var(--cream) !important; }
 }
 </style>
   <!-- Microsoft Clarity -->

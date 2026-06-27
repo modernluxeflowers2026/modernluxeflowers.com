@@ -589,6 +589,57 @@ footer {
   .cta-band { padding: 48px 20px; }
   footer { padding: 40px 20px 28px; }
 }
+
+/* ─── MOBILE NAV DROPDOWN OVERRIDE ─── */
+@media (max-width: 1024px) {
+  nav { position: relative; }
+  .nav-links {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 280px !important;
+    background: rgba(10,10,10,0.98) !important;
+    border: 1px solid var(--border) !important;
+    border-top: none !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+    z-index: 999 !important;
+    backdrop-filter: blur(8px) !important;
+  }
+  .nav-links.open { display: flex !important; }
+  .nav-links a { font-size: 12px !important; letter-spacing: 0.16em !important; text-align: left !important; }
+  .nav-links > li > a { padding: 15px 22px !important; display: block !important; border-bottom: 1px solid var(--border) !important; }
+  .nav-cta { padding: 15px 22px !important; font-size: 12px !important; }
+  .nav-toggle { display: flex !important; z-index: 1001 !important; position: relative !important; }
+  .nav-caret { display: none !important; }
+  .nav-sub {
+    display: block !important;
+    position: static !important;
+    transform: none !important;
+    background: rgba(17,17,17,0.5) !important;
+    border: none !important;
+    border-bottom: 1px solid var(--border) !important;
+    backdrop-filter: none !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+  }
+  .nav-sub li a {
+    font-size: 11px !important;
+    letter-spacing: 0.14em !important;
+    color: var(--muted) !important;
+    padding: 11px 22px 11px 36px !important;
+    border-bottom: none !important;
+    text-align: left !important;
+    display: block !important;
+    white-space: normal !important;
+  }
+  .nav-sub li a:hover { color: var(--cream) !important; }
+}
 </style>
   <!-- Microsoft Clarity -->
   <script type="text/javascript">
