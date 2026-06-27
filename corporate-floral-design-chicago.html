@@ -713,6 +713,83 @@ footer {
   footer { padding: 40px 20px 28px; }
 }
 
+/* ─── COMING SOON MODAL ─── */
+.corp-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(10,10,10,0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.corp-modal-overlay.active { display: flex; }
+.corp-modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  max-width: 600px;
+  width: 100%;
+  padding: 72px 64px;
+  text-align: center;
+  position: relative;
+}
+.corp-modal-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  display: block;
+}
+.corp-modal-divider {
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto 36px;
+  opacity: 0.5;
+}
+.corp-modal h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.1;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  margin-bottom: 28px;
+}
+.corp-modal h2 em { font-style: italic; color: var(--gold); }
+.corp-modal-body {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--body);
+  margin-bottom: 40px;
+}
+.corp-modal-sub {
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 36px;
+}
+.corp-modal-cta {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--black);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 44px;
+  transition: background 0.2s;
+}
+.corp-modal-cta:hover { background: #d4b57a; }
+@media (max-width: 600px) {
+  .corp-modal { padding: 52px 28px; }
+}
+
 /* ─── MOBILE NAV DROPDOWN OVERRIDE ─── */
 @media (max-width: 1024px) {
   nav { position: relative; }
@@ -970,6 +1047,18 @@ footer {
 
 </section>
 
+<!-- COMING SOON MODAL -->
+<div class="corp-modal-overlay" id="corpModal">
+  <div class="corp-modal">
+    <span class="corp-modal-eyebrow">Expanding Our Services</span>
+    <div class="corp-modal-divider"></div>
+    <h2>Elevated experiences<br>for the spaces where<br><em>business happens.</em></h2>
+    <p class="corp-modal-body">We're developing dedicated programs for corporate lobbies, boutique hotels, law firms, and professional offices — recurring floral arrangements, professionally managed with nothing for you to coordinate.</p>
+    <p class="corp-modal-sub">Corporate packages and service tiers coming soon. Reach out to be first to know when we launch.</p>
+    <a href="/contact-us-floral-arrangements.html" class="corp-modal-cta" id="corpModalCta">Get Early Access</a>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div>
@@ -1030,6 +1119,15 @@ footer {
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a:not(.nav-dropdown-trigger)').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
   document.addEventListener('click', e => { if (!e.target.closest('nav')) links.classList.remove('open'); });
+
+  // Coming soon modal — show on page load, dismiss on CTA click
+  const corpModal = document.getElementById('corpModal');
+  corpModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('corpModalCta').addEventListener('click', () => {
+    corpModal.classList.remove('active');
+    document.body.style.overflow = '';
+  });
 
   // Portfolio dropdown
   const portfolioTrigger = document.querySelector('.nav-dropdown-trigger');
