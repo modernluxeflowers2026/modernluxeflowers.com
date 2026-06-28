@@ -50,17 +50,13 @@ body {
 
 /* ─── NAV ─── */
 nav {
-  position: absolute;
+  position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 64px;
-  background: transparent;
-}
-nav.scrolled {
-  position: fixed;
   background: rgba(10,10,10,0.98);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(8px);
@@ -118,6 +114,7 @@ nav.scrolled {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 82px;
 }
 .hero-bg {
   position: absolute; inset: 0;
@@ -1116,12 +1113,6 @@ footer {
 </footer>
 
 <script>
-  // Nav scroll behavior
-  const mainNav = document.getElementById('mainNav');
-  window.addEventListener('scroll', () => {
-    mainNav.classList.toggle('scrolled', window.scrollY > 80);
-  });
-
   // Mobile nav
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
