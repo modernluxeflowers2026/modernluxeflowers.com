@@ -70,7 +70,7 @@ When the user says "replace image #N on [Page]" or "swap [Page] #N", use this ma
 ### Corporate (`corporate-floral-design-chicago.html`)
 | # | Position | Current file |
 |---|----------|-------------|
-| 1 | Hero background | `images/WhatsApp Image 2026-05-30 at 4.56.17 PM (3).jpeg` |
+| 1 | Hero background | `images/corporate-hero.jpeg` (cropped from `images/WhatsApp Image 2026-05-30 at 4.56.17 PM (3).jpeg` to remove empty headroom above the arrangement) |
 | 2 | Bottom panel — left | `images/WhatsApp Image 2026-05-30 at 4.56.14 PM (6).jpeg` |
 | 3 | Bottom panel — center | `images/WhatsApp Image 2026-05-30 at 4.56.15 PM (3).jpeg` |
 | 4 | Bottom panel — right | `images/WhatsApp Image 2026-05-30 at 4.56.14 PM (5).jpeg` |
