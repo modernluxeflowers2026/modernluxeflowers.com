@@ -10,6 +10,10 @@ A **pure static HTML website** for Modern LUXE Flowers, a Chicago luxury floral 
 
 Open `index.html` directly in a browser to preview. There are no build steps, no `npm install`, and no dev server needed.
 
+## Deployment workflow
+
+This site only goes live when commits land on `main` (GitHub Pages deploys automatically from `main`). When work is done on a feature/task branch and has been verified, **merge that branch into `main` and push `main` in the same session** — do not leave finished work stranded on a branch waiting for a separate merge request. Fast-forward merge when possible. Only skip this and leave changes on the branch if the user explicitly says not to merge/deploy yet.
+
 ## Architecture
 
 `index.html` is the homepage and currently the only file in the repo. All CSS lives in an inline `<style>` block in `<head>` and all JS lives in an inline `<script>` at the bottom of `<body>`. The site references several other pages via nav links that **do not yet exist** in this repo:
