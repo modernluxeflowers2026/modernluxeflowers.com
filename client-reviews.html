@@ -289,6 +289,16 @@ nav {
   transition: border-color 0.25s;
 }
 .review-card:hover { border-color: var(--gold-dim); }
+.review-photo {
+  width: calc(100% + 88px);
+  height: 220px;
+  object-fit: cover;
+  margin: -52px -44px 28px;
+  display: block;
+}
+@media (max-width: 768px) {
+  .review-photo { width: calc(100% + 56px); margin: -36px -28px 24px; }
+}
 .review-open-quote {
   font-family: 'Cormorant Garamond', serif;
   font-size: 64px;
@@ -840,6 +850,7 @@ footer {
     </div>
 
     <div class="review-card">
+      <img class="review-photo" src="/images/marki-l-kindwords.jpg" alt="Tulip and rose arrangement in a copper vase — Modern LUXE Flowers Chicago">
       <span class="review-open-quote">"</span>
       <div class="review-stars">★★★★★</div>
       <p class="review-text">Modern LUXE Flowers is my all-time favorite florist — creative, thoughtful, and incredibly talented, with attention to detail that's unmatched. She's created arrangements for every occasion in my life, from Mother's Day and birthdays to hospitalizations and honoring loved ones we've lost, and every piece feels personal and beautifully designed. A true perfectionist — I highly recommend her.</p>
