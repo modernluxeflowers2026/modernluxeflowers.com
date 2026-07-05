@@ -363,40 +363,13 @@ nav {
   letter-spacing: -0.01em;
   margin-bottom: 8px;
 }
-.tier-price {
-  font-size: 13px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-  margin-bottom: 32px;
-  padding-bottom: 28px;
-  border-bottom: 1px solid var(--border);
-}
-.tier-features {
-  list-style: none;
-  flex: 1;
-  margin-bottom: 36px;
-}
-.tier-features li {
+.tier-description {
+  font-family: 'Jost', sans-serif;
   font-size: 14px;
   color: var(--body);
-  line-height: 1.6;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-}
-.tier-features li:last-child { border-bottom: none; }
-.tier-features li::before {
-  content: '—';
-  color: var(--gold);
-  flex-shrink: 0;
-  font-size: 12px;
-  margin-top: 1px;
-}
-.tier-placeholder {
-  color: var(--dim);
-  font-style: italic;
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 36px;
 }
 .tier-cta {
   display: block;
@@ -417,6 +390,13 @@ nav {
   border-color: var(--gold);
 }
 .tier-cta:hover { background: var(--gold); color: var(--black); }
+.tiers-closing {
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-top: 40px;
+}
 
 /* ─── 3-PANEL CTA ─── */
 .cta-panels {
@@ -716,86 +696,6 @@ footer {
   footer { padding: 40px 20px 28px; }
 }
 
-/* ─── COMING SOON MODAL ─── */
-.corp-modal-overlay {
-  display: none;
-  position: fixed;
-  top: 82px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2000;
-  background: rgba(10,10,10,0.72);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
-.corp-modal-overlay.active { display: flex; }
-.corp-modal {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  max-width: 600px;
-  width: 100%;
-  padding: 72px 64px;
-  text-align: center;
-  position: relative;
-}
-.corp-modal-eyebrow {
-  font-size: 10px;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 28px;
-  display: block;
-}
-.corp-modal-divider {
-  width: 32px;
-  height: 1px;
-  background: var(--gold);
-  margin: 0 auto 36px;
-  opacity: 0.5;
-}
-.corp-modal h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: clamp(32px, 4vw, 52px);
-  line-height: 1.1;
-  color: var(--cream);
-  letter-spacing: -0.01em;
-  margin-bottom: 28px;
-}
-.corp-modal h2 em { font-style: italic; color: var(--gold); }
-.corp-modal-body {
-  font-size: 16px;
-  line-height: 1.85;
-  color: var(--body);
-  margin-bottom: 40px;
-}
-.corp-modal-sub {
-  font-size: 14px;
-  color: var(--muted);
-  letter-spacing: 0.04em;
-  margin-bottom: 36px;
-}
-.corp-modal-cta {
-  display: inline-block;
-  background: var(--gold);
-  color: var(--black);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 16px 44px;
-  transition: background 0.2s;
-}
-.corp-modal-cta:hover { background: #d4b57a; }
-@media (max-width: 600px) {
-  .corp-modal { padding: 52px 28px; }
-}
-
 /* ─── MOBILE NAV DROPDOWN OVERRIDE ─── */
 @media (max-width: 1024px) {
   nav { position: relative; }
@@ -866,7 +766,7 @@ footer {
   </a>
   <ul class="nav-links" id="navLinks">
     <li class="nav-dropdown">
-      <a href="/flower-arrangements-portfolio.html" class="nav-dropdown-trigger">Portfolio <span class="nav-caret">&#9660;</span></a>
+      <a href="#" class="nav-dropdown-trigger">Portfolio <span class="nav-caret">&#9660;</span></a>
       <ul class="nav-sub" id="portfolioSub">
         <li><a href="/luxe-love-unique-flower-arrangements.html">Luxe Love</a></li>
         <li><a href="/gift-giving-boxful-art.html">Boxful Art</a></li>
@@ -966,13 +866,7 @@ footer {
     <div class="tier-card">
       <p class="tier-name">Tier One</p>
       <p class="tier-title">Essential</p>
-      <p class="tier-price tier-placeholder">Pricing details coming soon</p>
-      <ul class="tier-features">
-        <li class="tier-placeholder">Feature to be added</li>
-        <li class="tier-placeholder">Feature to be added</li>
-        <li class="tier-placeholder">Feature to be added</li>
-        <li class="tier-placeholder">Feature to be added</li>
-      </ul>
+      <p class="tier-description">A single statement arrangement for your reception or entry — the first thing a client sees when they walk in. Refreshed on a set biweekly schedule, designed around your space, your light, and your brand. For offices that want one thing done exceptionally well.</p>
       <a href="/contact-us-floral-arrangements.html" class="tier-cta">Inquire</a>
     </div>
 
@@ -980,34 +874,20 @@ footer {
     <div class="tier-card featured">
       <p class="tier-name">Tier Two</p>
       <p class="tier-title">Signature</p>
-      <p class="tier-price tier-placeholder">Pricing details coming soon</p>
-      <ul class="tier-features">
-        <li class="tier-placeholder">Feature to be added</li>
-        <li class="tier-placeholder">Feature to be added</li>
-        <li class="tier-placeholder">Feature to be added</li>
-        <li class="tier-placeholder">Feature to be added</li>
-        <li class="tier-placeholder">Feature to be added</li>
-      </ul>
+      <p class="tier-description">Two placements — reception plus a secondary space like a conference room or waiting area — refreshed weekly. Each installation is designed as a pair, so the experience carries from the front door through the meeting. Our most requested program.</p>
       <a href="/contact-us-floral-arrangements.html" class="tier-cta">Inquire</a>
     </div>
 
     <!-- TIER 3 -->
     <div class="tier-card">
       <p class="tier-name">Tier Three</p>
-      <p class="tier-title">Prestige</p>
-      <p class="tier-price tier-placeholder">Pricing details coming soon</p>
-      <ul class="tier-features">
-        <li class="tier-placeholder">Feature to be added</li>
-        <li class="tier-placeholder">Feature to be added</li>
-        <li class="tier-placeholder">Feature to be added</li>
-        <li class="tier-placeholder">Feature to be added</li>
-        <li class="tier-placeholder">Feature to be added</li>
-        <li class="tier-placeholder">Feature to be added</li>
-      </ul>
+      <p class="tier-title">Full Presence</p>
+      <p class="tier-description">Floral design throughout the space: reception, conference rooms, executive suites, common areas. Weekly refresh with seasonal installations that mark the calendar for your clients and your team. For firms where the environment is part of the pitch.</p>
       <a href="/contact-us-floral-arrangements.html" class="tier-cta">Inquire</a>
     </div>
 
   </div>
+  <p class="tiers-closing"><em>All programs are limited availability and priced by inquiry. Every proposal is built for the specific space.</em></p>
 </section>
 
 <!-- 3-PANEL CTA -->
@@ -1052,18 +932,6 @@ footer {
   </div>
 
 </section>
-
-<!-- COMING SOON MODAL -->
-<div class="corp-modal-overlay" id="corpModal">
-  <div class="corp-modal">
-    <span class="corp-modal-eyebrow">Expanding Our Services</span>
-    <div class="corp-modal-divider"></div>
-    <h2>Elevated experiences<br>for the spaces where<br><em>business happens.</em></h2>
-    <p class="corp-modal-body">We're developing dedicated programs for corporate lobbies, boutique hotels, law firms, and professional offices — recurring floral arrangements, professionally managed with nothing for you to coordinate.</p>
-    <p class="corp-modal-sub">Corporate packages and service tiers coming soon. Reach out to be first to know when we launch.</p>
-    <a href="/contact-us-floral-arrangements.html" class="corp-modal-cta" id="corpModalCta">Get Early Access</a>
-  </div>
-</div>
 
 <!-- FOOTER -->
 <footer>
@@ -1122,17 +990,6 @@ footer {
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a:not(.nav-dropdown-trigger)').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
   document.addEventListener('click', e => { if (!e.target.closest('nav')) links.classList.remove('open'); });
-
-  // Coming soon modal — show on page load, dismiss on CTA click
-  const corpModal = document.getElementById('corpModal');
-  corpModal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  document.querySelectorAll('#corpModal a, #mainNav a').forEach(a => {
-    a.addEventListener('click', () => {
-      corpModal.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-  });
 
   // Portfolio dropdown
   const portfolioTrigger = document.querySelector('.nav-dropdown-trigger');
