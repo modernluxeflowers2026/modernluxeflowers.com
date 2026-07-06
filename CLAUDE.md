@@ -135,6 +135,9 @@ When the user says "replace image #N on [Page]" or "swap [Page] #N", use this ma
 | # | Position | Current file |
 |---|----------|-------------|
 | 1 | Featured review photo | `images/marie-c-kindwords.jpg` |
+| 2 | Reviews grid — 1st card photo | `images/marki-l-kindwords.jpg` |
+
+**Convention:** new reviews are added as the first card in `.reviews-grid`, directly under the featured quote section — existing cards shift down. Reviews with a client-submitted photo use the `.review-photo` treatment (full-bleed image at the top of the card).
 
 ### Contact (`contact-us-floral-arrangements.html`)
 No swappable content images on this page.
