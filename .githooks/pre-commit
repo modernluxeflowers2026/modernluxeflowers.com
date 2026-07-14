@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# MLF brand/content pre-commit check.
+# Blocks commits containing banned words, incorrect "LUXE" capitalization,
+# dollar amounts on the corporate page, or (if a private list is present)
+# wholesaler names. See scripts/brand_check.py for the rules.
+#
+# Enable with: git config core.hooksPath .githooks
+
+set -euo pipefail
+
+repo_root=$(git rev-parse --show-toplevel)
+checker="$repo_root/scripts/brand_check.py"
+
+if [ ! -f "$checker" ]; then
+  echo "pre-commit: $checker not found, skipping brand check" >&2
+  exit 0
+fi
+
+mapfile -t files < <(git diff --cached --name-only --diff-filter=ACM -- \
+  '*.html' '*.htm' '*.md' '*.txt' '*.js' '*.css' '*.xml' '*.json')
+
+if [ "${#files[@]}" -eq 0 ]; then
+  exit 0
+fi
+
+exit_code=0
+for file in "${files[@]}"; do
+  [ -z "$file" ] && continue
+  if ! git show ":$file" | python3 "$checker" --stdin --name "$file"; then
+    exit_code=1
+  fi
+done
+
+if [ "$exit_code" -ne 0 ]; then
+  echo "" >&2
+  echo "Commit blocked: MLF brand/content check failed (see flagged file:line above)." >&2
+  echo "Fix the flagged terms and re-stage, or edit scripts/brand_check.py if a rule is wrong." >&2
+fi
+
+exit "$exit_code"
