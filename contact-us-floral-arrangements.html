@@ -1027,6 +1027,13 @@ footer {
     };
   }
 
+  function trackConsultationLead() {
+    gtag('event', 'generate_lead', {
+      'form_name': 'consultation_request',
+      'page_location': window.location.href
+    });
+  }
+
   function submitEmail() {
     const d = getFormData();
     const body = [
@@ -1038,6 +1045,7 @@ footer {
       'Budget: ' + d.budget,
       d.notes ? '\nDetails:\n' + d.notes : ''
     ].join('\n');
+    trackConsultationLead();
     window.location.href = 'mailto:info@modernluxeflowers.com'
       + '?subject=' + encodeURIComponent('Consultation Request — ' + d.eventType)
       + '&body=' + encodeURIComponent(body);
@@ -1054,6 +1062,7 @@ footer {
       'Budget: ' + d.budget,
       d.notes ? 'Details: ' + d.notes : ''
     ].filter(Boolean).join('\n');
+    trackConsultationLead();
     window.open('https://wa.me/17734180161?text=' + encodeURIComponent(msg), '_blank');
   }
   // Portfolio dropdown (tap on mobile, hover on desktop via CSS)
