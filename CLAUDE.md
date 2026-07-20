@@ -137,7 +137,9 @@ When the user says "replace image #N on [Page]" or "swap [Page] #N", use this ma
 | 1 | Featured review photo | `images/marie-c-kindwords.jpg` |
 | 2 | Reviews grid — 1st card photo | `images/marki-l-kindwords.jpg` |
 
-**Convention:** new reviews are added as the first card in `.reviews-grid`, directly under the featured quote section — existing cards shift down. Reviews with a client-submitted photo use the `.review-photo` treatment (full-bleed image at the top of the card).
+**Convention:** new reviews are added as the first card in `.reviews-grid`, directly under the featured quote section — existing cards shift down. Reviews with a client-submitted photo use one of two treatments depending on the photo's orientation:
+- **Landscape photos** — `.review-photo` (full-bleed crop across the top of the card, `object-fit: cover`).
+- **Portrait photos** — `.review-card--photo` (full-width card with the whole, uncropped photo beside the review text; used for Marki L.'s review since a landscape crop cut off too much of the tall arrangement photo). Markup: `<div class="review-card review-card--photo"><div class="review-photo-wrap"><img ...></div><div class="review-card-body">...review contents...</div></div>`.
 
 ### Contact (`contact-us-floral-arrangements.html`)
 No swappable content images on this page.

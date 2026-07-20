@@ -360,6 +360,34 @@ nav {
 @media (max-width: 768px) {
   .review-photo { width: calc(100% + 56px); margin: -36px -28px 24px; }
 }
+/* Portrait-orientation review photos: full-bleed top crop loses too much of a tall
+   photo, so these show the whole image beside the review instead of cropping it. */
+.review-card.review-card--photo {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  padding: 0;
+}
+.review-card--photo .review-photo-wrap {
+  background: var(--black);
+  overflow: hidden;
+}
+.review-card--photo .review-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.review-card--photo .review-card-body {
+  padding: 52px 44px 44px;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 768px) {
+  .review-card.review-card--photo { grid-template-columns: 1fr; }
+  .review-card--photo .review-photo-wrap img { height: auto; }
+  .review-card--photo .review-card-body { padding: 36px 28px 32px; }
+}
 .review-open-quote {
   font-family: 'Cormorant Garamond', serif;
   font-size: 64px;
@@ -870,14 +898,18 @@ footer {
 <section class="reviews-section">
   <div class="reviews-grid">
 
-    <div class="review-card">
-      <img class="review-photo" src="/images/marki-l-kindwords.jpg" alt="Tulip and rose arrangement in a copper vase — Modern LUXE Flowers Chicago">
-      <span class="review-open-quote">"</span>
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">Modern LUXE Flowers is my all-time favorite florist — creative, thoughtful, and incredibly talented, with attention to detail that's unmatched. She's created arrangements for every occasion in my life, from Mother's Day and birthdays to hospitalizations and honoring loved ones we've lost, and every piece feels personal and beautifully designed. A true perfectionist — I highly recommend her.</p>
-      <div class="review-meta">
-        <div class="review-name">Marki L.</div>
-        <div class="review-role">Local Guide, Google Reviews</div>
+    <div class="review-card review-card--photo">
+      <div class="review-photo-wrap">
+        <img src="/images/marki-l-kindwords.jpg" alt="Tulip and rose arrangement in a copper vase — Modern LUXE Flowers Chicago">
+      </div>
+      <div class="review-card-body">
+        <span class="review-open-quote">"</span>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Modern LUXE Flowers is my all-time favorite florist — creative, thoughtful, and incredibly talented, with attention to detail that's unmatched. She's created arrangements for every occasion in my life, from Mother's Day and birthdays to hospitalizations and honoring loved ones we've lost, and every piece feels personal and beautifully designed. A true perfectionist — I highly recommend her.</p>
+        <div class="review-meta">
+          <div class="review-name">Marki L.</div>
+          <div class="review-role">Local Guide, Google Reviews</div>
+        </div>
       </div>
     </div>
 
