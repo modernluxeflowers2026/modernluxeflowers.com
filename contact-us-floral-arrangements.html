@@ -1042,7 +1042,8 @@ footer {
   function trackConsultationLead() {
     gtag('event', 'generate_lead', {
       'form_name': 'consultation_request',
-      'page_location': window.location.href
+      'page_location': window.location.href,
+      'transport_type': 'beacon'
     });
   }
 
