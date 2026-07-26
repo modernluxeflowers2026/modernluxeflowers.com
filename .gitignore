@@ -1,1 +1,4 @@
 _fonts/
+
+# Private wholesaler names for scripts/brand_check.py — never commit these.
+.wholesalers-private.txt
