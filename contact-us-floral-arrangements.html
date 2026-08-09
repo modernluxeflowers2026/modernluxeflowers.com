@@ -595,13 +595,23 @@ footer {
 
 .footer-col ul li a:hover { color: var(--cream); }
 
+.footer-legal { font-size: 14px; }
+.footer-legal a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-legal a:hover { color: var(--gold); }
+
 .footer-bottom {
   grid-column: 1 / -1;
   border-top: 1px solid var(--border);
   padding-top: 28px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
   font-size: 18px;
   letter-spacing: 0.06em;
   color: var(--muted);
@@ -1015,6 +1025,7 @@ footer {
   </div>
   <div class="footer-bottom">
     <span>© 2026 Modern LUXE Flowers — Chicago, IL</span>
+    <span class="footer-legal"><a href="/privacy-policy.html">Privacy Policy</a> · <a href="/terms-of-service.html">Terms of Service</a></span>
     <span>modernluxeflowers.com</span>
   </div>
 </footer>
