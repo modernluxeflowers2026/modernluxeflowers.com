@@ -20,11 +20,14 @@
 
 :root {
   --black:   #0a0a0a;
+  --dark:    #111111;
+  --surface: #161613;
+  --border:  #2a2820;
   --gold:    #c9a96e;
   --gold-dim:#8a7048;
   --cream:   #f5f0e8;
   --body:    #d4cec4;
-  --dim:     #6b6658;
+  --muted:   #a89e90;
 }
 
 html { scroll-behavior: smooth; }
@@ -38,184 +41,211 @@ body {
   overflow-x: hidden;
 }
 
-img { display: block; max-width: 100%; }
 a { color: inherit; }
 
-/* ---------- Opening spread ---------- */
-
-.opening-spread {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  min-height: 480px;
-  overflow: hidden;
-  background: var(--black);
-}
-
-.opening-spread img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 1.4s ease;
-}
-
-.opening-spread img.is-loaded { opacity: 1; }
-
-.opening-scrim {
+.sr-only {
   position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 46%;
-  background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0) 100%);
-  pointer-events: none;
-}
-
-.opening-wordmark {
-  position: absolute;
-  left: 50%;
-  bottom: 6%;
-  transform: translateX(-50%);
-  z-index: 2;
-  display: inline-block;
-  opacity: 0.92;
-  transition: opacity 0.3s ease;
-}
-
-.opening-wordmark:hover { opacity: 1; }
-.opening-wordmark img { height: 46px; width: auto; }
-
-.opening-spread.is-empty {
-  height: 56vh;
-  min-height: 340px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.opening-spread.is-empty .opening-wordmark {
-  position: static;
-  transform: none;
-}
-
-/* ---------- Content spreads ---------- */
-
-.spread {
-  width: 100%;
-  padding: 90px 0;
-}
-
-.spread-row {
-  display: flex;
-  align-items: stretch;
-  width: 100%;
-  padding: 0 6vw;
-  gap: 0;
-}
-
-.spread-row.is-solo { padding: 0; }
-
-@media (min-width: 769px) {
-  .spread-row + .spread-row { margin-top: 56px; }
-}
-
-.frame {
-  position: relative;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
   overflow: hidden;
-  min-width: 0;
-  flex: 1 1 auto;
-  background: #14130f;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-.frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transform: scale(1.03);
-  transition: opacity 1s ease, transform 8s ease;
-}
+/* ---------- Header ---------- */
 
-.frame img.is-loaded { opacity: 1; transform: scale(1); }
-
-.frame-small  { flex-basis: 22%; aspect-ratio: 3 / 4; }
-.frame-medium { flex-basis: 34%; aspect-ratio: 4 / 5; }
-.frame-large  { flex-basis: 48%; aspect-ratio: 4 / 5; }
-
-.frame-full-bleed {
-  flex-basis: 100%;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  aspect-ratio: 21 / 9;
-}
-
-/* slight editorial offset so rows don't read as a rigid grid */
-.frame.stagger-a:not(.frame-full-bleed) { align-self: flex-start; }
-.frame.stagger-b:not(.frame-full-bleed) { align-self: flex-end; }
-
-.frame-caption {
-  flex-basis: 30%;
-  aspect-ratio: auto;
-  display: flex;
-  align-items: center;
-  background: transparent;
-  padding: 10px 34px;
-}
-
-.caption-inner { max-width: 42ch; }
-
-.caption-rule {
-  width: 34px;
-  height: 1px;
-  background: var(--gold);
-  opacity: 0.6;
-  margin-bottom: 22px;
-}
-
-.caption-text {
-  font-family: 'EB Garamond', serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(17px, 1.6vw, 21px);
-  line-height: 1.9;
-  color: var(--body);
-}
-
-/* ---------- Gutter — hand-stitched seam ---------- */
-
-.gutter {
-  flex: 0 0 20px;
-  align-self: stretch;
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-}
-
-.gutter svg { display: block; }
-
-/* ---------- Closing spread ---------- */
-
-.closing-spread {
-  background: var(--black);
-  padding: 160px 6vw 130px;
+.page-header {
+  padding: 90px 8vw 64px;
   text-align: center;
 }
 
-.closing-line {
+.header-wordmark { display: inline-block; opacity: 0.95; transition: opacity 0.3s ease; }
+.header-wordmark:hover { opacity: 1; }
+.header-wordmark img { height: 44px; width: auto; margin: 0 auto 30px; }
+
+.header-line {
   font-family: 'EB Garamond', serif;
-  font-style: italic;
   font-weight: 400;
-  font-size: clamp(24px, 3.4vw, 38px);
+  font-style: italic;
+  font-size: clamp(19px, 2vw, 24px);
+  color: var(--muted);
   line-height: 1.5;
-  color: var(--cream);
-  max-width: 720px;
-  margin: 0 auto 44px;
+  max-width: 560px;
+  margin: 0 auto;
 }
 
-.closing-contact {
+/* ---------- Mosaic grid ---------- */
+
+.mosaic-wrap {
+  position: relative;
+  padding: 0 4px;
+}
+
+.mosaic {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.mosaic-seams {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.mosaic-seams .seam {
+  position: absolute;
+  width: 16px;
+  transform: translateX(-50%);
+}
+
+.tile {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+  cursor: zoom-in;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: brightness(0.88) saturate(0.92);
+  transition: transform 0.7s ease, filter 0.4s ease;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  opacity: 0;
+}
+
+.tile img.is-loaded { opacity: 1; transition: opacity 0.6s ease, transform 0.7s ease, filter 0.4s ease; }
+
+.tile:hover img {
+  transform: scale(1.04);
+  filter: brightness(1) saturate(1.05);
+}
+
+.tile-small      { flex-basis: 22%; aspect-ratio: 1 / 1; }
+.tile-medium     { flex-basis: 34%; aspect-ratio: 4 / 5; }
+.tile-large      { flex-basis: 48%; aspect-ratio: 3 / 4; }
+.tile-full-bleed { flex-basis: 100%; aspect-ratio: 21 / 9; }
+
+.mosaic-empty {
+  text-align: center;
+  padding: 60px 8vw 20px;
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+/* ---------- Lightbox ---------- */
+
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.93);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+#lightbox.open { display: flex; }
+
+.lb-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  display: block;
+  cursor: default;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.lb-close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 36px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.65;
+  transition: opacity 0.2s;
+  padding: 4px;
+}
+
+.lb-close:hover { opacity: 1; }
+
+.lb-prev, .lb-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 60px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.2s;
+  padding: 8px 20px;
+  user-select: none;
+}
+
+.lb-prev { left: 12px; }
+.lb-next { right: 12px; }
+.lb-prev:hover, .lb-next:hover { opacity: 1; }
+
+.lb-counter {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  opacity: 0.55;
+}
+
+/* ---------- Closing CTA ---------- */
+
+.cta-band {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 96px 8vw;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.cta-band p {
+  font-family: 'EB Garamond', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(24px, 3vw, 36px);
+  color: var(--cream);
+  line-height: 1.3;
+  margin-bottom: 34px;
+}
+
+.cta-link {
   display: inline-block;
   font-family: 'Jost', sans-serif;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold);
@@ -225,80 +255,95 @@ a { color: inherit; }
   transition: border-color 0.3s ease, color 0.3s ease;
 }
 
-.closing-contact:hover { color: var(--cream); border-color: var(--gold); }
+.cta-link:hover { color: var(--cream); border-color: var(--gold); }
 
-.closing-wordmark {
-  display: block;
-  margin: 70px auto 0;
-  width: fit-content;
-  opacity: 0.75;
-  transition: opacity 0.3s ease;
+/* ---------- Footer ---------- */
+
+.mini-footer {
+  padding: 56px 8vw 64px;
+  text-align: center;
 }
 
-.closing-wordmark:hover { opacity: 1; }
-.closing-wordmark img { height: 30px; width: auto; margin: 0 auto; }
-
-/* ---------- Scroll reveal ---------- */
-
-.spread { opacity: 0; transform: translateY(28px); transition: opacity 1s ease, transform 1s ease; }
-.spread.is-visible { opacity: 1; transform: translateY(0); }
+.footer-wordmark { display: inline-block; opacity: 0.7; transition: opacity 0.3s ease; }
+.footer-wordmark:hover { opacity: 1; }
+.footer-wordmark img { height: 28px; width: auto; margin: 0 auto; }
 
 /* ---------- Responsive ---------- */
 
+@media (max-width: 1024px) {
+  .tile-small  { flex-basis: 30%; }
+  .tile-medium { flex-basis: 47%; }
+  .tile-large  { flex-basis: 64%; }
+  .page-header { padding: 72px 6vw 52px; }
+  .cta-band { padding: 76px 6vw; }
+}
+
 @media (max-width: 768px) {
-  .spread { padding: 54px 0; }
-
-  .spread-row {
-    flex-direction: column;
-    padding: 0 6vw;
-    gap: 26px;
-  }
-
-  .spread-row.is-solo { padding: 0; gap: 0; }
-
-  .frame-small, .frame-medium, .frame-large {
-    flex-basis: auto;
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    align-self: auto !important;
-  }
-
-  .frame-full-bleed { aspect-ratio: 4 / 5; }
-
-  .frame-caption { flex-basis: auto; width: 100%; padding: 10px 4px; }
-
-  .gutter { display: none; }
-
-  .opening-wordmark img { height: 34px; }
-
-  .closing-spread { padding: 110px 6vw 90px; }
+  .tile-small, .tile-medium { flex-basis: 47%; }
+  .tile-large { flex-basis: 100%; aspect-ratio: 4 / 5; }
+  .page-header { padding: 60px 6vw 44px; }
+  .header-wordmark img { height: 36px; }
+  .cta-band { padding: 66px 6vw; }
 }
 
 @media (max-width: 480px) {
-  .frame-full-bleed { aspect-ratio: 1 / 1; }
+  .tile-small, .tile-medium, .tile-large, .tile-full-bleed {
+    flex-basis: 100%;
+    aspect-ratio: 4 / 5;
+  }
+  .page-header { padding: 52px 7vw 38px; }
+  .header-line { font-size: 17px; }
+  .cta-band { padding: 56px 7vw; }
+  .cta-band p { margin-bottom: 26px; }
 }
 </style>
 </head>
 <body>
 
-<main id="collection-root">
-  <!-- Opening spread, content spreads render here from the Sheet -->
-</main>
+<h1 class="sr-only">The Collection — Modern LUXE Flowers</h1>
 
-<section class="closing-spread" id="closing-spread">
-  <p class="closing-line">Thank you for taking a moment with our work &mdash; we'd love to bring the same care to yours.</p>
-  <a class="closing-contact" href="/contact-us-floral-arrangements.html">Get in Touch</a>
-  <a class="closing-wordmark" href="/" aria-label="Modern LUXE Flowers home">
+<!-- HEADER -->
+<header class="page-header">
+  <a class="header-wordmark" href="/" aria-label="Modern LUXE Flowers home">
     <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/A85ZREzgQ7sraPkX/rev_1_white-AE0pZjGL43IaRQEr.png" alt="Modern LUXE Flowers">
   </a>
+  <p class="header-line">A closer look at recent work — corporate installations, weddings, and gifting, from concept to bloom.</p>
+</header>
+
+<!-- MOSAIC GRID -->
+<div class="mosaic-wrap">
+  <div class="mosaic" id="mosaicGrid"></div>
+  <div class="mosaic-seams" id="mosaicSeams"></div>
+</div>
+
+<!-- CLOSING CTA -->
+<section class="cta-band">
+  <p>Every arrangement begins with an introduction.</p>
+  <a href="/contact-us-floral-arrangements.html" class="cta-link">Get in Touch</a>
 </section>
+
+<!-- MINIMAL FOOTER -->
+<footer class="mini-footer">
+  <a class="footer-wordmark" href="/" aria-label="Modern LUXE Flowers home">
+    <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/A85ZREzgQ7sraPkX/rev_1_white-AE0pZjGL43IaRQEr.png" alt="Modern LUXE Flowers">
+  </a>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-label="Image preview">
+  <button class="lb-close" aria-label="Close preview">&times;</button>
+  <button class="lb-prev" aria-label="Previous image">&#8249;</button>
+  <button class="lb-next" aria-label="Next image">&#8250;</button>
+  <img class="lb-img" src="" alt="" draggable="false">
+  <div class="lb-counter"></div>
+</div>
 
 <script>
 (function () {
   var CSV_URL = 'https://docs.google.com/spreadsheets/d/1abSLqMs2RRdzu_F96TFCjiVbhBI1evOXRPTPH7-t2lE/export?format=csv&gid=0';
-  var WORDMARK = 'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/A85ZREzgQ7sraPkX/rev_1_white-AE0pZjGL43IaRQEr.png';
-  var root = document.getElementById('collection-root');
   var svgNS = 'http://www.w3.org/2000/svg';
+  var grid = document.getElementById('mosaicGrid');
+  var seamsLayer = document.getElementById('mosaicSeams');
 
   function normalizeSize(raw) {
     var v = (raw || '').toString().trim().toLowerCase().replace(/\s+/g, '-');
@@ -310,6 +355,14 @@ a { color: inherit; }
   function isActive(raw) {
     var v = (raw || '').toString().trim().toUpperCase();
     return v === 'TRUE' || v === '1' || v === 'YES' || v === 'Y';
+  }
+
+  function cloudinaryUrl(url, width) {
+    var marker = '/upload/';
+    var idx = url.indexOf(marker);
+    if (idx === -1) return url;
+    if (/\/upload\/[^/]*\b(f_auto|q_auto)\b/.test(url)) return url;
+    return url.slice(0, idx + marker.length) + 'f_auto,q_auto,c_limit,w_' + width + '/' + url.slice(idx + marker.length);
   }
 
   function parseRows(csvText) {
@@ -325,76 +378,39 @@ a { color: inherit; }
     return rows;
   }
 
-  function groupContentRows(rows) {
-    var order = [];
-    var map = {};
-    rows.forEach(function (row) {
-      var key = (row['Spread Group'] || '').toString().trim() || ('__solo_' + row.__order);
-      if (!map[key]) { map[key] = []; order.push(key); }
-      map[key].push(row);
-    });
-    return order.map(function (key) { return map[key]; });
+  function buildTile(row, index) {
+    var size = normalizeSize(row['Frame Size']);
+    var tile = document.createElement('div');
+    tile.className = 'tile tile-' + size;
+
+    var img = document.createElement('img');
+    img.loading = index < 6 ? 'eager' : 'lazy';
+    img.draggable = false;
+    img.alt = 'Modern LUXE Flowers';
+    img.src = cloudinaryUrl(row['Image URL'].toString().trim(), 900);
+    img.dataset.full = cloudinaryUrl(row['Image URL'].toString().trim(), 1800);
+    img.addEventListener('load', function () { img.classList.add('is-loaded'); });
+
+    tile.appendChild(img);
+    return tile;
   }
 
-  function rowsToItems(rows) {
-    var items = [];
-    rows.forEach(function (row) {
-      var url = (row['Image URL'] || '').toString().trim();
-      if (url) {
-        items.push({
-          type: 'image',
-          size: normalizeSize(row['Frame Size']),
-          url: url,
-          alt: (row['Caption'] || 'Modern LUXE Flowers').toString().trim()
-        });
-      }
-      var caption = (row['Caption'] || '').toString().trim();
-      if (caption) {
-        items.push({ type: 'caption', size: 'caption', text: caption });
-      }
-    });
-    return items;
-  }
-
-  function splitIntoLines(items) {
-    var lines = [];
+  function computeRows() {
+    var tiles = Array.from(grid.querySelectorAll('.tile'));
+    var rows = [];
     var current = [];
-    items.forEach(function (item) {
-      if (item.size === 'full-bleed') {
-        if (current.length) { lines.push(current); current = []; }
-        lines.push([item]);
-      } else {
-        current.push(item);
+    var currentTop = null;
+    tiles.forEach(function (tile) {
+      var top = Math.round(tile.getBoundingClientRect().top);
+      if (currentTop !== null && Math.abs(top - currentTop) > 2) {
+        rows.push(current);
+        current = [];
       }
+      current.push(tile);
+      currentTop = top;
     });
-    if (current.length) lines.push(current);
-    return lines;
-  }
-
-  function buildFrame(item, index) {
-    var frame = document.createElement('div');
-    frame.className = 'frame frame-' + item.size + ' ' + (index % 2 === 0 ? 'stagger-a' : 'stagger-b');
-
-    if (item.type === 'caption') {
-      var inner = document.createElement('div');
-      inner.className = 'caption-inner';
-      var rule = document.createElement('div');
-      rule.className = 'caption-rule';
-      var p = document.createElement('p');
-      p.className = 'caption-text';
-      p.textContent = item.text;
-      inner.appendChild(rule);
-      inner.appendChild(p);
-      frame.appendChild(inner);
-    } else {
-      var img = document.createElement('img');
-      img.loading = 'lazy';
-      img.alt = item.alt;
-      img.src = item.url;
-      img.addEventListener('load', function () { img.classList.add('is-loaded'); });
-      frame.appendChild(img);
-    }
-    return frame;
+    if (current.length) rows.push(current);
+    return rows;
   }
 
   function buildGutterSVG(height) {
@@ -417,8 +433,8 @@ a { color: inherit; }
       svg.appendChild(line);
     }
 
-    addLine(w * 0.28, 6, w * 0.72, 14, 0.55, 1.1);
-    addLine(w * 0.72, 6, w * 0.28, 14, 0.55, 1.1);
+    addLine(w * 0.28, 6, w * 0.72, 14, 0.5, 1.1);
+    addLine(w * 0.72, 6, w * 0.28, 14, 0.5, 1.1);
 
     var y = 24;
     while (y < h - 24) {
@@ -429,122 +445,120 @@ a { color: inherit; }
       var rad = rot * Math.PI / 180;
       var dx = Math.sin(rad) * (len / 2);
       var dy = Math.cos(rad) * (len / 2);
-      addLine(cx - dx, cy - dy, cx + dx, cy + dy, 0.26 + Math.random() * 0.22, 1);
+      addLine(cx - dx, cy - dy, cx + dx, cy + dy, 0.22 + Math.random() * 0.18, 1);
       y += 20 + Math.random() * 12;
     }
 
-    addLine(w * 0.28, h - 14, w * 0.72, h - 6, 0.55, 1.1);
-    addLine(w * 0.72, h - 14, w * 0.28, h - 6, 0.55, 1.1);
+    addLine(w * 0.28, h - 14, w * 0.72, h - 6, 0.5, 1.1);
+    addLine(w * 0.72, h - 14, w * 0.28, h - 6, 0.5, 1.1);
 
     return svg;
   }
 
-  var gutterRows = [];
+  function refreshSeams() {
+    seamsLayer.innerHTML = '';
+    var wrap = document.querySelector('.mosaic-wrap');
+    var wrapRect = wrap.getBoundingClientRect();
+    var rows = computeRows();
 
-  function buildLine(items) {
-    var row = document.createElement('div');
-    row.className = 'spread-row' + (items.length === 1 ? ' is-solo' : '');
-    items.forEach(function (item, i) {
-      row.appendChild(buildFrame(item, i));
-      if (i < items.length - 1) {
-        var gutter = document.createElement('div');
-        gutter.className = 'gutter';
-        row.appendChild(gutter);
+    rows.forEach(function (row) {
+      if (row.length < 2) return;
+      var sorted = row.slice().sort(function (a, b) {
+        return a.getBoundingClientRect().left - b.getBoundingClientRect().left;
+      });
+      for (var i = 0; i < sorted.length - 1; i++) {
+        var rectA = sorted[i].getBoundingClientRect();
+        var rectB = sorted[i + 1].getBoundingClientRect();
+        var x = ((rectA.right + rectB.left) / 2) - wrapRect.left;
+        var top = Math.min(rectA.top, rectB.top) - wrapRect.top;
+        var height = Math.min(rectA.height, rectB.height);
+        var seam = document.createElement('div');
+        seam.className = 'seam';
+        seam.style.left = x + 'px';
+        seam.style.top = top + 'px';
+        seam.appendChild(buildGutterSVG(height));
+        seamsLayer.appendChild(seam);
       }
     });
-    if (items.length > 1) gutterRows.push(row);
-    return row;
-  }
-
-  function buildContentSpread(groupRows) {
-    var items = rowsToItems(groupRows);
-    if (!items.length) return null;
-    var lines = splitIntoLines(items);
-    var section = document.createElement('section');
-    section.className = 'spread';
-    lines.forEach(function (line) { section.appendChild(buildLine(line)); });
-    return section;
-  }
-
-  function buildOpening(heroRow) {
-    var section = document.createElement('section');
-    var wordmarkLink = document.createElement('a');
-    wordmarkLink.className = 'opening-wordmark';
-    wordmarkLink.href = '/';
-    wordmarkLink.setAttribute('aria-label', 'Modern LUXE Flowers home');
-    var wordmarkImg = document.createElement('img');
-    wordmarkImg.src = WORDMARK;
-    wordmarkImg.alt = 'Modern LUXE Flowers';
-    wordmarkLink.appendChild(wordmarkImg);
-
-    if (heroRow) {
-      section.className = 'opening-spread';
-      var img = document.createElement('img');
-      img.src = heroRow.url;
-      img.alt = heroRow.alt || 'Modern LUXE Flowers';
-      img.addEventListener('load', function () { img.classList.add('is-loaded'); });
-      var scrim = document.createElement('div');
-      scrim.className = 'opening-scrim';
-      section.appendChild(img);
-      section.appendChild(scrim);
-      section.appendChild(wordmarkLink);
-    } else {
-      section.className = 'opening-spread is-empty';
-      section.appendChild(wordmarkLink);
-    }
-    return section;
-  }
-
-  function refreshGutters() {
-    gutterRows.forEach(function (row) {
-      var h = row.getBoundingClientRect().height;
-      var gutters = row.querySelectorAll('.gutter');
-      gutters.forEach(function (g) {
-        g.innerHTML = '';
-        g.appendChild(buildGutterSVG(h));
-      });
-    });
-  }
-
-  function initScrollReveal() {
-    var spreads = document.querySelectorAll('.spread');
-    if (!('IntersectionObserver' in window)) {
-      spreads.forEach(function (s) { s.classList.add('is-visible'); });
-      return;
-    }
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    spreads.forEach(function (s) { observer.observe(s); });
   }
 
   function render(rows) {
-    var hero = rows.length ? { url: rows[0]['Image URL'].toString().trim(), alt: (rows[0]['Caption'] || '').toString().trim() } : null;
-    var rest = rows.slice(1);
-    var groups = groupContentRows(rest);
+    if (!rows.length) {
+      var empty = document.createElement('p');
+      empty.className = 'mosaic-empty';
+      empty.textContent = 'New work is on its way.';
+      grid.parentNode.insertBefore(empty, grid.nextSibling);
+      return;
+    }
 
-    root.appendChild(buildOpening(hero));
+    rows.forEach(function (row, i) { grid.appendChild(buildTile(row, i)); });
 
-    groups.forEach(function (groupRows) {
-      var spread = buildContentSpread(groupRows);
-      if (spread) root.appendChild(spread);
+    var lbImgs = Array.from(grid.querySelectorAll('.tile img'));
+
+    var lb = document.getElementById('lightbox');
+    var lbImg = lb.querySelector('.lb-img');
+    var lbClose = lb.querySelector('.lb-close');
+    var lbPrev = lb.querySelector('.lb-prev');
+    var lbNext = lb.querySelector('.lb-next');
+    var lbCounter = lb.querySelector('.lb-counter');
+    var currentIdx = 0;
+
+    function showImg(idx) {
+      currentIdx = (idx + lbImgs.length) % lbImgs.length;
+      var src = lbImgs[currentIdx].dataset.full || lbImgs[currentIdx].src;
+      lbImg.src = src;
+      lbImg.alt = lbImgs[currentIdx].alt;
+      lbCounter.textContent = (currentIdx + 1) + ' / ' + lbImgs.length;
+    }
+
+    function openLb(idx) {
+      showImg(idx);
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLb() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    grid.querySelectorAll('.tile').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var img = el.querySelector('img');
+        if (!img) return;
+        openLb(lbImgs.indexOf(img));
+      });
     });
 
-    requestAnimationFrame(function () {
-      refreshGutters();
-      initScrollReveal();
+    lbClose.addEventListener('click', closeLb);
+    lbPrev.addEventListener('click', function (e) { e.stopPropagation(); showImg(currentIdx - 1); });
+    lbNext.addEventListener('click', function (e) { e.stopPropagation(); showImg(currentIdx + 1); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+    document.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLb();
+      if (e.key === 'ArrowLeft') showImg(currentIdx - 1);
+      if (e.key === 'ArrowRight') showImg(currentIdx + 1);
     });
 
+    var touchStartX = 0;
+    lb.addEventListener('touchstart', function (e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', function (e) {
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) dx < 0 ? showImg(currentIdx + 1) : showImg(currentIdx - 1);
+    });
+
+    document.addEventListener('contextmenu', function (e) {
+      if (e.target.closest('.mosaic') || e.target.closest('#lightbox')) e.preventDefault();
+    });
+
+    requestAnimationFrame(refreshSeams);
     var resizeTimer;
     window.addEventListener('resize', function () {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(refreshGutters, 150);
+      resizeTimer = setTimeout(refreshSeams, 150);
     });
+    window.addEventListener('load', refreshSeams);
   }
 
   fetch(CSV_URL)
@@ -552,10 +566,7 @@ a { color: inherit; }
       if (!res.ok) throw new Error('CSV fetch failed: ' + res.status);
       return res.text();
     })
-    .then(function (csvText) {
-      var rows = parseRows(csvText);
-      render(rows);
-    })
+    .then(function (csvText) { render(parseRows(csvText)); })
     .catch(function (err) {
       console.error('The Collection: could not load content sheet.', err);
       render([]);
