@@ -88,20 +88,6 @@ a { color: inherit; }
   gap: 4px;
 }
 
-.mosaic-seams {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.mosaic-seams .seam {
-  position: absolute;
-  top: 0;
-  width: 16px;
-  transform: translateX(-50%);
-}
-
 .tile {
   position: relative;
   overflow: hidden;
@@ -300,7 +286,6 @@ a { color: inherit; }
 <!-- MOSAIC GRID -->
 <div class="mosaic-wrap">
   <div class="mosaic" id="mosaicGrid"></div>
-  <div class="mosaic-seams" id="mosaicSeams"></div>
 </div>
 
 <!-- CLOSING CTA -->
@@ -328,9 +313,7 @@ a { color: inherit; }
 <script>
 (function () {
   var CSV_URL = 'https://docs.google.com/spreadsheets/d/1abSLqMs2RRdzu_F96TFCjiVbhBI1evOXRPTPH7-t2lE/export?format=csv&gid=0';
-  var svgNS = 'http://www.w3.org/2000/svg';
   var grid = document.getElementById('mosaicGrid');
-  var seamsLayer = document.getElementById('mosaicSeams');
 
   function isActive(raw) {
     var v = (raw || '').toString().trim().toUpperCase();
@@ -372,84 +355,6 @@ a { color: inherit; }
 
     tile.appendChild(img);
     return tile;
-  }
-
-  function computeColumnLines() {
-    var style = getComputedStyle(grid);
-    var cols = style.gridTemplateColumns.split(' ').map(parseFloat).filter(function (n) { return !isNaN(n); });
-    var gap = parseFloat(style.columnGap) || 0;
-    var lines = [];
-    var x = 0;
-    for (var i = 0; i < cols.length - 1; i++) {
-      x += cols[i];
-      lines.push(x + gap / 2);
-      x += gap;
-    }
-    return lines;
-  }
-
-  function buildGutterSVG(height) {
-    var h = Math.max(80, Math.round(height));
-    var w = 16;
-    var svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
-    svg.setAttribute('width', w);
-    svg.setAttribute('height', h);
-    svg.setAttribute('aria-hidden', 'true');
-
-    function addLine(x1, y1, x2, y2, opacity, strokeWidth) {
-      var line = document.createElementNS(svgNS, 'line');
-      line.setAttribute('x1', x1); line.setAttribute('y1', y1);
-      line.setAttribute('x2', x2); line.setAttribute('y2', y2);
-      line.setAttribute('stroke', '#c9a96e');
-      line.setAttribute('stroke-opacity', opacity);
-      line.setAttribute('stroke-width', strokeWidth);
-      line.setAttribute('stroke-linecap', 'round');
-      svg.appendChild(line);
-    }
-
-    function addKnot(cy) {
-      var circle = document.createElementNS(svgNS, 'circle');
-      circle.setAttribute('cx', w / 2);
-      circle.setAttribute('cy', cy);
-      circle.setAttribute('r', 1.6);
-      circle.setAttribute('fill', '#c9a96e');
-      circle.setAttribute('fill-opacity', 0.55);
-      svg.appendChild(circle);
-    }
-
-    addKnot(10);
-
-    var y = 24;
-    while (y < h - 24) {
-      var jitter = (Math.random() - 0.5) * 10;
-      var len = 7 + Math.random() * 4;
-      var rot = (Math.random() - 0.5) * 24;
-      var cx = w / 2, cy = y + jitter;
-      var rad = rot * Math.PI / 180;
-      var dx = Math.sin(rad) * (len / 2);
-      var dy = Math.cos(rad) * (len / 2);
-      addLine(cx - dx, cy - dy, cx + dx, cy + dy, 0.22 + Math.random() * 0.18, 1);
-      y += 20 + Math.random() * 12;
-    }
-
-    addKnot(h - 10);
-
-    return svg;
-  }
-
-  function refreshSeams() {
-    seamsLayer.innerHTML = '';
-    var gridHeight = grid.getBoundingClientRect().height;
-    if (!gridHeight) return;
-    var lines = computeColumnLines();
-    lines.forEach(function (x) {
-      var seam = document.createElement('div');
-      seam.className = 'seam';
-      seam.style.left = x + 'px';
-      seam.appendChild(buildGutterSVG(gridHeight));
-      seamsLayer.appendChild(seam);
-    });
   }
 
   function render(rows) {
@@ -521,14 +426,6 @@ a { color: inherit; }
     document.addEventListener('contextmenu', function (e) {
       if (e.target.closest('.mosaic') || e.target.closest('#lightbox')) e.preventDefault();
     });
-
-    requestAnimationFrame(refreshSeams);
-    var resizeTimer;
-    window.addEventListener('resize', function () {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(refreshSeams, 150);
-    });
-    window.addEventListener('load', refreshSeams);
   }
 
   fetch(CSV_URL)
