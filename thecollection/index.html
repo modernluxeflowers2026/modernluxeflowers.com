@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXE6RF2VBX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CXE6RF2VBX');
+  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Collection | Modern LUXE Flowers</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:   #0a0a0a;
+  --gold:    #c9a96e;
+  --gold-dim:#8a7048;
+  --cream:   #f5f0e8;
+  --body:    #d4cec4;
+  --dim:     #6b6658;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+
+/* ---------- Opening spread ---------- */
+
+.opening-spread {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 480px;
+  overflow: hidden;
+  background: var(--black);
+}
+
+.opening-spread img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+
+.opening-spread img.is-loaded { opacity: 1; }
+
+.opening-scrim {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 46%;
+  background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0) 100%);
+  pointer-events: none;
+}
+
+.opening-wordmark {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: inline-block;
+  opacity: 0.92;
+  transition: opacity 0.3s ease;
+}
+
+.opening-wordmark:hover { opacity: 1; }
+.opening-wordmark img { height: 46px; width: auto; }
+
+.opening-spread.is-empty {
+  height: 56vh;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.opening-spread.is-empty .opening-wordmark {
+  position: static;
+  transform: none;
+}
+
+/* ---------- Content spreads ---------- */
+
+.spread {
+  width: 100%;
+  padding: 90px 0;
+}
+
+.spread-row {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  padding: 0 6vw;
+  gap: 0;
+}
+
+.spread-row.is-solo { padding: 0; }
+
+@media (min-width: 769px) {
+  .spread-row + .spread-row { margin-top: 56px; }
+}
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  flex: 1 1 auto;
+  background: #14130f;
+}
+
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.03);
+  transition: opacity 1s ease, transform 8s ease;
+}
+
+.frame img.is-loaded { opacity: 1; transform: scale(1); }
+
+.frame-small  { flex-basis: 22%; aspect-ratio: 3 / 4; }
+.frame-medium { flex-basis: 34%; aspect-ratio: 4 / 5; }
+.frame-large  { flex-basis: 48%; aspect-ratio: 4 / 5; }
+
+.frame-full-bleed {
+  flex-basis: 100%;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  aspect-ratio: 21 / 9;
+}
+
+/* slight editorial offset so rows don't read as a rigid grid */
+.frame.stagger-a:not(.frame-full-bleed) { align-self: flex-start; }
+.frame.stagger-b:not(.frame-full-bleed) { align-self: flex-end; }
+
+.frame-caption {
+  flex-basis: 30%;
+  aspect-ratio: auto;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  padding: 10px 34px;
+}
+
+.caption-inner { max-width: 42ch; }
+
+.caption-rule {
+  width: 34px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+  margin-bottom: 22px;
+}
+
+.caption-text {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(17px, 1.6vw, 21px);
+  line-height: 1.9;
+  color: var(--body);
+}
+
+/* ---------- Gutter — hand-stitched seam ---------- */
+
+.gutter {
+  flex: 0 0 20px;
+  align-self: stretch;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.gutter svg { display: block; }
+
+/* ---------- Closing spread ---------- */
+
+.closing-spread {
+  background: var(--black);
+  padding: 160px 6vw 130px;
+  text-align: center;
+}
+
+.closing-line {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(24px, 3.4vw, 38px);
+  line-height: 1.5;
+  color: var(--cream);
+  max-width: 720px;
+  margin: 0 auto 44px;
+}
+
+.closing-contact {
+  display: inline-block;
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--gold-dim);
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.closing-contact:hover { color: var(--cream); border-color: var(--gold); }
+
+.closing-wordmark {
+  display: block;
+  margin: 70px auto 0;
+  width: fit-content;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.closing-wordmark:hover { opacity: 1; }
+.closing-wordmark img { height: 30px; width: auto; margin: 0 auto; }
+
+/* ---------- Scroll reveal ---------- */
+
+.spread { opacity: 0; transform: translateY(28px); transition: opacity 1s ease, transform 1s ease; }
+.spread.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .spread { padding: 54px 0; }
+
+  .spread-row {
+    flex-direction: column;
+    padding: 0 6vw;
+    gap: 26px;
+  }
+
+  .spread-row.is-solo { padding: 0; gap: 0; }
+
+  .frame-small, .frame-medium, .frame-large {
+    flex-basis: auto;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    align-self: auto !important;
+  }
+
+  .frame-full-bleed { aspect-ratio: 4 / 5; }
+
+  .frame-caption { flex-basis: auto; width: 100%; padding: 10px 4px; }
+
+  .gutter { display: none; }
+
+  .opening-wordmark img { height: 34px; }
+
+  .closing-spread { padding: 110px 6vw 90px; }
+}
+
+@media (max-width: 480px) {
+  .frame-full-bleed { aspect-ratio: 1 / 1; }
+}
+</style>
+</head>
+<body>
+
+<main id="collection-root">
+  <!-- Opening spread, content spreads render here from the Sheet -->
+</main>
+
+<section class="closing-spread" id="closing-spread">
+  <p class="closing-line">Thank you for taking a moment with our work &mdash; we'd love to bring the same care to yours.</p>
+  <a class="closing-contact" href="/contact-us-floral-arrangements.html">Get in Touch</a>
+  <a class="closing-wordmark" href="/" aria-label="Modern LUXE Flowers home">
+    <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/A85ZREzgQ7sraPkX/rev_1_white-AE0pZjGL43IaRQEr.png" alt="Modern LUXE Flowers">
+  </a>
+</section>
+
+<script>
+(function () {
+  var CSV_URL = 'https://docs.google.com/spreadsheets/d/1abSLqMs2RRdzu_F96TFCjiVbhBI1evOXRPTPH7-t2lE/export?format=csv&gid=0';
+  var WORDMARK = 'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/A85ZREzgQ7sraPkX/rev_1_white-AE0pZjGL43IaRQEr.png';
+  var root = document.getElementById('collection-root');
+  var svgNS = 'http://www.w3.org/2000/svg';
+
+  function normalizeSize(raw) {
+    var v = (raw || '').toString().trim().toLowerCase().replace(/\s+/g, '-');
+    if (v === 'full-bleed' || v === 'fullbleed' || v === 'full') return 'full-bleed';
+    if (v === 'small' || v === 'medium' || v === 'large') return v;
+    return 'medium';
+  }
+
+  function isActive(raw) {
+    var v = (raw || '').toString().trim().toUpperCase();
+    return v === 'TRUE' || v === '1' || v === 'YES' || v === 'Y';
+  }
+
+  function parseRows(csvText) {
+    var parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
+    var rows = (parsed.data || []).filter(function (row) {
+      return isActive(row['Active']) && (row['Image URL'] || '').toString().trim();
+    });
+    rows.forEach(function (row) {
+      var order = parseFloat(row['Order']);
+      row.__order = isNaN(order) ? Infinity : order;
+    });
+    rows.sort(function (a, b) { return a.__order - b.__order; });
+    return rows;
+  }
+
+  function groupContentRows(rows) {
+    var order = [];
+    var map = {};
+    rows.forEach(function (row) {
+      var key = (row['Spread Group'] || '').toString().trim() || ('__solo_' + row.__order);
+      if (!map[key]) { map[key] = []; order.push(key); }
+      map[key].push(row);
+    });
+    return order.map(function (key) { return map[key]; });
+  }
+
+  function rowsToItems(rows) {
+    var items = [];
+    rows.forEach(function (row) {
+      var url = (row['Image URL'] || '').toString().trim();
+      if (url) {
+        items.push({
+          type: 'image',
+          size: normalizeSize(row['Frame Size']),
+          url: url,
+          alt: (row['Caption'] || 'Modern LUXE Flowers').toString().trim()
+        });
+      }
+      var caption = (row['Caption'] || '').toString().trim();
+      if (caption) {
+        items.push({ type: 'caption', size: 'caption', text: caption });
+      }
+    });
+    return items;
+  }
+
+  function splitIntoLines(items) {
+    var lines = [];
+    var current = [];
+    items.forEach(function (item) {
+      if (item.size === 'full-bleed') {
+        if (current.length) { lines.push(current); current = []; }
+        lines.push([item]);
+      } else {
+        current.push(item);
+      }
+    });
+    if (current.length) lines.push(current);
+    return lines;
+  }
+
+  function buildFrame(item, index) {
+    var frame = document.createElement('div');
+    frame.className = 'frame frame-' + item.size + ' ' + (index % 2 === 0 ? 'stagger-a' : 'stagger-b');
+
+    if (item.type === 'caption') {
+      var inner = document.createElement('div');
+      inner.className = 'caption-inner';
+      var rule = document.createElement('div');
+      rule.className = 'caption-rule';
+      var p = document.createElement('p');
+      p.className = 'caption-text';
+      p.textContent = item.text;
+      inner.appendChild(rule);
+      inner.appendChild(p);
+      frame.appendChild(inner);
+    } else {
+      var img = document.createElement('img');
+      img.loading = 'lazy';
+      img.alt = item.alt;
+      img.src = item.url;
+      img.addEventListener('load', function () { img.classList.add('is-loaded'); });
+      frame.appendChild(img);
+    }
+    return frame;
+  }
+
+  function buildGutterSVG(height) {
+    var h = Math.max(80, Math.round(height));
+    var w = 16;
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    svg.setAttribute('width', w);
+    svg.setAttribute('height', h);
+    svg.setAttribute('aria-hidden', 'true');
+
+    function addLine(x1, y1, x2, y2, opacity, strokeWidth) {
+      var line = document.createElementNS(svgNS, 'line');
+      line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+      line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+      line.setAttribute('stroke', '#c9a96e');
+      line.setAttribute('stroke-opacity', opacity);
+      line.setAttribute('stroke-width', strokeWidth);
+      line.setAttribute('stroke-linecap', 'round');
+      svg.appendChild(line);
+    }
+
+    addLine(w * 0.28, 6, w * 0.72, 14, 0.55, 1.1);
+    addLine(w * 0.72, 6, w * 0.28, 14, 0.55, 1.1);
+
+    var y = 24;
+    while (y < h - 24) {
+      var jitter = (Math.random() - 0.5) * 10;
+      var len = 7 + Math.random() * 4;
+      var rot = (Math.random() - 0.5) * 24;
+      var cx = w / 2, cy = y + jitter;
+      var rad = rot * Math.PI / 180;
+      var dx = Math.sin(rad) * (len / 2);
+      var dy = Math.cos(rad) * (len / 2);
+      addLine(cx - dx, cy - dy, cx + dx, cy + dy, 0.26 + Math.random() * 0.22, 1);
+      y += 20 + Math.random() * 12;
+    }
+
+    addLine(w * 0.28, h - 14, w * 0.72, h - 6, 0.55, 1.1);
+    addLine(w * 0.72, h - 14, w * 0.28, h - 6, 0.55, 1.1);
+
+    return svg;
+  }
+
+  var gutterRows = [];
+
+  function buildLine(items) {
+    var row = document.createElement('div');
+    row.className = 'spread-row' + (items.length === 1 ? ' is-solo' : '');
+    items.forEach(function (item, i) {
+      row.appendChild(buildFrame(item, i));
+      if (i < items.length - 1) {
+        var gutter = document.createElement('div');
+        gutter.className = 'gutter';
+        row.appendChild(gutter);
+      }
+    });
+    if (items.length > 1) gutterRows.push(row);
+    return row;
+  }
+
+  function buildContentSpread(groupRows) {
+    var items = rowsToItems(groupRows);
+    if (!items.length) return null;
+    var lines = splitIntoLines(items);
+    var section = document.createElement('section');
+    section.className = 'spread';
+    lines.forEach(function (line) { section.appendChild(buildLine(line)); });
+    return section;
+  }
+
+  function buildOpening(heroRow) {
+    var section = document.createElement('section');
+    var wordmarkLink = document.createElement('a');
+    wordmarkLink.className = 'opening-wordmark';
+    wordmarkLink.href = '/';
+    wordmarkLink.setAttribute('aria-label', 'Modern LUXE Flowers home');
+    var wordmarkImg = document.createElement('img');
+    wordmarkImg.src = WORDMARK;
+    wordmarkImg.alt = 'Modern LUXE Flowers';
+    wordmarkLink.appendChild(wordmarkImg);
+
+    if (heroRow) {
+      section.className = 'opening-spread';
+      var img = document.createElement('img');
+      img.src = heroRow.url;
+      img.alt = heroRow.alt || 'Modern LUXE Flowers';
+      img.addEventListener('load', function () { img.classList.add('is-loaded'); });
+      var scrim = document.createElement('div');
+      scrim.className = 'opening-scrim';
+      section.appendChild(img);
+      section.appendChild(scrim);
+      section.appendChild(wordmarkLink);
+    } else {
+      section.className = 'opening-spread is-empty';
+      section.appendChild(wordmarkLink);
+    }
+    return section;
+  }
+
+  function refreshGutters() {
+    gutterRows.forEach(function (row) {
+      var h = row.getBoundingClientRect().height;
+      var gutters = row.querySelectorAll('.gutter');
+      gutters.forEach(function (g) {
+        g.innerHTML = '';
+        g.appendChild(buildGutterSVG(h));
+      });
+    });
+  }
+
+  function initScrollReveal() {
+    var spreads = document.querySelectorAll('.spread');
+    if (!('IntersectionObserver' in window)) {
+      spreads.forEach(function (s) { s.classList.add('is-visible'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    spreads.forEach(function (s) { observer.observe(s); });
+  }
+
+  function render(rows) {
+    var hero = rows.length ? { url: rows[0]['Image URL'].toString().trim(), alt: (rows[0]['Caption'] || '').toString().trim() } : null;
+    var rest = rows.slice(1);
+    var groups = groupContentRows(rest);
+
+    root.appendChild(buildOpening(hero));
+
+    groups.forEach(function (groupRows) {
+      var spread = buildContentSpread(groupRows);
+      if (spread) root.appendChild(spread);
+    });
+
+    requestAnimationFrame(function () {
+      refreshGutters();
+      initScrollReveal();
+    });
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(refreshGutters, 150);
+    });
+  }
+
+  fetch(CSV_URL)
+    .then(function (res) {
+      if (!res.ok) throw new Error('CSV fetch failed: ' + res.status);
+      return res.text();
+    })
+    .then(function (csvText) {
+      var rows = parseRows(csvText);
+      render(rows);
+    })
+    .catch(function (err) {
+      console.error('The Collection: could not load content sheet.', err);
+      render([]);
+    });
+})();
+</script>
+
+</body>
+</html>
