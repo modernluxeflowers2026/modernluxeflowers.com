@@ -83,9 +83,8 @@ a { color: inherit; }
 }
 
 .mosaic {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 4px;
 }
 
@@ -98,6 +97,7 @@ a { color: inherit; }
 
 .mosaic-seams .seam {
   position: absolute;
+  top: 0;
   width: 16px;
   transform: translateX(-50%);
 }
@@ -107,8 +107,7 @@ a { color: inherit; }
   overflow: hidden;
   background: var(--surface);
   cursor: zoom-in;
-  flex-grow: 1;
-  flex-shrink: 0;
+  aspect-ratio: 3 / 4;
 }
 
 .tile img {
@@ -131,11 +130,6 @@ a { color: inherit; }
   transform: scale(1.04);
   filter: brightness(1) saturate(1.05);
 }
-
-.tile-small      { flex-basis: 22%; aspect-ratio: 1 / 1; }
-.tile-medium     { flex-basis: 34%; aspect-ratio: 4 / 5; }
-.tile-large      { flex-basis: 48%; aspect-ratio: 3 / 4; }
-.tile-full-bleed { flex-basis: 100%; aspect-ratio: 21 / 9; }
 
 .mosaic-empty {
   text-align: center;
@@ -271,26 +265,19 @@ a { color: inherit; }
 /* ---------- Responsive ---------- */
 
 @media (max-width: 1024px) {
-  .tile-small  { flex-basis: 30%; }
-  .tile-medium { flex-basis: 47%; }
-  .tile-large  { flex-basis: 64%; }
   .page-header { padding: 72px 6vw 52px; }
   .cta-band { padding: 76px 6vw; }
 }
 
 @media (max-width: 768px) {
-  .tile-small, .tile-medium { flex-basis: 47%; }
-  .tile-large { flex-basis: 100%; aspect-ratio: 4 / 5; }
+  .mosaic { grid-template-columns: 1fr; }
+  .tile { aspect-ratio: 3 / 4; }
   .page-header { padding: 60px 6vw 44px; }
   .header-wordmark img { height: 36px; }
   .cta-band { padding: 66px 6vw; }
 }
 
 @media (max-width: 480px) {
-  .tile-small, .tile-medium, .tile-large, .tile-full-bleed {
-    flex-basis: 100%;
-    aspect-ratio: 4 / 5;
-  }
   .page-header { padding: 52px 7vw 38px; }
   .header-line { font-size: 17px; }
   .cta-band { padding: 56px 7vw; }
@@ -345,13 +332,6 @@ a { color: inherit; }
   var grid = document.getElementById('mosaicGrid');
   var seamsLayer = document.getElementById('mosaicSeams');
 
-  function normalizeSize(raw) {
-    var v = (raw || '').toString().trim().toLowerCase().replace(/\s+/g, '-');
-    if (v === 'full-bleed' || v === 'fullbleed' || v === 'full') return 'full-bleed';
-    if (v === 'small' || v === 'medium' || v === 'large') return v;
-    return 'medium';
-  }
-
   function isActive(raw) {
     var v = (raw || '').toString().trim().toUpperCase();
     return v === 'TRUE' || v === '1' || v === 'YES' || v === 'Y';
@@ -379,9 +359,8 @@ a { color: inherit; }
   }
 
   function buildTile(row, index) {
-    var size = normalizeSize(row['Frame Size']);
     var tile = document.createElement('div');
-    tile.className = 'tile tile-' + size;
+    tile.className = 'tile';
 
     var img = document.createElement('img');
     img.loading = index < 6 ? 'eager' : 'lazy';
@@ -395,22 +374,18 @@ a { color: inherit; }
     return tile;
   }
 
-  function computeRows() {
-    var tiles = Array.from(grid.querySelectorAll('.tile'));
-    var rows = [];
-    var current = [];
-    var currentTop = null;
-    tiles.forEach(function (tile) {
-      var top = Math.round(tile.getBoundingClientRect().top);
-      if (currentTop !== null && Math.abs(top - currentTop) > 2) {
-        rows.push(current);
-        current = [];
-      }
-      current.push(tile);
-      currentTop = top;
-    });
-    if (current.length) rows.push(current);
-    return rows;
+  function computeColumnLines() {
+    var style = getComputedStyle(grid);
+    var cols = style.gridTemplateColumns.split(' ').map(parseFloat).filter(function (n) { return !isNaN(n); });
+    var gap = parseFloat(style.columnGap) || 0;
+    var lines = [];
+    var x = 0;
+    for (var i = 0; i < cols.length - 1; i++) {
+      x += cols[i];
+      lines.push(x + gap / 2);
+      x += gap;
+    }
+    return lines;
   }
 
   function buildGutterSVG(height) {
@@ -465,28 +440,15 @@ a { color: inherit; }
 
   function refreshSeams() {
     seamsLayer.innerHTML = '';
-    var wrap = document.querySelector('.mosaic-wrap');
-    var wrapRect = wrap.getBoundingClientRect();
-    var rows = computeRows();
-
-    rows.forEach(function (row) {
-      if (row.length < 2) return;
-      var sorted = row.slice().sort(function (a, b) {
-        return a.getBoundingClientRect().left - b.getBoundingClientRect().left;
-      });
-      for (var i = 0; i < sorted.length - 1; i++) {
-        var rectA = sorted[i].getBoundingClientRect();
-        var rectB = sorted[i + 1].getBoundingClientRect();
-        var x = ((rectA.right + rectB.left) / 2) - wrapRect.left;
-        var top = Math.min(rectA.top, rectB.top) - wrapRect.top;
-        var height = Math.min(rectA.height, rectB.height);
-        var seam = document.createElement('div');
-        seam.className = 'seam';
-        seam.style.left = x + 'px';
-        seam.style.top = top + 'px';
-        seam.appendChild(buildGutterSVG(height));
-        seamsLayer.appendChild(seam);
-      }
+    var gridHeight = grid.getBoundingClientRect().height;
+    if (!gridHeight) return;
+    var lines = computeColumnLines();
+    lines.forEach(function (x) {
+      var seam = document.createElement('div');
+      seam.className = 'seam';
+      seam.style.left = x + 'px';
+      seam.appendChild(buildGutterSVG(gridHeight));
+      seamsLayer.appendChild(seam);
     });
   }
 
