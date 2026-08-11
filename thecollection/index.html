@@ -75,17 +75,11 @@ a { color: inherit; }
   margin: 0 auto;
 }
 
-/* ---------- Mosaic grid ---------- */
+/* ---------- Shared tile treatment (from Luxe Love / Petals & Stems .cell) ---------- */
 
-.mosaic-wrap {
+.collection-wrap {
   position: relative;
   padding: 0 4px;
-}
-
-.mosaic {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
 }
 
 .tile {
@@ -93,7 +87,6 @@ a { color: inherit; }
   overflow: hidden;
   background: var(--surface);
   cursor: zoom-in;
-  aspect-ratio: 3 / 4;
 }
 
 .tile img {
@@ -116,6 +109,70 @@ a { color: inherit; }
   transform: scale(1.04);
   filter: brightness(1) saturate(1.05);
 }
+
+/* ---------- Batch wrapper + seam overlay ---------- */
+
+.batch { position: relative; }
+
+.batch-seams {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gallery-sep {
+  height: 1px;
+  background: var(--border);
+  margin: 40px 0;
+}
+
+/* ---------- Fixed composition A (Luxe Love: hero + split bento + wide-break + bottom-3) ---------- */
+/* ---------- Fixed composition B (Petals & Stems: hero + quad bento + bottom-3) ---------- */
+
+.mosaic-main {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 4px;
+}
+
+.mosaic-hero { height: 700px; }
+
+.mosaic-bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  height: 700px;
+}
+
+.mosaic-bento.bento-split { grid-template-rows: 280px 1fr; }
+.mosaic-bento.bento-quad  { grid-template-rows: 1fr 1fr; }
+
+.bento-wide { grid-column: span 2; }
+
+.mosaic-wide-break {
+  height: 360px;
+  margin-top: 4px;
+}
+
+.mosaic-bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.mosaic-bottom .tile { aspect-ratio: 3 / 4; }
+
+/* ---------- Fallback grid for a trailing partial batch (Petals & Stems .mosaic-bottom pattern) ---------- */
+
+.fallback-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.fallback-grid .tile { aspect-ratio: 3 / 4; }
 
 .mosaic-empty {
   text-align: center;
@@ -251,13 +308,37 @@ a { color: inherit; }
 /* ---------- Responsive ---------- */
 
 @media (max-width: 1024px) {
+  .mosaic-hero { height: 580px; }
+  .mosaic-bento { height: 580px; }
+  .mosaic-bento.bento-split { grid-template-rows: 240px 1fr; }
+  .mosaic-wide-break { height: 300px; }
   .page-header { padding: 72px 6vw 52px; }
   .cta-band { padding: 76px 6vw; }
 }
 
 @media (max-width: 768px) {
-  .mosaic { grid-template-columns: 1fr; }
-  .tile { aspect-ratio: 3 / 4; }
+  .mosaic-main { grid-template-columns: 1fr; }
+  .mosaic-hero { height: 480px; }
+
+  .mosaic-bento.bento-split {
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .bento-split .bento-wide { height: 280px; }
+  .bento-split .tile:not(.bento-wide) { height: 400px; }
+
+  .mosaic-bento.bento-quad {
+    height: auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .bento-quad .tile { height: 320px; }
+
+  .mosaic-wide-break { height: 260px; }
+  .mosaic-bottom { grid-template-columns: 1fr; }
+  .fallback-grid { grid-template-columns: 1fr; }
+
   .page-header { padding: 60px 6vw 44px; }
   .header-wordmark img { height: 36px; }
   .cta-band { padding: 66px 6vw; }
@@ -283,10 +364,8 @@ a { color: inherit; }
   <p class="header-line">A closer look at recent work — corporate installations, weddings, and gifting, from concept to bloom.</p>
 </header>
 
-<!-- MOSAIC GRID -->
-<div class="mosaic-wrap">
-  <div class="mosaic" id="mosaicGrid"></div>
-</div>
+<!-- COLLECTION BATCHES -->
+<div class="collection-wrap" id="collectionRoot"></div>
 
 <!-- CLOSING CTA -->
 <section class="cta-band">
@@ -313,7 +392,9 @@ a { color: inherit; }
 <script>
 (function () {
   var CSV_URL = 'https://docs.google.com/spreadsheets/d/1abSLqMs2RRdzu_F96TFCjiVbhBI1evOXRPTPH7-t2lE/export?format=csv&gid=0';
-  var grid = document.getElementById('mosaicGrid');
+  var BATCH_SIZE = 8;
+  var svgNS = 'http://www.w3.org/2000/svg';
+  var root = document.getElementById('collectionRoot');
 
   function isActive(raw) {
     var v = (raw || '').toString().trim().toUpperCase();
@@ -341,20 +422,230 @@ a { color: inherit; }
     return rows;
   }
 
-  function buildTile(row, index) {
+  function chunk(rows, size) {
+    var out = [];
+    for (var i = 0; i < rows.length; i += size) out.push(rows.slice(i, i + size));
+    return out;
+  }
+
+  function buildTileEl(row, globalIndex, extraClass) {
     var tile = document.createElement('div');
-    tile.className = 'tile';
+    tile.className = 'tile' + (extraClass ? ' ' + extraClass : '');
 
     var img = document.createElement('img');
-    img.loading = index < 6 ? 'eager' : 'lazy';
+    img.loading = globalIndex < 6 ? 'eager' : 'lazy';
     img.draggable = false;
     img.alt = 'Modern LUXE Flowers';
-    img.src = cloudinaryUrl(row['Image URL'].toString().trim(), 900);
-    img.dataset.full = cloudinaryUrl(row['Image URL'].toString().trim(), 1800);
+    var url = row['Image URL'].toString().trim();
+    img.src = cloudinaryUrl(url, 900);
+    img.dataset.full = cloudinaryUrl(url, 1800);
     img.addEventListener('load', function () { img.classList.add('is-loaded'); });
 
     tile.appendChild(img);
     return tile;
+  }
+
+  function withSeams(batch) {
+    var seams = document.createElement('div');
+    seams.className = 'batch-seams';
+    batch.appendChild(seams);
+    return { el: batch, seamsLayer: seams };
+  }
+
+  // Composition A — Luxe Love: hero | bento(wide-top + mid-left + mid-right) / wide-break / bottom x3
+  function buildCompositionA(rows, offset) {
+    var batch = document.createElement('div');
+    batch.className = 'batch';
+
+    var main = document.createElement('div');
+    main.className = 'mosaic-main';
+    main.appendChild(buildTileEl(rows[0], offset + 0, 'mosaic-hero'));
+
+    var bento = document.createElement('div');
+    bento.className = 'mosaic-bento bento-split';
+    bento.appendChild(buildTileEl(rows[1], offset + 1, 'bento-wide'));
+    bento.appendChild(buildTileEl(rows[2], offset + 2));
+    bento.appendChild(buildTileEl(rows[3], offset + 3));
+    main.appendChild(bento);
+    batch.appendChild(main);
+
+    batch.appendChild(buildTileEl(rows[4], offset + 4, 'mosaic-wide-break'));
+
+    var bottom = document.createElement('div');
+    bottom.className = 'mosaic-bottom';
+    bottom.appendChild(buildTileEl(rows[5], offset + 5));
+    bottom.appendChild(buildTileEl(rows[6], offset + 6));
+    bottom.appendChild(buildTileEl(rows[7], offset + 7));
+    batch.appendChild(bottom);
+
+    return withSeams(batch);
+  }
+
+  // Composition B — Petals & Stems: hero | bento(2x2 quad) / bottom x3 (no wide-break)
+  function buildCompositionB(rows, offset) {
+    var batch = document.createElement('div');
+    batch.className = 'batch';
+
+    var main = document.createElement('div');
+    main.className = 'mosaic-main';
+    main.appendChild(buildTileEl(rows[0], offset + 0, 'mosaic-hero'));
+
+    var bento = document.createElement('div');
+    bento.className = 'mosaic-bento bento-quad';
+    bento.appendChild(buildTileEl(rows[1], offset + 1));
+    bento.appendChild(buildTileEl(rows[2], offset + 2));
+    bento.appendChild(buildTileEl(rows[3], offset + 3));
+    bento.appendChild(buildTileEl(rows[4], offset + 4));
+    main.appendChild(bento);
+    batch.appendChild(main);
+
+    var bottom = document.createElement('div');
+    bottom.className = 'mosaic-bottom';
+    bottom.appendChild(buildTileEl(rows[5], offset + 5));
+    bottom.appendChild(buildTileEl(rows[6], offset + 6));
+    bottom.appendChild(buildTileEl(rows[7], offset + 7));
+    batch.appendChild(bottom);
+
+    return withSeams(batch);
+  }
+
+  // Trailing partial batch — uniform 3-column fallback grid
+  function buildFallbackGrid(rows, offset) {
+    var batch = document.createElement('div');
+    batch.className = 'batch';
+
+    var grid = document.createElement('div');
+    grid.className = 'fallback-grid';
+    rows.forEach(function (row, i) { grid.appendChild(buildTileEl(row, offset + i)); });
+    batch.appendChild(grid);
+
+    return withSeams(batch);
+  }
+
+  function buildGutterSVG(length, orientation) {
+    var vertical = orientation !== 'h';
+    var len = Math.max(40, Math.round(length));
+    var thickness = 16;
+    var w = vertical ? thickness : len;
+    var h = vertical ? len : thickness;
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    svg.setAttribute('width', w);
+    svg.setAttribute('height', h);
+    svg.setAttribute('aria-hidden', 'true');
+
+    function addLine(x1, y1, x2, y2, opacity, strokeWidth) {
+      var line = document.createElementNS(svgNS, 'line');
+      line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+      line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+      line.setAttribute('stroke', '#c9a96e');
+      line.setAttribute('stroke-opacity', opacity);
+      line.setAttribute('stroke-width', strokeWidth);
+      line.setAttribute('stroke-linecap', 'round');
+      svg.appendChild(line);
+    }
+
+    function addKnot(cx, cy) {
+      var circle = document.createElementNS(svgNS, 'circle');
+      circle.setAttribute('cx', cx);
+      circle.setAttribute('cy', cy);
+      circle.setAttribute('r', 1.6);
+      circle.setAttribute('fill', '#c9a96e');
+      circle.setAttribute('fill-opacity', 0.55);
+      svg.appendChild(circle);
+    }
+
+    function addTick(pos) {
+      var jitter = (Math.random() - 0.5) * 10;
+      var tlen = 7 + Math.random() * 4;
+      var rot = (Math.random() - 0.5) * 24;
+      var mid = thickness / 2;
+      var alongPos = pos + jitter;
+      var rad = rot * Math.PI / 180;
+      var opacity = 0.22 + Math.random() * 0.18;
+      if (vertical) {
+        var dx = Math.sin(rad) * (tlen / 2), dy = Math.cos(rad) * (tlen / 2);
+        addLine(mid - dx, alongPos - dy, mid + dx, alongPos + dy, opacity, 1);
+      } else {
+        var dx2 = Math.cos(rad) * (tlen / 2), dy2 = Math.sin(rad) * (tlen / 2);
+        addLine(alongPos - dx2, mid - dy2, alongPos + dx2, mid + dy2, opacity, 1);
+      }
+    }
+
+    addKnot(vertical ? w / 2 : 10, vertical ? 10 : h / 2);
+
+    var pos = 24;
+    while (pos < len - 24) {
+      addTick(pos);
+      pos += 20 + Math.random() * 12;
+    }
+
+    addKnot(vertical ? w / 2 : len - 10, vertical ? len - 10 : h / 2);
+
+    return svg;
+  }
+
+  // Generalized adjacency detection: works for any composition (A, B, or the
+  // fallback grid) without hardcoding per-layout seam positions — any two
+  // tiles that share a touching edge (within the 4px grid gap) get a seam.
+  function computeAdjacentSeams(cells) {
+    var TOL = 6;
+    var seams = [];
+    for (var i = 0; i < cells.length; i++) {
+      var a = cells[i].getBoundingClientRect();
+      for (var j = i + 1; j < cells.length; j++) {
+        var b = cells[j].getBoundingClientRect();
+
+        var overlapY = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+        if (overlapY > 8) {
+          if (Math.abs(a.right - b.left) < TOL) {
+            seams.push({ type: 'v', x: (a.right + b.left) / 2, top: Math.max(a.top, b.top), bottom: Math.min(a.bottom, b.bottom) });
+          } else if (Math.abs(b.right - a.left) < TOL) {
+            seams.push({ type: 'v', x: (b.right + a.left) / 2, top: Math.max(a.top, b.top), bottom: Math.min(a.bottom, b.bottom) });
+          }
+        }
+
+        var overlapX = Math.min(a.right, b.right) - Math.max(a.left, b.left);
+        if (overlapX > 8) {
+          if (Math.abs(a.bottom - b.top) < TOL) {
+            seams.push({ type: 'h', y: (a.bottom + b.top) / 2, left: Math.max(a.left, b.left), right: Math.min(a.right, b.right) });
+          } else if (Math.abs(b.bottom - a.top) < TOL) {
+            seams.push({ type: 'h', y: (b.bottom + a.top) / 2, left: Math.max(a.left, b.left), right: Math.min(a.right, b.right) });
+          }
+        }
+      }
+    }
+    return seams;
+  }
+
+  function refreshBatchSeams(batchEl, seamsLayer) {
+    seamsLayer.innerHTML = '';
+    var wrapRect = batchEl.getBoundingClientRect();
+    var cells = Array.from(batchEl.querySelectorAll('.tile'));
+    var seams = computeAdjacentSeams(cells);
+
+    seams.forEach(function (s) {
+      var el = document.createElement('div');
+      el.style.position = 'absolute';
+      if (s.type === 'v') {
+        var len = s.bottom - s.top;
+        el.style.left = (s.x - wrapRect.left) + 'px';
+        el.style.top = (s.top - wrapRect.top) + 'px';
+        el.style.width = '16px';
+        el.style.height = len + 'px';
+        el.style.transform = 'translateX(-50%)';
+        el.appendChild(buildGutterSVG(len, 'v'));
+      } else {
+        var len2 = s.right - s.left;
+        el.style.left = (s.left - wrapRect.left) + 'px';
+        el.style.top = (s.y - wrapRect.top) + 'px';
+        el.style.width = len2 + 'px';
+        el.style.height = '16px';
+        el.style.transform = 'translateY(-50%)';
+        el.appendChild(buildGutterSVG(len2, 'h'));
+      }
+      seamsLayer.appendChild(el);
+    });
   }
 
   function render(rows) {
@@ -362,13 +653,34 @@ a { color: inherit; }
       var empty = document.createElement('p');
       empty.className = 'mosaic-empty';
       empty.textContent = 'New work is on its way.';
-      grid.parentNode.insertBefore(empty, grid.nextSibling);
+      root.appendChild(empty);
       return;
     }
 
-    rows.forEach(function (row, i) { grid.appendChild(buildTile(row, i)); });
+    var batches = chunk(rows, BATCH_SIZE);
+    var built = [];
+    var compIndex = 0;
+    var offset = 0;
 
-    var lbImgs = Array.from(grid.querySelectorAll('.tile img'));
+    batches.forEach(function (batchRows) {
+      var entry;
+      if (batchRows.length === BATCH_SIZE) {
+        entry = (compIndex % 2 === 0) ? buildCompositionA(batchRows, offset) : buildCompositionB(batchRows, offset);
+        compIndex++;
+      } else {
+        entry = buildFallbackGrid(batchRows, offset);
+      }
+      if (root.children.length > 0) {
+        var sep = document.createElement('div');
+        sep.className = 'gallery-sep';
+        root.appendChild(sep);
+      }
+      root.appendChild(entry.el);
+      built.push(entry);
+      offset += batchRows.length;
+    });
+
+    var lbImgs = Array.from(root.querySelectorAll('.tile img'));
 
     var lb = document.getElementById('lightbox');
     var lbImg = lb.querySelector('.lb-img');
@@ -397,7 +709,7 @@ a { color: inherit; }
       document.body.style.overflow = '';
     }
 
-    grid.querySelectorAll('.tile').forEach(function (el) {
+    root.querySelectorAll('.tile').forEach(function (el) {
       el.addEventListener('click', function () {
         var img = el.querySelector('img');
         if (!img) return;
@@ -424,8 +736,20 @@ a { color: inherit; }
     });
 
     document.addEventListener('contextmenu', function (e) {
-      if (e.target.closest('.mosaic') || e.target.closest('#lightbox')) e.preventDefault();
+      if (e.target.closest('.collection-wrap') || e.target.closest('#lightbox')) e.preventDefault();
     });
+
+    function refreshAllSeams() {
+      built.forEach(function (entry) { refreshBatchSeams(entry.el, entry.seamsLayer); });
+    }
+
+    requestAnimationFrame(refreshAllSeams);
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(refreshAllSeams, 150);
+    });
+    window.addEventListener('load', refreshAllSeams);
   }
 
   fetch(CSV_URL)
