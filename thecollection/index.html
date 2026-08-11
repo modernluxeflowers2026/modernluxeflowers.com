@@ -110,17 +110,6 @@ a { color: inherit; }
   filter: brightness(1) saturate(1.05);
 }
 
-/* ---------- Batch wrapper + seam overlay ---------- */
-
-.batch { position: relative; }
-
-.batch-seams {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
 .gallery-sep {
   height: 1px;
   background: var(--border);
@@ -393,7 +382,6 @@ a { color: inherit; }
 (function () {
   var CSV_URL = 'https://docs.google.com/spreadsheets/d/1abSLqMs2RRdzu_F96TFCjiVbhBI1evOXRPTPH7-t2lE/export?format=csv&gid=0';
   var BATCH_SIZE = 8;
-  var svgNS = 'http://www.w3.org/2000/svg';
   var root = document.getElementById('collectionRoot');
 
   function isActive(raw) {
@@ -445,13 +433,6 @@ a { color: inherit; }
     return tile;
   }
 
-  function withSeams(batch) {
-    var seams = document.createElement('div');
-    seams.className = 'batch-seams';
-    batch.appendChild(seams);
-    return { el: batch, seamsLayer: seams };
-  }
-
   // Composition A — Luxe Love: hero | bento(wide-top + mid-left + mid-right) / wide-break / bottom x3
   function buildCompositionA(rows, offset) {
     var batch = document.createElement('div');
@@ -478,7 +459,7 @@ a { color: inherit; }
     bottom.appendChild(buildTileEl(rows[7], offset + 7));
     batch.appendChild(bottom);
 
-    return withSeams(batch);
+    return batch;
   }
 
   // Composition B — Petals & Stems: hero | bento(2x2 quad) / bottom x3 (no wide-break)
@@ -506,7 +487,7 @@ a { color: inherit; }
     bottom.appendChild(buildTileEl(rows[7], offset + 7));
     batch.appendChild(bottom);
 
-    return withSeams(batch);
+    return batch;
   }
 
   // Trailing partial batch — uniform 3-column fallback grid
@@ -519,133 +500,7 @@ a { color: inherit; }
     rows.forEach(function (row, i) { grid.appendChild(buildTileEl(row, offset + i)); });
     batch.appendChild(grid);
 
-    return withSeams(batch);
-  }
-
-  function buildGutterSVG(length, orientation) {
-    var vertical = orientation !== 'h';
-    var len = Math.max(40, Math.round(length));
-    var thickness = 16;
-    var w = vertical ? thickness : len;
-    var h = vertical ? len : thickness;
-    var svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
-    svg.setAttribute('width', w);
-    svg.setAttribute('height', h);
-    svg.setAttribute('aria-hidden', 'true');
-
-    function addLine(x1, y1, x2, y2, opacity, strokeWidth) {
-      var line = document.createElementNS(svgNS, 'line');
-      line.setAttribute('x1', x1); line.setAttribute('y1', y1);
-      line.setAttribute('x2', x2); line.setAttribute('y2', y2);
-      line.setAttribute('stroke', '#c9a96e');
-      line.setAttribute('stroke-opacity', opacity);
-      line.setAttribute('stroke-width', strokeWidth);
-      line.setAttribute('stroke-linecap', 'round');
-      svg.appendChild(line);
-    }
-
-    function addKnot(cx, cy) {
-      var circle = document.createElementNS(svgNS, 'circle');
-      circle.setAttribute('cx', cx);
-      circle.setAttribute('cy', cy);
-      circle.setAttribute('r', 1.6);
-      circle.setAttribute('fill', '#c9a96e');
-      circle.setAttribute('fill-opacity', 0.55);
-      svg.appendChild(circle);
-    }
-
-    function addTick(pos) {
-      var jitter = (Math.random() - 0.5) * 10;
-      var tlen = 7 + Math.random() * 4;
-      var rot = (Math.random() - 0.5) * 24;
-      var mid = thickness / 2;
-      var alongPos = pos + jitter;
-      var rad = rot * Math.PI / 180;
-      var opacity = 0.22 + Math.random() * 0.18;
-      if (vertical) {
-        var dx = Math.sin(rad) * (tlen / 2), dy = Math.cos(rad) * (tlen / 2);
-        addLine(mid - dx, alongPos - dy, mid + dx, alongPos + dy, opacity, 1);
-      } else {
-        var dx2 = Math.cos(rad) * (tlen / 2), dy2 = Math.sin(rad) * (tlen / 2);
-        addLine(alongPos - dx2, mid - dy2, alongPos + dx2, mid + dy2, opacity, 1);
-      }
-    }
-
-    addKnot(vertical ? w / 2 : 10, vertical ? 10 : h / 2);
-
-    var pos = 24;
-    while (pos < len - 24) {
-      addTick(pos);
-      pos += 20 + Math.random() * 12;
-    }
-
-    addKnot(vertical ? w / 2 : len - 10, vertical ? len - 10 : h / 2);
-
-    return svg;
-  }
-
-  // Generalized adjacency detection: works for any composition (A, B, or the
-  // fallback grid) without hardcoding per-layout seam positions — any two
-  // tiles that share a touching edge (within the 4px grid gap) get a seam.
-  function computeAdjacentSeams(cells) {
-    var TOL = 6;
-    var seams = [];
-    for (var i = 0; i < cells.length; i++) {
-      var a = cells[i].getBoundingClientRect();
-      for (var j = i + 1; j < cells.length; j++) {
-        var b = cells[j].getBoundingClientRect();
-
-        var overlapY = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
-        if (overlapY > 8) {
-          if (Math.abs(a.right - b.left) < TOL) {
-            seams.push({ type: 'v', x: (a.right + b.left) / 2, top: Math.max(a.top, b.top), bottom: Math.min(a.bottom, b.bottom) });
-          } else if (Math.abs(b.right - a.left) < TOL) {
-            seams.push({ type: 'v', x: (b.right + a.left) / 2, top: Math.max(a.top, b.top), bottom: Math.min(a.bottom, b.bottom) });
-          }
-        }
-
-        var overlapX = Math.min(a.right, b.right) - Math.max(a.left, b.left);
-        if (overlapX > 8) {
-          if (Math.abs(a.bottom - b.top) < TOL) {
-            seams.push({ type: 'h', y: (a.bottom + b.top) / 2, left: Math.max(a.left, b.left), right: Math.min(a.right, b.right) });
-          } else if (Math.abs(b.bottom - a.top) < TOL) {
-            seams.push({ type: 'h', y: (b.bottom + a.top) / 2, left: Math.max(a.left, b.left), right: Math.min(a.right, b.right) });
-          }
-        }
-      }
-    }
-    return seams;
-  }
-
-  function refreshBatchSeams(batchEl, seamsLayer) {
-    seamsLayer.innerHTML = '';
-    var wrapRect = batchEl.getBoundingClientRect();
-    var cells = Array.from(batchEl.querySelectorAll('.tile'));
-    var seams = computeAdjacentSeams(cells);
-
-    seams.forEach(function (s) {
-      var el = document.createElement('div');
-      el.style.position = 'absolute';
-      if (s.type === 'v') {
-        var len = s.bottom - s.top;
-        el.style.left = (s.x - wrapRect.left) + 'px';
-        el.style.top = (s.top - wrapRect.top) + 'px';
-        el.style.width = '16px';
-        el.style.height = len + 'px';
-        el.style.transform = 'translateX(-50%)';
-        el.appendChild(buildGutterSVG(len, 'v'));
-      } else {
-        var len2 = s.right - s.left;
-        el.style.left = (s.left - wrapRect.left) + 'px';
-        el.style.top = (s.y - wrapRect.top) + 'px';
-        el.style.width = len2 + 'px';
-        el.style.height = '16px';
-        el.style.transform = 'translateY(-50%)';
-        el.appendChild(buildGutterSVG(len2, 'h'));
-      }
-      seamsLayer.appendChild(el);
-    });
+    return batch;
   }
 
   function render(rows) {
@@ -658,25 +513,23 @@ a { color: inherit; }
     }
 
     var batches = chunk(rows, BATCH_SIZE);
-    var built = [];
     var compIndex = 0;
     var offset = 0;
 
     batches.forEach(function (batchRows) {
-      var entry;
+      var batchEl;
       if (batchRows.length === BATCH_SIZE) {
-        entry = (compIndex % 2 === 0) ? buildCompositionA(batchRows, offset) : buildCompositionB(batchRows, offset);
+        batchEl = (compIndex % 2 === 0) ? buildCompositionA(batchRows, offset) : buildCompositionB(batchRows, offset);
         compIndex++;
       } else {
-        entry = buildFallbackGrid(batchRows, offset);
+        batchEl = buildFallbackGrid(batchRows, offset);
       }
       if (root.children.length > 0) {
         var sep = document.createElement('div');
         sep.className = 'gallery-sep';
         root.appendChild(sep);
       }
-      root.appendChild(entry.el);
-      built.push(entry);
+      root.appendChild(batchEl);
       offset += batchRows.length;
     });
 
@@ -738,18 +591,6 @@ a { color: inherit; }
     document.addEventListener('contextmenu', function (e) {
       if (e.target.closest('.collection-wrap') || e.target.closest('#lightbox')) e.preventDefault();
     });
-
-    function refreshAllSeams() {
-      built.forEach(function (entry) { refreshBatchSeams(entry.el, entry.seamsLayer); });
-    }
-
-    requestAnimationFrame(refreshAllSeams);
-    var resizeTimer;
-    window.addEventListener('resize', function () {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(refreshAllSeams, 150);
-    });
-    window.addEventListener('load', refreshAllSeams);
   }
 
   fetch(CSV_URL)
