@@ -1,5 +1,30 @@
 # Lead Capture Setup — Google Sheet + Apps Script
 
+## Where things stand (as of Aug 14, 2026)
+
+**Setup is complete and live.** Steps 1–4 below are done — the script is deployed
+(Version 2) and the site points at it. All that's left is confirming it works.
+
+Pick up here:
+
+- [ ] **Submit the live form once through each button** (Send Inquiry, then Send via
+      WhatsApp) at modernluxeflowers.com/contact-us-floral-arrangements.html. See
+      *Step 5 — Verify end to end* below for what each should produce.
+- [ ] Delete the `Test Lead` row from the **MLF Contact Form Leads** Sheet.
+- [ ] Rename the Apps Script project from **Untitled project** to `MLF Lead Capture`
+      (cosmetic — makes it findable in Drive later).
+
+One loose end: opening the `/exec` URL in a browser once returned Google's
+"Sorry, unable to open the file at this time". That was before the Version 2
+redeploy and may already be fixed. If the form test produces no Sheet rows, that
+error is the cause — see *Troubleshooting* at the bottom for the fix (it's a
+deployment access setting; the URL does not change).
+
+A failed capture is silent by design: the form still works normally for visitors
+and only the backup no-ops. So the form test is the only way to know.
+
+---
+
 One-time setup, ~10 minutes. After this, every contact form submission (both buttons)
 lands in a Google Sheet and sends you an email, independently of Web3Forms.
 
