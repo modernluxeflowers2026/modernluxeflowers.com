@@ -2,26 +2,30 @@
 
 ## Where things stand (as of Aug 14, 2026)
 
-**Setup is complete and live.** Steps 1–4 below are done — the script is deployed
-(Version 2) and the site points at it. All that's left is confirming it works.
+**Setup is complete, live, and the email path is verified in production.**
+Steps 1–4 below are done: the script is deployed (Version 2) and the live site
+posts to it.
 
-Pick up here:
+**Email button — verified.** A real submission through modernluxeflowers.com
+produced all three records: a Sheet row with `Channel` = `email`, the Apps Script
+notification (`New Lead (email) - …`), and the existing Web3Forms email. This also
+confirmed the endpoint accepts anonymous POSTs, so the deployment access setting
+is correct.
 
-- [ ] **Submit the live form once through each button** (Send Inquiry, then Send via
-      WhatsApp) at modernluxeflowers.com/contact-us-floral-arrangements.html. See
-      *Step 5 — Verify end to end* below for what each should produce.
-- [ ] Delete the `Test Lead` row from the **MLF Contact Form Leads** Sheet.
+Remaining:
+
+- [ ] **Test the WhatsApp button** on the live form. Expect a Sheet row with
+      `Channel` = `whatsapp`, an Apps Script email `New Lead (whatsapp) - …`,
+      and WhatsApp opening as usual. No Web3Forms email on this path — that is
+      correct, it never sent one. This is the path that previously captured
+      nothing, so it is the one worth confirming.
 - [ ] Rename the Apps Script project from **Untitled project** to `MLF Lead Capture`
       (cosmetic — makes it findable in Drive later).
 
-One loose end: opening the `/exec` URL in a browser once returned Google's
-"Sorry, unable to open the file at this time". That was before the Version 2
-redeploy and may already be fixed. If the form test produces no Sheet rows, that
-error is the cause — see *Troubleshooting* at the bottom for the fix (it's a
-deployment access setting; the URL does not change).
-
-A failed capture is silent by design: the form still works normally for visitors
-and only the backup no-ops. So the form test is the only way to know.
+Known, not yet changed: the `Timestamp` column is UTC, written as a raw ISO string,
+so it reads ~5 hours ahead of Chicago time. Changing it to formatted local time is a
+one-line edit in `Code.gs`, but it requires re-pasting the file and redeploying —
+worth batching with any other script change.
 
 ---
 
