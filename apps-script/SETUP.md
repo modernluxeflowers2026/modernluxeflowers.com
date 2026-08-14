@@ -74,23 +74,15 @@ If the run fails, open **Executions** in the left sidebar to see the error.
 5. Sanity check: paste that URL into a browser tab. You should see
    `{"success":true,"status":"MLF lead capture is live"}`.
 
-## Step 4 — Paste the URL into the site
+## Step 4 — Paste the URL into the site (done)
 
-In `contact-us-floral-arrangements.html`, find this line in the `<script>` block near
-the bottom (search for `LEAD_CAPTURE_URL`):
+`LEAD_CAPTURE_URL` in `contact-us-floral-arrangements.html` already points at the
+deployed endpoint. Nothing to do unless you redeploy to a **new** deployment (a new
+*version* of the existing one keeps the same URL — see "Updating the script" below).
 
-```js
-const LEAD_CAPTURE_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
-```
-
-Replace the placeholder with the `/exec` URL from Step 3:
-
-```js
-const LEAD_CAPTURE_URL = 'https://script.google.com/macros/s/AKfy...long.../exec';
-```
-
-Commit and push to `main` to deploy. (Until this line is filled in, the site skips the
-Sheet write and logs a console warning — the form still works exactly as it does today.)
+If you ever do need to change it, it's the one line in the `<script>` block near the
+bottom of that file — search for `LEAD_CAPTURE_URL` — and it takes effect when the
+change is pushed to `main`.
 
 > Note: this URL is public in the page source. That's fine — the endpoint only ever
 > *appends* rows, it can't read anything back out, and the worst case is junk rows.

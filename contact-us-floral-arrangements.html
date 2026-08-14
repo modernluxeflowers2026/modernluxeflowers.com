@@ -1096,7 +1096,7 @@ footer {
   // Google Apps Script Web App: writes the lead to the "MLF Contact Form Leads"
   // Sheet and sends an independent notification email. Runs BEFORE the Web3Forms
   // / WhatsApp action on both paths. Paste your deployed /exec URL below.
-  const LEAD_CAPTURE_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+  const LEAD_CAPTURE_URL = 'https://script.google.com/macros/s/AKfycbzYihzS8PxPizc-i57dg9XjEO9KPAquxMIMvV6lCdNJYq8haeUUXh6dUzSqoLC9m9q_/exec';
 
   function captureLead(d, channel) {
     if (!LEAD_CAPTURE_URL || LEAD_CAPTURE_URL.indexOf('PASTE_') === 0) {
