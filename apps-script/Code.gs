@@ -15,7 +15,7 @@
 // (Apps Script editor → Project Settings → Script Properties) — that needs no
 // code edit and survives pasting a fresh copy of this file over the top.
 // The fallback below is only used when that property is absent.
-var NOTIFY_EMAIL_FALLBACK = '';                      // e.g. 'jo@modernluxeflowers.com'
+var NOTIFY_EMAIL_FALLBACK = 'modernluxeflowers@gmail.com';
 var SPREADSHEET_NAME = 'MLF Contact Form Leads';
 var SHEET_NAME       = 'Leads';
 var HEADERS = ['Timestamp', 'Name', 'Email', 'Event Date', 'Event Type',

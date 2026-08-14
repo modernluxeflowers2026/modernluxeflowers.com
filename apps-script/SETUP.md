@@ -26,22 +26,26 @@ form in the next step.
 4. Open `apps-script/Code.gs` from this repo, copy the whole file, paste it in.
 5. **Save** (⌘S / Ctrl+S).
 
-## Step 1b — Set the notification address
+## Step 1b — Notification address (already set)
 
-In the Apps Script editor sidebar → **Project Settings** (gear icon) → scroll to
-**Script Properties** → **Add script property**:
+Notifications go to **modernluxeflowers@gmail.com**, set as `NOTIFY_EMAIL_FALLBACK`
+at the top of `Code.gs`. Nothing to do here — skip to Step 2.
+
+**To send them somewhere else,** don't edit the code. In the Apps Script editor
+sidebar → **Project Settings** (gear icon) → **Script Properties** →
+**Add script property**:
 
 | Property | Value |
 |---|---|
-| `NOTIFY_EMAIL` | Jo's real address, e.g. `jo@modernluxeflowers.com` |
+| `NOTIFY_EMAIL` | the address you want instead |
 
-**Save script properties.**
+**Save script properties.** The Script Property overrides the fallback, so this
+survives re-pasting a fresh `Code.gs` over the top.
 
-This is a plain text form — no code editing. It also means the address is *not*
-stored in the repo, and re-pasting a fresh `Code.gs` over the top won't wipe it.
-
-(If you'd rather hard-code it, set `NOTIFY_EMAIL_FALLBACK` at the top of the file
-instead. The Script Property wins if both are set.)
+> This repo is **public**, so the fallback address is visible on GitHub (it is not
+> served on the website — `_config.yml` keeps `apps-script/` out of the published
+> site). To keep the address off GitHub entirely: set the Script Property above,
+> then blank the `NOTIFY_EMAIL_FALLBACK` line back to `''` and commit.
 
 ## Step 2 — Authorize and create the Sheet
 
