@@ -11,7 +11,11 @@
  */
 
 // ─── CONFIG ───────────────────────────────────────────────────────────────
-var NOTIFY_EMAIL   = 'INSERT_JOS_EMAIL_HERE';        // e.g. 'jo@modernluxeflowers.com'
+// Notification address. Preferred: set a Script Property named NOTIFY_EMAIL
+// (Apps Script editor → Project Settings → Script Properties) — that needs no
+// code edit and survives pasting a fresh copy of this file over the top.
+// The fallback below is only used when that property is absent.
+var NOTIFY_EMAIL_FALLBACK = '';                      // e.g. 'jo@modernluxeflowers.com'
 var SPREADSHEET_NAME = 'MLF Contact Form Leads';
 var SHEET_NAME       = 'Leads';
 var HEADERS = ['Timestamp', 'Name', 'Email', 'Event Date', 'Event Type',
@@ -111,9 +115,17 @@ function getSheet() {
   return sheet;
 }
 
+/** Script Property first, hard-coded fallback second. */
+function getNotifyEmail() {
+  var fromProps = PropertiesService.getScriptProperties().getProperty('NOTIFY_EMAIL');
+  return String(fromProps || NOTIFY_EMAIL_FALLBACK || '').trim();
+}
+
 function notify(row) {
-  if (!NOTIFY_EMAIL || NOTIFY_EMAIL.indexOf('INSERT_') === 0) {
-    throw new Error('NOTIFY_EMAIL is not configured');
+  var to = getNotifyEmail();
+  if (!to) {
+    throw new Error('NOTIFY_EMAIL is not configured — add it as a Script Property ' +
+                    '(Project Settings → Script Properties) or set NOTIFY_EMAIL_FALLBACK.');
   }
 
   var label = row.channel === 'whatsapp' ? 'WhatsApp' : 'Email form';
@@ -136,7 +148,7 @@ function notify(row) {
   ].join('\n');
 
   MailApp.sendEmail({
-    to: NOTIFY_EMAIL,
+    to: to,
     subject: 'New Lead (' + label + ') — ' + row.name + ' — ' + row.eventType,
     body: body,
     replyTo: row.email

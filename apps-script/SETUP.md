@@ -11,18 +11,37 @@ Do all of this while signed into the Google account that should **own** the Shee
 ## Step 1 — Create the Apps Script project
 
 You don't need to create the Sheet by hand — the script creates it on first run.
+You also don't need to edit any code: the notification address is set through a
+form in the next step.
+
+> `apps-script/Code.gs` in this repo is the **source of record** — a reference copy
+> kept alongside the site. The code that actually runs lives in your Apps Script
+> project at script.google.com. Editing the repo copy changes nothing live, and
+> editing the live copy changes nothing in the repo; if you change one, paste it
+> across to the other so they don't drift.
 
 1. Go to <https://script.google.com> → **New project**.
 2. Rename it (top left) to `MLF Lead Capture`.
 3. Delete the sample `function myFunction() {}` in `Code.gs`.
 4. Open `apps-script/Code.gs` from this repo, copy the whole file, paste it in.
-5. At the top of the file, replace the placeholder on the `NOTIFY_EMAIL` line:
+5. **Save** (⌘S / Ctrl+S).
 
-   ```js
-   var NOTIFY_EMAIL = 'jo@modernluxeflowers.com';   // ← Jo's real address
-   ```
+## Step 1b — Set the notification address
 
-6. **Save** (⌘S / Ctrl+S).
+In the Apps Script editor sidebar → **Project Settings** (gear icon) → scroll to
+**Script Properties** → **Add script property**:
+
+| Property | Value |
+|---|---|
+| `NOTIFY_EMAIL` | Jo's real address, e.g. `jo@modernluxeflowers.com` |
+
+**Save script properties.**
+
+This is a plain text form — no code editing. It also means the address is *not*
+stored in the repo, and re-pasting a fresh `Code.gs` over the top won't wipe it.
+
+(If you'd rather hard-code it, set `NOTIFY_EMAIL_FALLBACK` at the top of the file
+instead. The Script Property wins if both are set.)
 
 ## Step 2 — Authorize and create the Sheet
 
@@ -130,6 +149,6 @@ Deploy**. The URL stays the same, so nothing on the site needs to change.
 |---|---|
 | Console: `Lead capture URL not configured` | Step 4 wasn't done — the placeholder is still in the HTML. |
 | Console: `Lead capture failed` + CORS error | Deployment access isn't **Anyone**. Redeploy with the right setting. |
-| Rows appear, no email | `NOTIFY_EMAIL` still says `INSERT_JOS_EMAIL_HERE`, or the daily MailApp quota (100/day on consumer Gmail) is spent. Check **Executions** in the Apps Script editor. |
+| Rows appear, no email | The `NOTIFY_EMAIL` Script Property is missing or misspelled (Step 1b), or the daily MailApp quota (100/day on consumer Gmail) is spent. Check **Executions** in the Apps Script editor — the error names which. |
 | Email arrives, no row | Check **Executions** for a Drive/Sheets permission error; re-run `testLeadCapture` to reauthorize. |
 | Nothing at all after redeploy | You created a *new* deployment with a new URL instead of a new *version*. Either paste the new URL into the HTML or redeploy as a version of the existing one. |
