@@ -371,6 +371,7 @@ nav {
 
 .form-input::placeholder { color: var(--dim); }
 .form-input:focus { border-color: var(--gold-dim); }
+.form-input.input-error { border-color: #c96e6e; }
 
 textarea.form-input {
   resize: vertical;
@@ -918,7 +919,7 @@ footer {
         <div class="form-row">
           <div class="form-field">
             <label for="name">Your name</label>
-            <input type="text" id="name" name="name" class="form-input" placeholder="First &amp; last name" autocomplete="name">
+            <input type="text" id="name" name="name" class="form-input" placeholder="First &amp; last name" autocomplete="name" required>
           </div>
           <div class="form-field">
             <label for="email">Your email</label>
@@ -1041,7 +1042,7 @@ footer {
   function getFormData() {
     const form = document.getElementById('inquiryForm');
     return {
-      name:      form.querySelector('#name').value.trim() || 'Not provided',
+      name:      form.querySelector('#name').value.trim(),
       email:     form.querySelector('#email').value.trim(),
       eventType: (form.querySelector('input[name="event-type"]:checked') || {}).value || 'Not specified',
       budget:    (form.querySelector('input[name="budget"]:checked') || {}).value || 'Not specified',
@@ -1050,9 +1051,40 @@ footer {
     };
   }
 
-  function trackConsultationLead() {
+  // Name + email are required on BOTH submit paths — a lead with no way to
+  // reach the person back is worthless, so neither button may fire without them.
+  function validateLead(d) {
+    const statusEl = document.getElementById('formStatus');
+    const nameEl = document.getElementById('name');
+    const emailEl = document.getElementById('email');
+    const missing = [];
+
+    nameEl.classList.remove('input-error');
+    emailEl.classList.remove('input-error');
+
+    if (!d.name)  { missing.push('your name');  nameEl.classList.add('input-error'); }
+    if (!d.email) { missing.push('your email'); emailEl.classList.add('input-error'); }
+
+    if (missing.length) {
+      statusEl.textContent = 'Please enter ' + missing.join(' and ') + ' so we can respond.';
+      statusEl.className = 'submit-note status-error';
+      (missing[0] === 'your name' ? nameEl : emailEl).focus();
+      return false;
+    }
+    return true;
+  }
+
+  // Clear the error highlight as soon as the visitor starts fixing it.
+  ['name', 'email'].forEach(id => {
+    document.getElementById(id).addEventListener('input', function () {
+      this.classList.remove('input-error');
+    });
+  });
+
+  function trackConsultationLead(channel) {
     gtag('event', 'generate_lead', {
       'form_name': 'consultation_request',
+      'channel': channel,
       'page_location': window.location.href,
       'transport_type': 'beacon'
     });
@@ -1060,21 +1092,64 @@ footer {
 
   const WEB3FORMS_ACCESS_KEY = '0df0a800-bfce-475c-bd36-e8652b848de0';
 
+  // ─── LEAD CAPTURE (source of truth) ───
+  // Google Apps Script Web App: writes the lead to the "MLF Contact Form Leads"
+  // Sheet and sends an independent notification email. Runs BEFORE the Web3Forms
+  // / WhatsApp action on both paths. Paste your deployed /exec URL below.
+  const LEAD_CAPTURE_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+  function captureLead(d, channel) {
+    if (!LEAD_CAPTURE_URL || LEAD_CAPTURE_URL.indexOf('PASTE_') === 0) {
+      console.warn('Lead capture URL not configured — skipping Sheet write.');
+      return Promise.resolve(false);
+    }
+    // text/plain keeps this a CORS "simple request" so the browser skips the
+    // preflight OPTIONS that Apps Script cannot answer. doPost still parses JSON.
+    return fetch(LEAD_CAPTURE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      keepalive: true,
+      body: JSON.stringify({
+        timestamp: new Date().toISOString(),
+        name:      d.name,
+        email:     d.email,
+        eventDate: d.date,
+        eventType: d.eventType,
+        budget:    d.budget,
+        notes:     d.notes,
+        channel:   channel,
+        pageUrl:   window.location.href
+      })
+    }).then(res => res.json())
+      .then(result => {
+        if (!result || !result.success) throw new Error((result && result.error) || 'Lead capture rejected');
+        return true;
+      })
+      .catch(err => {
+        // Never block the visitor — the Sheet is a backup, not a gate.
+        console.warn('Lead capture failed (continuing anyway):', err);
+        return false;
+      });
+  }
+
   async function submitEmail() {
     const statusEl = document.getElementById('formStatus');
     const btn = document.getElementById('submitEmailBtn');
     const d = getFormData();
 
-    if (!d.email) {
-      statusEl.textContent = 'Please enter your email address so we can respond.';
-      statusEl.className = 'submit-note status-error';
-      return;
-    }
+    if (!validateLead(d)) return;
 
     btn.disabled = true;
     btn.textContent = 'Sending…';
     statusEl.textContent = 'Sending your inquiry…';
     statusEl.className = 'submit-note';
+
+    // Capture layer first, so the lead is recorded even if Web3Forms fails.
+    // Capped at 5s so a hanging network never leaves the visitor waiting.
+    await Promise.race([
+      captureLead(d, 'email'),
+      new Promise(resolve => setTimeout(resolve, 5000))
+    ]);
 
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
@@ -1097,7 +1172,7 @@ footer {
         throw new Error(result.message || 'Submission failed');
       }
 
-      trackConsultationLead();
+      trackConsultationLead('email');
       statusEl.textContent = 'Thank you! Your inquiry has been sent — we\'ll respond within 24 hours.';
       statusEl.className = 'submit-note status-success';
       btn.textContent = 'Sent';
@@ -1112,6 +1187,22 @@ footer {
 
   function submitWhatsApp() {
     const d = getFormData();
+
+    if (!validateLead(d)) return;
+
+    const statusEl = document.getElementById('formStatus');
+
+    // Fire the capture request first, but do NOT await it: window.open must stay
+    // inside the click gesture or the browser blocks the popup. keepalive:true on
+    // the fetch keeps the request alive after the tab hands off to WhatsApp.
+    // Confirm "saved" only once it actually saved.
+    captureLead(d, 'whatsapp').then(saved => {
+      if (saved) {
+        statusEl.textContent = 'Your details are saved — we\'ll follow up either way.';
+        statusEl.className = 'submit-note status-success';
+      }
+    });
+
     const msg = [
       'Hi! I\'d like to request a consultation.',
       '',
@@ -1121,8 +1212,11 @@ footer {
       'Budget: ' + d.budget,
       d.notes ? 'Details: ' + d.notes : ''
     ].filter(Boolean).join('\n');
-    trackConsultationLead();
+    trackConsultationLead('whatsapp');
     window.open('https://wa.me/17734180161?text=' + encodeURIComponent(msg), '_blank');
+
+    statusEl.textContent = 'Opening WhatsApp with your details…';
+    statusEl.className = 'submit-note';
   }
   // Portfolio dropdown (tap on mobile, hover on desktop via CSS)
   const portfolioTrigger = document.querySelector('.nav-dropdown-trigger');

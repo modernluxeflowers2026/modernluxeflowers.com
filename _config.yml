@@ -1,0 +1,8 @@
+# GitHub Pages (Jekyll) config.
+# The site itself is plain static HTML — nothing here changes how pages are built.
+# This only keeps non-website files out of the published site.
+exclude:
+  - apps-script      # Apps Script source + setup notes (contains the notification email address)
+  - generate_image_map.py
+  - CLAUDE.md
+  - README.md
