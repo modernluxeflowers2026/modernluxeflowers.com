@@ -18,6 +18,10 @@
 var NOTIFY_EMAIL_FALLBACK = 'modernluxeflowers@gmail.com';
 var SPREADSHEET_NAME = 'MLF Contact Form Leads';
 var SHEET_NAME       = 'Leads';
+// Timestamps are logged in this zone, not UTC, so the Sheet reads in local time.
+// DST is handled automatically (CST/CDT).
+var TIMEZONE    = 'America/Chicago';
+var TIME_FORMAT = 'yyyy-MM-dd hh:mm a';
 var HEADERS = ['Timestamp', 'Name', 'Email', 'Event Date', 'Event Type',
                'Budget', 'Notes', 'Channel', 'Page URL'];
 // ============================================================
@@ -41,7 +45,7 @@ function doPost(e) {
     if (channel !== 'email' && channel !== 'whatsapp') channel = 'unknown';
 
     var row = {
-      timestamp: d.timestamp ? String(d.timestamp) : new Date().toISOString(),
+      timestamp: localStamp(d.timestamp),
       name:      name,
       email:     email,
       eventDate: String(d.eventDate || 'Not specified').trim(),
@@ -75,6 +79,13 @@ function doPost(e) {
 /** Health check - visiting the /exec URL in a browser should show this. */
 function doGet() {
   return jsonOut({ success: true, status: 'MLF lead capture is live' });
+}
+
+/** Browser ISO string -> local time in TIMEZONE. Falls back to now if unparseable. */
+function localStamp(iso) {
+  var t = new Date(iso || '');
+  if (isNaN(t.getTime())) t = new Date();
+  return Utilities.formatDate(t, TIMEZONE, TIME_FORMAT);
 }
 
 function appendLead(row) {
