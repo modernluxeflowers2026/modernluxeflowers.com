@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" style="background:#FAF8F4;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free SellerAmp Buy/Pass Scorecard — Hidden Potential HQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #FAF8F4;
+    color: #1A1A18;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  /* HEADER */
+  .site-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid #E8E4DC;
+  }
+  .site-header .brand {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #2C3A47;
+    text-decoration: none;
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 72px 0 64px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #C94B2C;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(38px, 6vw, 56px);
+    font-weight: 400;
+    color: #2C3A47;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+  .hero .subhead {
+    font-size: 17px;
+    color: #4a4a46;
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+
+  /* FORM */
+  .opt-in-form {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .opt-in-form input[type="email"] {
+    width: 100%;
+    padding: 14px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: #1A1A18;
+    background: #fff;
+    border: 1.5px solid #D4CEC4;
+    border-radius: 4px;
+    outline: none;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+  }
+  .opt-in-form input[type="email"]:focus {
+    border-color: #C94B2C;
+  }
+  .opt-in-form input[type="email"]::placeholder {
+    color: #aaa;
+  }
+  .opt-in-form button {
+    width: 100%;
+    padding: 14px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    background: #C94B2C;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+    letter-spacing: 0.2px;
+  }
+  .opt-in-form button:hover { background: #b03f23; }
+  .form-note {
+    font-size: 12px;
+    color: #999;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .thank-you {
+    display: none;
+    background: #f0faf5;
+    border: 1.5px solid #a8d5bc;
+    border-radius: 4px;
+    padding: 18px 20px;
+    font-size: 15px;
+    color: #1e5c3a;
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid #E8E4DC;
+    margin: 0;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 56px 0;
+    border-bottom: 1px solid #E8E4DC;
+  }
+  .section-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 14px;
+  }
+  .section h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: #2C3A47;
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+
+  /* BULLET LIST */
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 16px;
+    color: #1A1A18;
+  }
+  .feature-list li::before {
+    content: '—';
+    color: #C94B2C;
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* WHO IT'S FOR */
+  .for-para {
+    font-size: 16px;
+    color: #4a4a46;
+    line-height: 1.75;
+    max-width: 560px;
+  }
+
+  /* SOCIAL PROOF */
+  .blockquote {
+    border-left: 3px solid #C94B2C;
+    padding: 18px 0 18px 24px;
+    margin: 0;
+  }
+  .blockquote p {
+    font-size: 16px;
+    font-style: italic;
+    color: #4a4a46;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .blockquote cite {
+    font-size: 13px;
+    color: #999;
+    font-style: normal;
+  }
+
+  /* FOOTER */
+  .site-footer {
+    padding: 40px 24px;
+    text-align: center;
+  }
+  .footer-brand {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 8px;
+  }
+  .ftc {
+    font-size: 11px;
+    color: #bbb;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .hero { padding: 48px 0 40px; }
+    .hero h1 { font-size: 36px; }
+    .hero .subhead { font-size: 15px; }
+    .section { padding: 40px 0; }
+    .section h2 { font-size: 22px; }
+    .site-header { padding: 16px 24px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="#">Hidden Potential HQ</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="eyebrow">Free Tool</div>
+      <h1>Stop buying on instinct.</h1>
+      <p class="subhead">The SellerAmp Buy/Pass Scorecard — 5 criteria, one page. If a product doesn't clear all five, you pass. No exceptions.</p>
+
+      <!-- REPLACE THIS FORM with your MailerLite or ConvertKit embed code -->
+      <form class="opt-in-form" data-action="email-platform-embed" onsubmit="handleSubmit(event)">
+        <input type="email" name="email" placeholder="your@email.com" required>
+        <button type="submit">Send me the scorecard</button>
+        <p class="form-note">No spam. Unsubscribe anytime.</p>
+        <div class="thank-you" id="thank-you">Check your inbox — your scorecard is on the way.</div>
+      </form>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- WHAT IT IS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">What's included</div>
+      <h2>What you're getting</h2>
+      <ul class="feature-list">
+        <li>One-page decision tool for SellerAmp SAS users</li>
+        <li>5 scored criteria: ROI, BSR, restrictions, competition, Buy Box stability</li>
+        <li>The same filter used in the full OA Decision System framework</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Who it's for</div>
+      <h2>This is for you if&hellip;</h2>
+      <p class="for-para">You're doing online arbitrage on Amazon and you want a structured way to make buy/pass decisions without relying on gut feeling. You use SellerAmp SAS. You want a process that removes the exceptions.</p>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">What people are saying</div>
+      <blockquote class="blockquote">
+        <p>[Add first buyer review here]</p>
+        <cite>— Name, role or context</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p class="footer-brand">Hidden Potential HQ &nbsp;·&nbsp; hphque@gmail.com &nbsp;·&nbsp; hphque.gumroad.com</p>
+    <p class="ftc">This page contains affiliate links. Hidden Potential HQ may earn a commission if you sign up for paid tools through links in our content, at no cost to you.</p>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.querySelector('.opt-in-form button').style.display = 'none';
+      document.querySelector('.opt-in-form input').style.display = 'none';
+      document.querySelector('.form-note').style.display = 'none';
+      document.getElementById('thank-you').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>

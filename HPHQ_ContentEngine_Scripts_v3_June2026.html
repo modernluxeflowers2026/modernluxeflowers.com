@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HPHQ — Content Engine Scripts v3 — June 2026</title>
+<style>
+  :root {
+    --navy: #0f1b2d;
+    --navy-mid: #162236;
+    --navy-light: #1e3050;
+    --teal: #2dd4bf;
+    --teal-dim: #1a9e8f;
+    --orange: #f97316;
+    --gold: #f59e0b;
+    --white: #f8fafc;
+    --body: #cbd5e1;
+    --muted: #64748b;
+    --border: #1e3050;
+    --green: #22c55e;
+    --red: #ef4444;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--navy);
+    color: var(--body);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 40px 24px 80px;
+  }
+
+  .doc {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* COVER HEADER */
+  .cover {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--teal);
+    border-radius: 8px;
+    padding: 40px 48px 36px;
+    margin-bottom: 40px;
+  }
+  .cover h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.3px;
+    margin-bottom: 16px;
+  }
+  .cover h1 span { color: var(--teal); }
+  .cover-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 32px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .cover-meta strong { color: var(--body); }
+
+  /* SCRIPT CARD */
+  .script-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 36px;
+    overflow: hidden;
+  }
+
+  .script-header {
+    background: var(--navy-light);
+    padding: 20px 32px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .script-header h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .badge-affiliate { background: rgba(45,212,191,0.15); color: var(--teal); }
+  .badge-gumroad { background: rgba(249,115,22,0.15); color: var(--orange); }
+  .script-meta {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 10px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .script-meta span strong { color: var(--body); }
+
+  .script-body { padding: 24px 32px; }
+
+  /* VOICEOVER SECTION */
+  .vo-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 16px;
+  }
+
+  .vo-block {
+    margin-bottom: 12px;
+    border-left: 3px solid var(--border);
+    padding-left: 16px;
+  }
+  .vo-block:last-child { margin-bottom: 0; }
+  .vo-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .vo-tag.hook { color: var(--teal); }
+  .vo-tag.problem { color: #a78bfa; }
+  .vo-tag.walkthrough { color: var(--gold); }
+  .vo-tag.cta { color: var(--green); }
+  .vo-block .timecode {
+    font-size: 11px;
+    color: var(--muted);
+    margin-left: 8px;
+    font-weight: 400;
+  }
+
+  .vo-text {
+    color: var(--white);
+    font-size: 15px;
+    line-height: 1.75;
+    font-style: italic;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 24px 0;
+  }
+
+  /* PRODUCTION NOTES */
+  .prod-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .prod-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .prod-item { font-size: 13px; }
+  .prod-item .prod-key {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .prod-item .prod-val { color: var(--body); }
+  .prod-item.full-width { grid-column: 1 / -1; }
+
+  .overlay-list {
+    list-style: none;
+    margin-top: 6px;
+  }
+  .overlay-list li {
+    font-size: 13px;
+    color: var(--body);
+    padding: 2px 0;
+    display: flex;
+    gap: 8px;
+  }
+  .overlay-list li .ts {
+    color: var(--teal);
+    font-weight: 600;
+    min-width: 28px;
+  }
+
+  .hashtags {
+    font-size: 12px;
+    color: var(--teal-dim);
+    line-height: 1.8;
+    margin-top: 4px;
+  }
+
+  .bio-link {
+    font-size: 13px;
+    color: var(--teal);
+    word-break: break-all;
+  }
+
+  code {
+    background: rgba(45,212,191,0.08);
+    color: var(--teal);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* SECTION BLOCKS */
+  .section-block {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 32px 40px;
+    margin-bottom: 36px;
+  }
+  .section-block h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .section-block .section-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  /* TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  thead tr {
+    background: var(--navy-light);
+  }
+  th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(30,48,80,0.6);
+    color: var(--body);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  td.week { color: var(--muted); font-size: 12px; }
+  td.day { color: var(--white); font-weight: 600; }
+  td.cta-affiliate { color: var(--teal); font-weight: 600; }
+  td.cta-gumroad { color: var(--orange); font-weight: 600; }
+
+  /* RULES LIST */
+  .rules-list {
+    list-style: none;
+    margin-top: 20px;
+  }
+  .rules-list li {
+    padding: 8px 0 8px 20px;
+    position: relative;
+    border-bottom: 1px solid rgba(30,48,80,0.5);
+    color: var(--body);
+    font-size: 14px;
+  }
+  .rules-list li:last-child { border-bottom: none; }
+  .rules-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-weight: 700;
+  }
+
+  .tiktok-note {
+    background: rgba(45,212,191,0.06);
+    border: 1px solid rgba(45,212,191,0.2);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--body);
+  }
+  .tiktok-note strong { color: var(--teal); }
+
+  /* CHECKLIST */
+  .checklist {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--body);
+  }
+  .check-box {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--border);
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* CAPTION TEMPLATE */
+  .caption-box {
+    background: var(--navy);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 24px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 2;
+    font-family: 'Courier New', monospace;
+  }
+  .caption-box .placeholder {
+    color: var(--teal-dim);
+    font-style: italic;
+  }
+
+  /* FRAMEWORK TABLE */
+  .fw-table td:first-child { color: var(--white); font-weight: 600; }
+  .fw-table td:nth-child(2) { color: var(--gold); font-family: 'Courier New', monospace; font-size: 12px; }
+
+  /* BRAND VOICE */
+  .voice-rules {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .voice-rule {
+    background: var(--navy);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  .voice-rule .rule-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .voice-rule.positive .rule-label { color: var(--green); }
+  .voice-rule.negative .rule-label { color: var(--red); }
+  .voice-rule .rule-text { color: var(--body); }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: #fff; color: #111; padding: 0; }
+    .cover, .script-card, .section-block {
+      background: #fff;
+      border-color: #ddd;
+      break-inside: avoid;
+    }
+    .script-header, thead tr { background: #f5f5f5; }
+    .cover h1, .script-header h2, .section-block h2 { color: #111; }
+    .vo-text { color: #222; }
+    .body, td, .prod-val, .rules-list li, .checklist li { color: #333; }
+    .teal, .vo-tag.hook, .bio-link, .hashtags, .overlay-list li .ts { color: #0e7a6e; }
+    .vo-tag.walkthrough { color: #b45309; }
+    .vo-tag.problem { color: #6d28d9; }
+    .vo-tag.cta { color: #166534; }
+    a { color: #0e7a6e; }
+    code { background: #f0f0f0; color: #0e7a6e; }
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <!-- COVER -->
+  <div class="cover">
+    <h1>Hidden Potential HQ — <span>Content Engine Scripts</span></h1>
+    <div class="cover-meta">
+      <div><strong>Brand:</strong> Hidden Potential HQ (faceless)</div>
+      <div><strong>Date:</strong> June 2026</div>
+      <div><strong>Voice:</strong> ElevenLabs "Will — Relaxed Optimist"</div>
+      <div><strong>Footage:</strong> Pexels stock + screen recordings</div>
+      <div><strong>Platforms:</strong> Instagram Reels → TikTok / YouTube Shorts</div>
+      <div><strong>CTA Split:</strong> Scripts 1, 3, 4, 5 → Affiliate &nbsp;|&nbsp; Script 2 → Gumroad</div>
+    </div>
+  </div>
+
+  <!-- SCRIPT 1 -->
+  <div class="script-card">
+    <div class="script-header">
+      <h2>Script 1</h2>
+      <span class="badge badge-affiliate">Affiliate CTA</span>
+    </div>
+    <div class="script-meta">
+      <span><strong>Pattern:</strong> Numbers Don't Lie</span>
+      <span><strong>Target tool:</strong> Keepa</span>
+      <span><strong>Runtime:</strong> 42 seconds</span>
+    </div>
+    <div class="script-body">
+      <div class="vo-label">Voiceover — Record Verbatim</div>
+
+      <div class="vo-block">
+        <div class="vo-tag hook">Hook <span class="timecode">0–3s</span></div>
+        <div class="vo-text">"I scanned 312 products at HomeGoods last month. 19 were worth buying. Here's the one Keepa filter that separated them."</div>
+      </div>
+
+      <div class="vo-block">
+        <div class="vo-tag problem">Problem <span class="timecode">3–8s</span></div>
+        <div class="vo-text">"Most Amazon resellers waste hours scanning junk because they're looking at the wrong data. The sales rank alone will lie to you."</div>
+      </div>
+
+      <div class="vo-block">
+        <div class="vo-tag walkthrough">Walkthrough <span class="timecode">8–35s</span></div>
+        <div class="vo-text">"Step one — pull the Keepa graph. Ignore the current rank. Look at the 90-day rank history. You want to see at least 5 drops below 150,000. That means real, repeated buyers.<br><br>
+        Step two — check the offer count. If there are 30 sellers on the listing, move on. You want 10 or fewer.<br><br>
+        Step three — look at the buy box price history. If it's been dropping steadily for 60 days, someone is racing to the bottom. Skip it.<br><br>
+        That's the filter. Three checks. Under 60 seconds per product."</div>
+      </div>
+
+      <div class="vo-block">
+        <div class="vo-tag cta">Result + CTA <span class="timecode">35–42s</span></div>
+        <div class="vo-text">"Keepa is the reason I don't buy losers. Link in bio — I'll show you exactly how I set it up."</div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="prod-label">Production Notes</div>
+      <div class="prod-grid">
+        <div class="prod-item">
+          <div class="prod-key">Footage</div>
+          <div class="prod-val">Screen recording of live Keepa graph (blur ASIN) + Pexels: <code>product research</code> <code>scanning barcode store</code></div>
+        </div>
+        <div class="prod-item">
+          <div class="prod-key">End Card</div>
+          <div class="prod-val">Keepa setup guide → link in bio</div>
+        </div>
+        <div class="prod-item full-width">
+          <div class="prod-key">CapCut Text Overlays</div>
+          <ul class="overlay-list">
+            <li><span class="ts">0s</span> "312 scanned. 19 bought." (large, centered)</li>
+            <li><span class="ts">10s</span> "5 drops below 150k ✓"</li>
+            <li><span class="ts">18s</span> "10 sellers or fewer ✓"</li>
+            <li><span class="ts">25s</span> "60-day price drop = skip ✗"</li>
+          </ul>
+        </div>
+        <div class="prod-item">
+          <div class="prod-key">Bio Link</div>
+          <div class="bio-link">https://get.keepa.com/dbccu</div>
+        </div>
+        <div class="prod-item">
+          <div class="prod-key">Hashtags</div>
+          <div class="hashtags">#amazonreseller #retailarbitrage #keepatutorial #amazonfba #sourcingtools #onlinearbitrage #resellertips #ecommercetips</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT 2 -->
+  <div class="script-card">
+    <div class="script-header">
+      <h2>Script 2</h2>
+      <span class="badge badge-gumroad">Gumroad CTA</span>
+    </div>
+    <div class="script-meta">
+      <span><strong>Pattern:</strong> Complaint-to-Solution</span>
+      <span><strong>Target:</strong> The Reseller's AI Playbook ($17)</span>
+      <span><strong>Runtime:</strong> 45 seconds</span>
+    </div>
+    <div class="script-body">
+      <div class="vo-label">Voiceover — Record Verbatim</div>
+
+      <div class="vo-block">
+        <div class="vo-tag hook">Hook <span class="timecode">0–3s</span></div>
+        <div class="vo-text">"Amazon resellers keep saying AI is overhyped. They're using it wrong."</div>
+      </div>
+
+      <div class="vo-block">
+        <div class="vo-tag problem">Problem <span class="timecode">3–8s</span></div>
+        <div class="vo-text">"Most people type one question into ChatGPT, get a generic answer, and give up. That's not a workflow — that's a Google search."</div>
+      </div>
+
+      <div class="vo-block">
+        <div class="vo-tag walkthrough">Walkthrough <span class="timecode">8–38s</span></div>
+        <div class="vo-text">"Here's what an actual AI-powered sourcing session looks like.<br><br>
+        Prompt one: 'Analyze these three Amazon reviews and tell me the top complaint buyers have.' Paste in the reviews. Done — you now have a product gap in 10 seconds.<br><br>
+        Prompt two: 'Write a title and five bullets for this listing. Match the top competitor's keyword density but fix their weak points.' That's your listing, written.<br><br>
+        Prompt three: 'Given this Keepa data, is this product worth buying at this price?' Paste the numbers. AI gives you a go or no-go.<br><br>
+        Twenty prompts like these. Tested. Refined. Built for resellers — not tech people."</div>
+      </div>
+
+      <div class="vo-block">
+        <div class="vo-tag cta">Result + CTA <span class="timecode">38–45s</span></div>
+        <div class="vo-text">"It's called The Reseller's AI Playbook. Early access is $17. Link in bio."</div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="prod-label">Production Notes</div>
+      <div class="prod-grid">
+        <div class="prod-item">
+          <div class="prod-key">Footage</div>
+          <div class="prod-val">Screen recording of Claude or ChatGPT output (blur sensitive data) + Pexels: <code>ecommerce laptop</code> <code>amazon seller package</code></div>
+        </div>
+        <div class="prod-item">
+          <div class="prod-key">End Card</div>
+          <div class="prod-val">Product mockup of Playbook cover + price badge</div>
+        </div>
+        <div class="prod-item full-width">
+          <div class="prod-key">CapCut Text Overlays</div>
+          <ul class="overlay-list">
+            <li><span class="ts">0s</span> "They're using AI wrong." (bold, high contrast)</li>
+            <li><span class="ts">12s</span> "Prompt 1: Review mining"</li>
+            <li><span class="ts">20s</span> "Prompt 2: Listing copy"</li>
+            <li><span class="ts">28s</span> "Prompt 3: Buy decision"</li>
+            <li><span class="ts">38s</span> "$17 Early Access — link in bio"</li>
+          </ul>
+        </div>
+        <div class="prod-item">
+          <div class="prod-key">Bio Link</div>
+          <div class="bio-link">Gumroad — Hidden Potential HQ storefront</div>
+        </div>
+        <div class="prod-item">
+          <div class="prod-key">Hashtags</div>
+          <div class="hashtags">#amazonfba #amazonreseller #aitools #resellerbusiness #ecommercetips #digitalproduct #amazonseller #chatgptprompts</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT 3 -->
+  <div class="script-card">
+    <div class="script-header">
+      <h2>Script 3</h2>
+      <span class="badge badge-affiliate">Affiliate CTA</span>
+    </div>
+    <div class="script-meta">
+      <span><strong>Pattern:</strong> Before vs. After Transformation</span>
+      <span><strong>Target tool:</strong> Aura Repricer</span>
+      <span><strong>Runtime:</strong> 44 seconds</span>
+    </div>
+    <div class="script-body">
+      <div class="vo-label">Voiceover — Record Verbatim</div>
+
+      <div class="vo-block">
+        <div class="vo-tag hook">Hook <span class="timecode">0–3s</span></div>
+        <div class="vo-text">"Most Amazon sellers who switch to a repricer with floor-price rules report Buy Box improvement of 2x or more. Here's the two-rule setup that does it."</div>
+      </div>
+
+      <div class="vo-block">
+        <div class="vo-tag problem">Problem <span class="timecode">3–8s</span></div>
+        <div class="vo-text">"Manual repricing twice a day still loses the Buy Box to sellers running automated tools. You can't beat an algorithm by hand."</div>
+      </div>
+
+      <div class="vo-block">
+        <div class="vo-tag walkthrough">Walkthrough <span class="timecode">8–38s</span></div>
+        <div class="vo-text">"Set up Aura with two rules.<br><br>
+        Rule one: Never drop below your floor price. Calculate your floor based on landed cost plus 15% margin. Aura won't go below it — ever. That stops the margin bleed.<br><br>
+        Rule two: Match the Buy Box price, but only when there are fewer than 8 sellers on the listing. More than that? Let it go. Not worth the race.<br><br>
+        That's it. Two rules. Set once. Aura runs it 24/7.<br><br>
+        The sellers who stick to these two rules consistently report Buy Box win rates doubling within the first few weeks.<br><br>
+        The products don't change. The pricing discipline does."</div>
+      </div>
+
+      <div class="vo-block">
+        <div class="vo-tag cta">Result + CTA <span class="timecode">38–44s</span></div>
+        <div class="vo-text">"Link in bio if you want to try Aura. It's what I use."</div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="prod-label">Production Notes</div>
+      <div class="prod-grid">
+        <div class="prod-item">
+          <div class="prod-key">Footage</div>
+          <div class="prod-val">Animated Buy Box % doubling graphic (Canva — dark bg, rust orange <code>#C94B2C</code>) + Pexels: <code>warehouse boxes</code> <code>ecommerce laptop</code></div>
+        </div>
+        <div class="prod-item">
+          <div class="prod-key">End Card</div>
+          <div class="prod-val">Try Aura → link in bio</div>
+        </div>
+        <div class="prod-item full-width">
+          <div class="prod-key">CapCut Text Overlays</div>
+          <ul class="overlay-list">
+            <li><span class="ts">0s</span> "2x Buy Box. Two rules." (large, centered)</li>
+            <li><span class="ts">12s</span> "Rule 1: Floor price lock"</li>
+            <li><span class="ts">22s</span> "Rule 2: 8 sellers max"</li>
+            <li><span class="ts">38s</span> "Aura → link in bio"</li>
+          </ul>
+        </div>
+        <div class="prod-item">
+          <div class="prod-key">Bio Link</div>
+          <div class="bio-link">https://try.goaura.com/epqqqyh4dlsk</div>
+        </div>
+        <div class="prod-item">
+          <div class="prod-key">Hashtags</div>
+          <div class="hashtags">#amazonrepricer #amazonfba #buybox #amazonreseller #aurarepricer #ecommercetools #resellertips #amazonsellertools</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT 4 -->
+  <div class="script-card">
+    <div class="script-header">
+      <h2>Script 4</h2>
+      <span class="badge badge-affiliate">Affiliate CTA</span>
+    </div>
+    <div class="script-meta">
+      <span><strong>Pattern:</strong> Tool Collab Reveal</span>
+      <span><strong>Target tools:</strong> Keepa + SellerAmp</span>
+      <span><strong>Runtime:</strong> 43 seconds</span>
+    </div>
+    <div class="script-body">
+      <div class="vo-label">Voiceover — Record Verbatim</div>
+
+      <div class="vo-block">
+        <div class="vo-tag hook">Hook <span class="timecode">0–3s</span></div>
+        <div class="vo-text">"Keepa + SellerAmp = I make a buy decision in under 90 seconds. Here's the exact workflow."</div>
+      </div>
+
+      <div class="vo-block">
+        <div class="vo-tag problem">Problem <span class="timecode">3–8s</span></div>
+        <div class="vo-text">"Most resellers jump between five tabs and still aren't sure. The data is there — they just don't have a sequence for reading it."</div>
+      </div>
+
+      <div class="vo-block">
+        <div class="vo-tag walkthrough">Walkthrough <span class="timecode">8–38s</span></div>
+        <div class="vo-text">"Step one — open Keepa. Check the 90-day rank history. You're looking for consistent drops, not a single spike. If the rank is volatile, stop here.<br><br>
+        Step two — switch to SellerAmp. Enter your buy cost. The ROI needs to clear 30% after all fees. If it doesn't, move on. No exceptions.<br><br>
+        Step three — check the offer count in SellerAmp. Under 10 sellers? You're in a workable position. Over 15? The margin will compress before your inventory even arrives.<br><br>
+        That's the sequence. Two tools. Three checks. One decision."</div>
+      </div>
+
+      <div class="vo-block">
+        <div class="vo-tag cta">Result + CTA <span class="timecode">38–43s</span></div>
+        <div class="vo-text">"Links to both tools are in my bio. SellerAmp has a free trial. Keepa has a free plan — paid is about $21 a month, less if you go yearly."</div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="prod-label">Production Notes</div>
+      <div class="prod-grid">
+        <div class="prod-item">
+          <div class="prod-key">Footage</div>
+          <div class="prod-val">Side-by-side screen recording of Keepa and SellerAmp panels + Pexels: <code>product research</code> <code>ecommerce laptop</code></div>
+        </div>
+        <div class="prod-item">
+          <div class="prod-key">End Card</div>
+          <div class="prod-val">Keepa + SellerAmp → link in bio</div>
+        </div>
+        <div class="prod-item full-width">
+          <div class="prod-key">CapCut Text Overlays</div>
+          <ul class="overlay-list">
+            <li><span class="ts">0s</span> "Keepa + SellerAmp = 90-second decision"</li>
+            <li><span class="ts">10s</span> "Check 1: Rank consistency"</li>
+            <li><span class="ts">20s</span> "Check 2: ROI > 30%"</li>
+            <li><span class="ts">28s</span> "Check 3: Offer count &lt; 10"</li>
+          </ul>
+        </div>
+        <div class="prod-item">
+          <div class="prod-key">Bio Links</div>
+          <div class="bio-link">https://get.keepa.com/dbccu<br>https://selleramp.idevaffiliate.com/2392.html</div>
+        </div>
+        <div class="prod-item">
+          <div class="prod-key">Hashtags</div>
+          <div class="hashtags">#amazonreseller #keepatutorial #selleramp #amazonfba #onlinearbitrage #resellertips #sourcingtools #ecommercetools</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT 5 -->
+  <div class="script-card">
+    <div class="script-header">
+      <h2>Script 5</h2>
+      <span class="badge badge-affiliate">Affiliate CTA</span>
+    </div>
+    <div class="script-meta">
+      <span><strong>Pattern:</strong> Complaint-to-Solution</span>
+      <span><strong>Target tool:</strong> SellerAmp</span>
+      <span><strong>Runtime:</strong> 42 seconds</span>
+    </div>
+    <div class="script-body">
+      <div class="vo-label">Voiceover — Record Verbatim</div>
+
+      <div class="vo-block">
+        <div class="vo-tag hook">Hook <span class="timecode">0–3s</span></div>
+        <div class="vo-text">"Retail arbitrage takes too long. Here's how I cut my scanning time in half."</div>
+      </div>
+
+      <div class="vo-block">
+        <div class="vo-tag problem">Problem <span class="timecode">3–8s</span></div>
+        <div class="vo-text">"If you're still manually searching every product on Amazon, calculating fees in your head, and guessing at competition — you're doing the slow version."</div>
+      </div>
+
+      <div class="vo-block">
+        <div class="vo-tag walkthrough">Walkthrough <span class="timecode">8–35s</span></div>
+        <div class="vo-text">"Step one — install SellerAmp. It runs as a side panel on every Amazon product page. ROI, fees, and competition count load automatically.<br><br>
+        Step two — set your minimum thresholds before you start. I use 30% ROI and a $3 minimum profit. Anything below either number is an automatic pass — I don't even look at the graph.<br><br>
+        Step three — use the batch scan for store sourcing lists. Upload ASINs in bulk. SellerAmp flags the ones that pass your criteria. You only review the winners."</div>
+      </div>
+
+      <div class="vo-block">
+        <div class="vo-tag cta">Result + CTA <span class="timecode">35–42s</span></div>
+        <div class="vo-text">"SellerAmp has a free trial. Link in bio. Set your thresholds in the first ten minutes and you'll feel the difference immediately."</div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="prod-label">Production Notes</div>
+      <div class="prod-grid">
+        <div class="prod-item">
+          <div class="prod-key">Footage</div>
+          <div class="prod-val">Screen recording of SellerAmp panel on Amazon product page + Pexels: <code>scanning barcode store</code> <code>amazon seller package</code></div>
+        </div>
+        <div class="prod-item">
+          <div class="prod-key">End Card</div>
+          <div class="prod-val">SellerAmp free trial → link in bio</div>
+        </div>
+        <div class="prod-item full-width">
+          <div class="prod-key">CapCut Text Overlays</div>
+          <ul class="overlay-list">
+            <li><span class="ts">0s</span> "Cut scanning time in half"</li>
+            <li><span class="ts">12s</span> "Auto-calc: ROI + fees + competition"</li>
+            <li><span class="ts">22s</span> "Set thresholds once"</li>
+            <li><span class="ts">35s</span> "Free trial → link in bio"</li>
+          </ul>
+        </div>
+        <div class="prod-item">
+          <div class="prod-key">Bio Link</div>
+          <div class="bio-link">https://selleramp.idevaffiliate.com/2392.html</div>
+        </div>
+        <div class="prod-item">
+          <div class="prod-key">Hashtags</div>
+          <div class="hashtags">#amazonreseller #selleramp #retailarbitrage #amazonfba #resellertips #sourcingtools #onlinearbitrage #ecommercetips</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POSTING CADENCE -->
+  <div class="section-block">
+    <h2>Posting Cadence</h2>
+    <div class="section-sub">Sequence logic: Lead with value, earn trust, then sell. Never open a new account with a product pitch.</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Day</th>
+          <th>Script</th>
+          <th>CTA Type</th>
+          <th>Rationale</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="week">Week 1</td>
+          <td class="day">Tue</td>
+          <td>Script 1 — Keepa filter</td>
+          <td class="cta-affiliate">Affiliate</td>
+          <td>Pure value first. Teaches something real.</td>
+        </tr>
+        <tr>
+          <td class="week">Week 1</td>
+          <td class="day">Fri</td>
+          <td>Script 4 — Keepa + SellerAmp</td>
+          <td class="cta-affiliate">Affiliate</td>
+          <td>Builds on Script 1 — deepens tool credibility.</td>
+        </tr>
+        <tr>
+          <td class="week">Week 2</td>
+          <td class="day">Tue</td>
+          <td>Script 5 — SellerAmp standalone</td>
+          <td class="cta-affiliate">Affiliate</td>
+          <td>Reinforces tool before product ask.</td>
+        </tr>
+        <tr>
+          <td class="week">Week 2</td>
+          <td class="day">Fri</td>
+          <td>Script 2 — AI Playbook</td>
+          <td class="cta-gumroad">Gumroad $17</td>
+          <td>Trust is established. Now sell.</td>
+        </tr>
+        <tr>
+          <td class="week">Week 3</td>
+          <td class="day">Tue</td>
+          <td>Script 3 — Aura repricer</td>
+          <td class="cta-affiliate">Affiliate</td>
+          <td>Reset to value after sell.</td>
+        </tr>
+        <tr>
+          <td class="week">Week 3</td>
+          <td class="day">Fri</td>
+          <td>Repeat or new Script 2 variant</td>
+          <td class="cta-gumroad">Gumroad $17</td>
+          <td>Second product exposure to growing audience.</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul class="rules-list">
+      <li>Never post two sell scripts back-to-back.</li>
+      <li>Minimum 1 value post between every Gumroad CTA.</li>
+      <li>Post Tue and Fri only until you hit 500 followers — consistency beats volume at this stage.</li>
+      <li>After 500 followers, move to 3x/week (Mon, Wed, Fri).</li>
+    </ul>
+    <div class="tiktok-note">
+      <strong>TikTok launch (June 16):</strong> Start with Script 1 on launch day — same value-first logic. Don't mirror Instagram post-for-post; stagger by 2–3 days so each platform gets a "fresh" post even if the content is identical.
+    </div>
+  </div>
+
+  <!-- PRODUCTION CHECKLIST -->
+  <div class="section-block">
+    <h2>Production Checklist</h2>
+    <div class="section-sub">Run before posting each Reel</div>
+    <ul class="checklist">
+      <li><div class="check-box"></div>Voiceover recorded — ElevenLabs "Will — Relaxed Optimist"</li>
+      <li><div class="check-box"></div>Screen recordings captured (blur any sensitive ASINs or account data)</li>
+      <li><div class="check-box"></div>Pexels B-roll downloaded and trimmed to fit timing</li>
+      <li><div class="check-box"></div>CapCut text overlays added at correct timestamps</li>
+      <li><div class="check-box"></div>End card graphic added (Canva)</li>
+      <li><div class="check-box"></div>Bio link updated to match script CTA before posting</li>
+      <li><div class="check-box"></div>Caption written using template below</li>
+      <li><div class="check-box"></div>Posted at peak time: Tue–Fri, 11am–1pm or 7pm–9pm CT</li>
+    </ul>
+  </div>
+
+  <!-- CAPTION TEMPLATE -->
+  <div class="section-block">
+    <h2>Caption Template</h2>
+    <div class="section-sub">Paste and customize per script</div>
+    <div class="caption-box">
+      <span class="placeholder">[Hook line from script — first sentence verbatim]</span><br><br>
+      <span class="placeholder">[1–2 sentence payoff teaser]</span><br><br>
+      Full <span class="placeholder">[guide / setup / checklist]</span> → link in bio<br><br>
+      <span class="placeholder">[hashtag stack from script]</span>
+    </div>
+  </div>
+
+  <!-- FRAMEWORK REFERENCE -->
+  <div class="section-block">
+    <h2>Framework Reference</h2>
+    <div class="section-sub">For Agent 3 briefings</div>
+    <table class="fw-table">
+      <thead>
+        <tr>
+          <th>Framework</th>
+          <th>Hook Structure</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tool Collab Reveal</td>
+          <td>"[Tool A] + [Tool B] = [outcome]"</td>
+          <td>Keepa + SellerAmp, Keepa + Claude</td>
+        </tr>
+        <tr>
+          <td>Complaint-to-Solution</td>
+          <td>"Everyone says [X]. Here's why they're wrong."</td>
+          <td>SellerAmp workflow, AI sourcing</td>
+        </tr>
+        <tr>
+          <td>Numbers Don't Lie</td>
+          <td>Specific number + filter reveal</td>
+          <td>Keepa scanning, ROI thresholds</td>
+        </tr>
+        <tr>
+          <td>Before vs. After</td>
+          <td>Stat comparison, no face required</td>
+          <td>Aura Buy Box results, dashboards</td>
+        </tr>
+        <tr>
+          <td>Curiosity Hook</td>
+          <td>Implied forbidden/insider knowledge</td>
+          <td>Use sparingly — watch brand voice</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="voice-rules">
+      <div class="voice-rule positive">
+        <div class="rule-label">Brand Voice</div>
+        <div class="rule-text">Direct, operator-tone, zero hype. Teach something real every time.</div>
+      </div>
+      <div class="voice-rule negative">
+        <div class="rule-label">Never Use</div>
+        <div class="rule-text">secret loophole &nbsp;·&nbsp; passive income machine &nbsp;·&nbsp; crush it &nbsp;·&nbsp; guaranteed profits &nbsp;·&nbsp; make money while you sleep</div>
+      </div>
+      <div class="voice-rule negative">
+        <div class="rule-label">Hard Restrictions</div>
+        <div class="rule-text">Do NOT reference The Buy Box Discord as an affiliate channel — ban risk. Do NOT generate TikTok Shop product affiliate content — off-strategy for HPHQ.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Hidden Potential HQ &nbsp;|&nbsp; hphque@gmail.com &nbsp;|&nbsp; Content Engine v3 — June 2026
+  </div>
+
+</div>
+</body>
+</html>
