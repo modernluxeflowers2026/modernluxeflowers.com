@@ -423,6 +423,16 @@ nav {
 /* native date picker renders a dark-on-dark icon by default on a black field */
 input[type="date"].form-input { color-scheme: dark; }
 
+/* honeypot: off-screen (not display:none) so bots that skip hidden fields still fill it in */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 textarea.form-input {
   resize: vertical;
   min-height: 120px;
@@ -978,6 +988,12 @@ footer {
         </div>
       </div>
 
+      <!-- Honeypot — hidden from real visitors via CSS, autofilled by most spam bots -->
+      <div class="hp-field" aria-hidden="true">
+        <label for="company">Company</label>
+        <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+      </div>
+
       <!-- Date -->
       <div class="form-block">
         <div class="form-field">
@@ -1099,6 +1115,12 @@ footer {
     dateInput.min = iso;
   })();
 
+  // Honeypot: real visitors never see or fill #company. If it's filled, the
+  // submission came from a bot — pretend success and send nothing.
+  function isBotSubmission() {
+    return document.getElementById('company').value.trim() !== '';
+  }
+
   function getFormData() {
     const form = document.getElementById('inquiryForm');
     return {
@@ -1197,6 +1219,14 @@ footer {
     const btn = document.getElementById('submitEmailBtn');
     const d = getFormData();
 
+    if (isBotSubmission()) {
+      statusEl.textContent = 'Thank you! Your inquiry has been sent — we\'ll respond within 24 hours.';
+      statusEl.className = 'submit-note status-success';
+      btn.textContent = 'Sent';
+      document.getElementById('inquiryForm').reset();
+      return;
+    }
+
     if (!validateLead(d)) return;
 
     btn.disabled = true;
@@ -1247,10 +1277,15 @@ footer {
 
   function submitWhatsApp() {
     const d = getFormData();
+    const statusEl = document.getElementById('formStatus');
+
+    if (isBotSubmission()) {
+      statusEl.textContent = 'Opening WhatsApp with your details…';
+      statusEl.className = 'submit-note';
+      return;
+    }
 
     if (!validateLead(d)) return;
-
-    const statusEl = document.getElementById('formStatus');
 
     // Fire the capture request first, but do NOT await it: window.open must stay
     // inside the click gesture or the browser blocks the popup. keepalive:true on
