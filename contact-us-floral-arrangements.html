@@ -420,6 +420,9 @@ nav {
 .form-input:focus { border-color: var(--gold-dim); }
 .form-input.input-error { border-color: #c96e6e; }
 
+/* native date picker renders a dark-on-dark icon by default on a black field */
+input[type="date"].form-input { color-scheme: dark; }
+
 textarea.form-input {
   resize: vertical;
   min-height: 120px;
@@ -979,7 +982,7 @@ footer {
       <div class="form-block">
         <div class="form-field">
           <label for="event-date">Event date</label>
-          <input type="text" id="event-date" name="event-date" class="form-input" placeholder="e.g. Sept 2026 or exact date">
+          <input type="date" id="event-date" name="event-date" class="form-input">
         </div>
       </div>
 
@@ -1085,6 +1088,16 @@ footer {
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a:not(.nav-dropdown-trigger)').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
   document.addEventListener('click', e => { if (!e.target.closest('nav')) links.classList.remove('open'); });
+
+  // Prevent picking an event date that's already in the past.
+  (function () {
+    const dateInput = document.getElementById('event-date');
+    const today = new Date();
+    const iso = today.getFullYear() + '-' +
+      String(today.getMonth() + 1).padStart(2, '0') + '-' +
+      String(today.getDate()).padStart(2, '0');
+    dateInput.min = iso;
+  })();
 
   function getFormData() {
     const form = document.getElementById('inquiryForm');
