@@ -750,7 +750,13 @@ footer {
     </li>
     <li><a href="/corporate-floral-design-chicago.html">Corporate</a></li>
     <li><a href="/weddings-and-events-floral-chicago.html">Weddings &amp; Events</a></li>
-    <li><a href="/about-us-floral-design-business.html">About</a></li>
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-trigger">About <span class="nav-caret">&#9660;</span></a>
+      <ul class="nav-sub">
+        <li><a href="/about-us-floral-design-business.html">Meet Jo</a></li>
+        <li><a href="/studio-stories.html">Studio Stories</a></li>
+      </ul>
+    </li>
     <li><a href="/client-reviews.html">Kind Words</a></li>
     <li><a href="/contact-us-floral-arrangements.html" class="nav-cta">Consult</a></li>
   </ul>
@@ -872,6 +878,7 @@ footer {
     <h4>Studio</h4>
     <ul>
       <li><a href="/about-us-floral-design-business.html">Meet Jo</a></li>
+      <li><a href="/studio-stories.html">Studio Stories</a></li>
       <li><a href="/client-reviews.html">Kind Words</a></li>
       <li><a href="/contact-us-floral-arrangements.html">Contact</a></li>
     </ul>
@@ -890,14 +897,16 @@ footer {
   links.querySelectorAll('a:not(.nav-dropdown-trigger)').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
   document.addEventListener('click', e => { if (!e.target.closest('nav')) links.classList.remove('open'); });
 
-  const portfolioTrigger = document.querySelector('.nav-dropdown-trigger');
-  portfolioTrigger.addEventListener('click', e => {
-    e.preventDefault();
-    e.stopPropagation();
-    document.querySelector('.nav-dropdown').classList.toggle('open');
+  document.querySelectorAll('.nav-dropdown').forEach(dd => {
+    dd.querySelector('.nav-dropdown-trigger').addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      document.querySelectorAll('.nav-dropdown').forEach(o => { if (o !== dd) o.classList.remove('open'); });
+      dd.classList.toggle('open');
+    });
   });
   document.addEventListener('click', () => {
-    document.querySelector('.nav-dropdown').classList.remove('open');
+    document.querySelectorAll('.nav-dropdown').forEach(o => o.classList.remove('open'));
   });
 </script>
 

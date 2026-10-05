@@ -29,6 +29,12 @@ This site only goes live when commits land on `main` (GitHub Pages deploys autom
 
 When creating these pages, follow the same self-contained single-file pattern as `index.html`.
 
+## Studio Stories
+
+`studio-stories.html` is the index of story pages (nav: About ▾ → Studio Stories; also linked in the footer "Studio" column). Each story is its own self-contained page (first one: `barbara-bates-40th-anniversary-floral-gift.html`). To add a story, copy the previous story page and add a new `<li class="story-entry">` at the top of the list in `studio-stories.html` (a comment marks the spot), then add the URL to `sitemap.xml`. The nav "About" item is a dropdown (Meet Jo / Studio Stories) on every page; the dropdown JS handles any number of `.nav-dropdown` items.
+
+The homepage "Recently" strip (`#recentlyBand`, under the hero) is temporary and auto-hides on the date in its `data-hide-after` attribute.
+
 ## Design system
 
 CSS custom properties are defined on `:root` at the top of the `<style>` block:
