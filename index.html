@@ -494,14 +494,26 @@ nav {
   margin-bottom: 28px !important;
 }
 
-/* ─── RECENTLY BAND ─── */
+/* ─── RECENTLY STRIP ─── */
 .recently-band {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 22px 80px;
+  background: var(--black);
+  border-bottom: 1px solid var(--border);
+}
+
+.recently-band[hidden] { display: none; }
+
+.recently-thumb { flex-shrink: 0; display: block; }
+.recently-thumb img { display: block; width: 66px; height: 88px; object-fit: cover; }
+
+.recently-text {
+  flex: 1;
   display: flex;
   align-items: baseline;
   gap: 28px;
-  padding: 26px 80px;
-  background: var(--black);
-  border-top: 1px solid var(--border);
 }
 
 .recently-eyebrow {
@@ -536,10 +548,15 @@ nav {
 
 .recently-link:hover { color: var(--gold); border-color: var(--gold); }
 
+@media (max-width: 1024px) {
+  .recently-band { padding: 20px 40px; }
+}
+
 @media (max-width: 768px) {
-  .recently-band { flex-wrap: wrap; gap: 8px 20px; padding: 24px; }
-  .recently-line { flex-basis: 100%; order: 3; }
-  .recently-link { margin-left: 0; order: 2; }
+  .recently-band { gap: 18px; padding: 18px 24px; align-items: flex-start; }
+  .recently-text { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .recently-line { font-size: 18px; }
+  .recently-link { margin-left: 0; margin-top: 6px; }
 }
 
 /* ─── COLLECTIONS ─── */
@@ -1205,6 +1222,21 @@ footer {
   </div>
 </section>
 
+<!-- RECENTLY STRIP — temporary (30 days from the Oct 3, 2026 event).
+     Auto-hides on/after the date in data-hide-after; delete this block and its
+     script at the bottom of the page whenever convenient. -->
+<aside class="recently-band" id="recentlyBand" data-hide-after="2026-11-05">
+  <a href="barbara-bates-40th-anniversary-floral-gift.html" class="recently-thumb" tabindex="-1">
+    <img src="images/barbara-bates-40th-rose-box.jpg" width="66" height="88"
+         alt="Red and hot pink roses with plum palm fans in a blush box marked 40th">
+  </a>
+  <div class="recently-text">
+    <span class="recently-eyebrow">Recently</span>
+    <span class="recently-line">A Boxful Art piece for Barbara Bates' 40th anniversary show at the Obama Presidential Center.</span>
+    <a href="barbara-bates-40th-anniversary-floral-gift.html" class="recently-link">Read the story</a>
+  </div>
+</aside>
+
 <!-- INTRO STRIP -->
 <div class="intro-strip">
   <div class="strip-item">
@@ -1238,13 +1270,6 @@ footer {
     <a href="/about-us-floral-design-business.html" class="btn-ghost">Meet Jo</a>
   </div>
 </section>
-
-<!-- RECENTLY BAND -->
-<div class="recently-band">
-  <span class="recently-eyebrow">Recently</span>
-  <span class="recently-line">A Boxful Art piece for Barbara Bates' 40th anniversary show at the Obama Presidential Center.</span>
-  <a href="barbara-bates-40th-anniversary-floral-gift.html" class="recently-link">Read the story</a>
-</div>
 
 <!-- COLLECTIONS -->
 <section class="collections">
@@ -1392,5 +1417,14 @@ footer {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 </script>
 
+<script>
+  // Hide the temporary "Recently" strip once its end date has passed
+  (function () {
+    var el = document.getElementById('recentlyBand');
+    if (!el) return;
+    var end = new Date(el.getAttribute('data-hide-after') + 'T00:00:00');
+    if (new Date() >= end) el.hidden = true;
+  })();
+</script>
 </body>
 </html>
