@@ -1107,5 +1107,22 @@ footer {
   });
 </script>
 
+<script>
+  // Analytics: count clicks on links to Studio Stories / the Barbara Bates story, tagged by where on the site they were clicked
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href$="studio-stories.html"], a[href$="barbara-bates-40th-anniversary-floral-gift.html"]');
+    if (!a || typeof gtag !== 'function') return;
+    var spot = a.closest('#recentlyBand') ? 'homepage_strip'
+             : a.closest('.feature-tile') ? 'boxful_art_tile'
+             : a.closest('.stories-list') ? 'stories_index'
+             : a.closest('nav') ? 'nav'
+             : a.closest('footer') ? 'footer' : 'other';
+    gtag('event', 'story_link_click', {
+      link_location: spot,
+      link_url: a.getAttribute('href'),
+      transport_type: 'beacon'
+    });
+  });
+</script>
 </body>
 </html>
