@@ -445,7 +445,8 @@ footer {
   grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
   grid-template-rows: auto 1fr auto;
   background: var(--black);
-  margin-bottom: 56px;
+  max-width: 1240px;
+  margin: 0 auto 56px;
 }
 
 .story-head  { grid-column: 2; grid-row: 1; padding: 160px 80px 0 56px; }
@@ -531,7 +532,7 @@ footer {
     --story-img: 100%;
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto;
-    margin-bottom: 32px;
+    margin: 0 auto 32px;
   }
   .story-head, .story-media, .story-body, .story-inset { grid-column: 1; }
   .story-head  { grid-row: 1; padding: 56px 24px 0; }
