@@ -440,6 +440,7 @@ footer {
 
 /* ─── STORY ─── */
 .story {
+  --story-img: clamp(280px, 28vw, 420px);
   display: grid;
   grid-template-columns: 55fr 45fr;
   grid-template-rows: auto 1fr auto;
@@ -452,7 +453,8 @@ footer {
 }
 
 .story-media { grid-area: media; align-self: start; }
-.story-media img { width: 100%; height: auto; display: block; }
+.story-media { padding-left: 80px; }
+.story-media img { width: var(--story-img); height: auto; display: block; }
 .story-caption {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
@@ -460,8 +462,8 @@ footer {
   font-size: 16px;
   line-height: 1.6;
   color: var(--muted);
-  max-width: 520px;
-  padding: 18px 0 0 80px;
+  padding: 18px 0 0;
+  width: var(--story-img);
 }
 
 .story-head { grid-area: head; padding: 200px 80px 0 72px; }
@@ -514,8 +516,8 @@ footer {
 .story-inset {
   grid-area: inset;
   justify-self: end;
-  width: 40%;
-  margin: 72px 64px -40px 0;
+  width: var(--story-img);
+  margin: 56px 80px -40px 0;
   position: relative;
   z-index: 1;
 }
@@ -524,7 +526,7 @@ footer {
 @media (max-width: 1024px) {
   .story-head { padding: 120px 40px 0 40px; }
   .story-body { padding: 40px 40px 0 40px; }
-  .story-caption { padding-left: 40px; }
+  .story-media { padding-left: 40px; }
   .story-inset { margin-right: 40px; }
 }
 
@@ -541,11 +543,13 @@ footer {
   }
   .story-head { padding: 56px 24px 0; }
   .story-head h1 { margin-bottom: 20px; }
-  .story-media { margin-top: 40px; }
-  .story-caption { padding: 14px 24px 0; max-width: none; }
+  .story { --story-img: min(100%, 360px); }
+  .story-media { margin-top: 40px; padding: 0 24px; }
+  .story-media img, .story-caption { width: 100%; max-width: 360px; }
+  .story-caption { padding: 14px 0 0; }
   .story-body { padding: 36px 24px 0; }
   .story-body p { max-width: none; font-size: 19px; }
-  .story-inset { width: 78%; margin: 48px 24px -24px 0; }
+  .story-inset { width: calc(100% - 48px); max-width: 360px; justify-self: end; margin: 48px 24px -24px 0; }
   footer { grid-template-columns: 1fr; padding: 48px 24px 32px; gap: 36px; }
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
 }
@@ -553,8 +557,8 @@ footer {
 @media (max-width: 480px) {
   nav { padding: 16px 20px; }
   .story-head { padding: 44px 20px 0; }
-  .story-caption, .story-body { padding-left: 20px; padding-right: 20px; }
-  .story-inset { margin-right: 20px; }
+  .story-media, .story-body { padding-left: 20px; padding-right: 20px; }
+  .story-inset { width: calc(100% - 40px); margin-right: 20px; }
   footer { padding: 40px 20px 28px; }
 }
 

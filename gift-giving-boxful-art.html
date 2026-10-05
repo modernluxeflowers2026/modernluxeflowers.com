@@ -314,21 +314,34 @@ nav {
 .feature-tile {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: clamp(260px, 26vw, 380px) 1fr;
-  align-items: center;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  background: var(--black);
 }
 
-.feature-tile-img { align-self: stretch; overflow: hidden; background: var(--surface); }
+.feature-tile-img {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--surface);
+}
 
 .feature-tile-img img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
 }
 
-.feature-tile-text { padding: 56px 72px; }
+.feature-tile-text {
+  grid-column: 2 / 4;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--surface);
+  padding: clamp(32px, 6vw, 96px);
+}
 
 .feature-tile-eyebrow {
   display: flex;
@@ -360,6 +373,7 @@ nav {
 }
 
 .feature-tile-link {
+  align-self: flex-start;
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -374,7 +388,7 @@ nav {
 
 @media (max-width: 768px) {
   .feature-tile { grid-template-columns: 1fr; }
-  .feature-tile-text { padding: 36px 24px 40px; }
+  .feature-tile-text { grid-column: 1; padding: 36px 24px 40px; }
 }
 
 /* ─── LIGHTBOX ─── */
