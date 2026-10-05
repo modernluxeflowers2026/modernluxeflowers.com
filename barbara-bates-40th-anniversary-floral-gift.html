@@ -440,39 +440,47 @@ footer {
 
 /* ─── STORY ─── */
 .story {
-  --story-img: clamp(280px, 28vw, 420px);
+  --story-img: clamp(320px, 34vw, 500px);
   display: grid;
-  grid-template-columns: 55fr 45fr;
+  grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
   grid-template-rows: auto 1fr auto;
-  grid-template-areas:
-    "media head"
-    "media body"
-    "inset inset";
   background: var(--black);
   margin-bottom: 56px;
 }
 
-.story-media { grid-area: media; align-self: start; }
-.story-media { padding-left: 80px; }
-.story-media img { width: var(--story-img); height: auto; display: block; }
+.story-head  { grid-column: 2; grid-row: 1; padding: 160px 80px 0 56px; }
+.story-media { grid-column: 1; grid-row: 1 / 3; align-self: start; padding-left: 80px; }
+.story-body  { grid-column: 2; grid-row: 2 / 4; padding: 44px 80px 0 56px; }
+.story-inset {
+  grid-column: 1;
+  grid-row: 3;
+  width: var(--story-img);
+  margin: 48px 0 -40px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.story-media img,
+.story-inset img { width: 100%; height: auto; display: block; }
+.story-media img { width: var(--story-img); }
+
 .story-caption {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--muted);
-  padding: 18px 0 0;
   width: var(--story-img);
+  padding-top: 16px;
 }
 
-.story-head { grid-area: head; padding: 200px 80px 0 72px; }
 .story-eyebrow {
   font-size: 10px;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -487,81 +495,68 @@ footer {
 .story-head h1 {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
-  font-size: clamp(38px, 4.2vw, 64px);
-  line-height: 1.05;
+  font-size: clamp(34px, 3.6vw, 54px);
+  line-height: 1.08;
   letter-spacing: -0.01em;
   color: var(--cream);
-  margin-bottom: 28px;
+  margin-bottom: 22px;
 }
 .story-sub {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-weight: 300;
-  font-size: clamp(19px, 1.7vw, 23px);
-  line-height: 1.6;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.55;
   color: var(--muted);
-  max-width: 480px;
+  max-width: 460px;
 }
-
-.story-body { grid-area: body; padding: 56px 80px 0 72px; }
 .story-body p {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
-  line-height: 1.8;
+  font-size: 17px;
+  line-height: 1.75;
   color: var(--body);
-  margin-bottom: 22px;
-  max-width: 480px;
+  margin-bottom: 18px;
+  max-width: 460px;
 }
-
-.story-inset {
-  grid-area: inset;
-  justify-self: end;
-  width: var(--story-img);
-  margin: 56px 80px -40px 0;
-  position: relative;
-  z-index: 1;
-}
-.story-inset img { width: 100%; height: auto; display: block; }
 
 @media (max-width: 1024px) {
-  .story-head { padding: 120px 40px 0 40px; }
-  .story-body { padding: 40px 40px 0 40px; }
+  .story-head { padding: 96px 40px 0 32px; }
   .story-media { padding-left: 40px; }
-  .story-inset { margin-right: 40px; }
+  .story-body { padding: 36px 40px 0 32px; }
+  .story-inset { margin-left: 40px; }
 }
 
 @media (max-width: 768px) {
   .story {
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    grid-template-areas:
-      "head"
-      "media"
-      "body"
-      "inset";
+    --story-img: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
     margin-bottom: 32px;
   }
-  .story-head { padding: 56px 24px 0; }
-  .story-head h1 { margin-bottom: 20px; }
-  .story { --story-img: min(100%, 360px); }
-  .story-media { margin-top: 40px; padding: 0 24px; }
-  .story-media img, .story-caption { width: 100%; max-width: 360px; }
-  .story-caption { padding: 14px 0 0; }
-  .story-body { padding: 36px 24px 0; }
-  .story-body p { max-width: none; font-size: 19px; }
-  .story-inset { width: calc(100% - 48px); max-width: 360px; justify-self: end; margin: 48px 24px -24px 0; }
-  footer { grid-template-columns: 1fr; padding: 48px 24px 32px; gap: 36px; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .story-head, .story-media, .story-body, .story-inset { grid-column: 1; }
+  .story-head  { grid-row: 1; padding: 56px 24px 0; }
+  .story-media { grid-row: 2; margin-top: 36px; padding: 0 24px; }
+  .story-body  { grid-row: 3; padding: 32px 24px 0; }
+  .story-inset { grid-row: 4; width: auto; max-width: 480px; margin: 40px 24px -24px; }
+  .story-media img, .story-caption { max-width: 480px; }
+  .story-body p, .story-sub { max-width: none; }
 }
 
 @media (max-width: 480px) {
   nav { padding: 16px 20px; }
   .story-head { padding: 44px 20px 0; }
   .story-media, .story-body { padding-left: 20px; padding-right: 20px; }
-  .story-inset { width: calc(100% - 40px); margin-right: 20px; }
-  footer { padding: 40px 20px 28px; }
+  .story-inset { margin-left: 20px; margin-right: 20px; }
 }
 
+/* footer stacking on mobile */
+@media (max-width: 768px) {
+  footer { grid-template-columns: 1fr; padding: 48px 24px 32px; gap: 36px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+@media (max-width: 480px) {
+  footer { padding: 40px 20px 28px; }
+}
 </style>
   <!-- Microsoft Clarity -->
   <script type="text/javascript">
