@@ -571,11 +571,11 @@ footer {
   grid-column: 1 / -1;
   grid-row: 5;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   padding: 72px 80px 0;
 }
-.story-gallery img { width: 100%; height: auto; display: block; }
+.story-gallery img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
 @media (max-width: 768px) {
   .story-gallery { grid-row: 5; grid-template-columns: 1fr; padding: 48px 24px 0; }
 }
@@ -657,14 +657,16 @@ footer {
 
   <div class="story-inset">
     <img src="images/corporate-welcome-cream-rose-mercury-vase.jpg" width="844" height="1500" loading="lazy" decoding="async"
-         alt="Cream roses, calla lily and alstroemeria in a mercury glass vase, a table arrangement for a Chicago corporate welcome event">
+         alt="Cream roses, alstroemeria and calla lily in a mercury glass vase on a table, an arrangement for a Chicago corporate welcome event">
   </div>
 
   <div class="story-gallery">
-    <img src="images/corporate-welcome-white-rose-mercury-bowl.jpg" width="1487" height="1486" loading="lazy" decoding="async"
-         alt="White roses, calla lily and alstroemeria with fern in a mercury glass bowl, a corporate welcome event gift arrangement">
-    <img src="images/corporate-welcome-rose-calla-gift-bowl.jpg" width="1500" height="1417" loading="lazy" decoding="async"
-         alt="Cream roses and calla lilies with looped aspidistra in a mercury glass bowl, a corporate welcome event table arrangement">
+    <img src="images/corporate-welcome-white-rose-vase-teal-table.jpg" width="844" height="1500" loading="lazy" decoding="async"
+         alt="White roses, calla lily and alstroemeria with fern in a mercury glass vase on a table at a Chicago corporate welcome event">
+    <img src="images/corporate-welcome-side-table-rose-bowl.jpg" width="844" height="1500" loading="lazy" decoding="async"
+         alt="Small mercury glass bowl of white roses and calla lily on a side table by a window, corporate welcome event in Chicago">
+    <img src="images/corporate-welcome-white-rose-mercury-bowl.jpg" width="1499" height="1500" loading="lazy" decoding="async"
+         alt="White roses and calla lilies with looped aspidistra in a mercury glass bowl, a corporate welcome event table arrangement">
   </div>
 
 </article>
