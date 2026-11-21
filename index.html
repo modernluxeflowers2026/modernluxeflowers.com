@@ -1228,18 +1228,18 @@ footer {
   </div>
 </section>
 
-<!-- RECENTLY STRIP — temporary (30 days from the Oct 3, 2026 event).
-     Auto-hides on/after the date in data-hide-after; delete this block and its
-     script at the bottom of the page whenever convenient. -->
-<aside class="recently-band" id="recentlyBand" data-hide-after="2026-11-05">
-  <a href="barbara-bates-40th-anniversary-floral-gift.html" class="recently-thumb" tabindex="-1">
-    <img src="images/barbara-bates-40th-rose-box.jpg" width="66" height="88"
-         alt="Red and hot pink roses with plum palm fans in a blush box marked 40th">
+<!-- RECENTLY STRIP — temporary. Auto-hides on/after the date in data-hide-after
+     (2027-01-01 = disappears Jan 1, 2027); delete this block and its script at the
+     bottom of the page whenever convenient. -->
+<aside class="recently-band" id="recentlyBand" data-hide-after="2027-01-01">
+  <a href="corporate-welcome-event-florals.html" class="recently-thumb" tabindex="-1">
+    <img src="images/corporate-welcome-thumb.jpg" width="66" height="88"
+         alt="Tall arrangement of calla lilies, white roses and orchids made for a Chicago corporate client welcome event">
   </a>
   <div class="recently-text">
     <span class="recently-eyebrow">Recently</span>
-    <span class="recently-line">A Boxful Art piece for Barbara Bates' 40th anniversary show at the Obama Presidential Center.</span>
-    <a href="barbara-bates-40th-anniversary-floral-gift.html" class="recently-link">Read the story</a>
+    <span class="recently-line">Luxury florals for a corporate client welcome event, with table arrangements made to take home.</span>
+    <a href="corporate-welcome-event-florals.html" class="recently-link">Read the story</a>
   </div>
 </aside>
 
@@ -1437,7 +1437,7 @@ footer {
 <script>
   // Analytics: count clicks on links to Studio Stories / the Barbara Bates story, tagged by where on the site they were clicked
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href$="studio-stories.html"], a[href$="barbara-bates-40th-anniversary-floral-gift.html"]');
+    var a = e.target.closest && e.target.closest('a[href$="studio-stories.html"], a[href$="barbara-bates-40th-anniversary-floral-gift.html"], a[href$="corporate-welcome-event-florals.html"]');
     if (!a || typeof gtag !== 'function') return;
     var spot = a.closest('#recentlyBand') ? 'homepage_strip'
              : a.closest('.feature-tile') ? 'boxful_art_tile'
